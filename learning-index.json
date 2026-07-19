@@ -1,0 +1,254 @@
+{
+  "version": "3.1",
+  "title": "AI 协作知识库",
+  "subtitle": "从理解 AI，到读懂 Agent 与 Harness",
+  "primaryMode": "learn",
+  "startReading": {
+    "route": "/read/01-AI基础认知%2F01-AI到底改变了什么.md",
+    "path": "01-AI基础认知/01-AI到底改变了什么.md",
+    "estimatedMinutes": 8
+  },
+  "firstWin": {
+    "route": "/learn/first-task",
+    "path": "00-课程入口/03-第一次AI作品路线.md",
+    "estimatedMinutes": 18,
+    "artifactId": "artifact-task-card-v1",
+    "optional": true
+  },
+  "modes": [
+    {
+      "id": "learn",
+      "title": "阅读学习",
+      "question": "我想循序理解 AI、Agent 与 Harness"
+    },
+    {
+      "id": "directory",
+      "title": "课程目录",
+      "question": "我想按阶段浏览全部主线知识"
+    },
+    {
+      "id": "reference",
+      "title": "知识检索",
+      "question": "我想快速查一个概念、机制或工具"
+    },
+    {
+      "id": "practice",
+      "title": "案例练习",
+      "question": "我读完后想看案例或动手试一下"
+    }
+  ],
+  "coreSpine": [
+    {
+      "id": "prompt",
+      "title": "Prompt",
+      "short": "任务说清",
+      "artifactId": "artifact-task-card-v1",
+      "controls": [
+        "目标",
+        "输入",
+        "输出",
+        "验收",
+        "人类责任"
+      ]
+    },
+    {
+      "id": "context",
+      "title": "Template / Context",
+      "short": "材料选对",
+      "artifactId": "artifact-context-template-v1",
+      "controls": [
+        "变量",
+        "材料",
+        "预算",
+        "来源",
+        "版本"
+      ]
+    },
+    {
+      "id": "workflow",
+      "title": "Workflow",
+      "short": "过程可查",
+      "artifactId": "artifact-workflow-v1",
+      "controls": [
+        "步骤",
+        "状态",
+        "检查点",
+        "人工门",
+        "异常"
+      ]
+    },
+    {
+      "id": "agent",
+      "title": "Agent Loop",
+      "short": "动态选择",
+      "artifactId": "artifact-agent-loop-v1",
+      "controls": [
+        "观察",
+        "工具",
+        "状态更新",
+        "停止",
+        "恢复"
+      ]
+    },
+    {
+      "id": "harness",
+      "title": "Harness",
+      "short": "运行可控",
+      "artifactId": "artifact-minimum-harness-v1",
+      "controls": [
+        "权限",
+        "预算",
+        "Trace",
+        "Eval",
+        "异常",
+        "成本"
+      ]
+    },
+    {
+      "id": "asset",
+      "title": "Skill / AgentOS",
+      "short": "能力可复用",
+      "artifactId": "artifact-capability-package-v1",
+      "controls": [
+        "handoff",
+        "registry",
+        "owner",
+        "版本",
+        "反馈回流"
+      ]
+    }
+  ],
+  "interactions": [
+    "task-card-builder",
+    "evolution-ladder",
+    "context-budgeter",
+    "workflow-builder",
+    "agent-loop-simulator",
+    "permission-matrix",
+    "eval-scorer",
+    "before-after-compare",
+    "lab-decision"
+  ],
+  "modules": [
+    {
+      "id": "overview",
+      "dir": ".",
+      "title": "知识库总览",
+      "phase": "入口",
+      "output": "理解知识库定位和阅读路径",
+      "count": 1
+    },
+    {
+      "id": "entry",
+      "dir": "00-课程入口",
+      "title": "阅读导览",
+      "phase": "定向",
+      "mode": "learn",
+      "progressEligible": false,
+      "output": "理解知识库结构与自由阅读方式",
+      "count": 4
+    },
+    {
+      "id": "foundation",
+      "dir": "01-AI基础认知",
+      "title": "AI 基础与按需原理",
+      "phase": "Prompt / Context",
+      "mode": "mixed",
+      "progressEligible": false,
+      "output": "理解候选答案、上下文与人类责任",
+      "count": 9
+    },
+    {
+      "id": "collaboration",
+      "dir": "02-人机协作基本功",
+      "title": "任务卡与上下文",
+      "phase": "Prompt / Context",
+      "mode": "learn",
+      "progressEligible": true,
+      "output": "任务卡与上下文材料包",
+      "count": 6
+    },
+    {
+      "id": "scenarios",
+      "dir": "03-高频场景实战",
+      "title": "高频任务实验室",
+      "phase": "迁移",
+      "mode": "lab",
+      "progressEligible": false,
+      "output": "真实任务迁移作品",
+      "count": 7
+    },
+    {
+      "id": "aigc",
+      "dir": "04-AIGC与多模态创作",
+      "title": "AIGC 任务实验室",
+      "phase": "迁移",
+      "mode": "lab",
+      "progressEligible": false,
+      "output": "视觉 Brief、候选与发布检查",
+      "count": 7
+    },
+    {
+      "id": "validation",
+      "dir": "04-判断验证与风险",
+      "title": "验证、风险与人工门",
+      "phase": "Prompt → Harness",
+      "mode": "learn",
+      "progressEligible": true,
+      "output": "核查记录、Eval 与权限判断",
+      "count": 5
+    },
+    {
+      "id": "workflow",
+      "dir": "05-工作流与方法沉淀",
+      "title": "Workflow 与 Agent",
+      "phase": "Context → Agent",
+      "mode": "learn",
+      "progressEligible": true,
+      "output": "模板、工作流、Agent 运行卡与 Skill",
+      "count": 5
+    },
+    {
+      "id": "tools",
+      "dir": "06-工具地图与个人系统",
+      "title": "工具与能力资产",
+      "phase": "Reference / Asset",
+      "mode": "mixed",
+      "progressEligible": false,
+      "output": "工具选择、registry 与版本反馈",
+      "count": 5
+    },
+    {
+      "id": "electives",
+      "dir": "07-共生视角与建设者路径",
+      "title": "建设者选修",
+      "phase": "选修",
+      "mode": "reference",
+      "progressEligible": false,
+      "output": "长期视角与组织扩展",
+      "count": 6
+    },
+    {
+      "id": "workbook",
+      "dir": "08-练习册与案例库",
+      "title": "作品库",
+      "phase": "证据",
+      "mode": "portfolio",
+      "progressEligible": false,
+      "output": "阶段作品、评分、版本与复盘",
+      "count": 4
+    },
+    {
+      "id": "harness",
+      "dir": "09-Agent与Harness工程",
+      "title": "Agent、Harness 与能力资产",
+      "phase": "Agent → Asset",
+      "mode": "learn",
+      "progressEligible": true,
+      "output": "Agent 运行卡、最小 Harness 与能力资产包",
+      "count": 9
+    }
+  ],
+  "legacyStorageKey": "ai-intro-kb-completed",
+  "stateStorageKey": "ai-intro-kb-v3-state"
+}
