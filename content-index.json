@@ -244,7 +244,11 @@
     "headings": [
       {
         "level": 2,
-        "text": "先把“补全”说准确"
+        "text": "先看一条行动项怎样长出来"
+      },
+      {
+        "level": 2,
+        "text": "再把刚才的过程还原成 token"
       },
       {
         "level": 2,
@@ -287,7 +291,7 @@
         "text": "教学反馈"
       }
     ],
-    "minutes": 11,
+    "minutes": 15,
     "order": 8
   },
   {
