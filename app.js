@@ -6,24 +6,55 @@
   const V = window.CourseValidators;
   const S = window.CourseStorage;
   const C = window.CourseComponents;
+  const courseStructure = window.COURSE_STRUCTURE || {};
   const readingStages = [
-    { id: "prompt", concept: "AI 与 Prompt", title: "先弄懂 AI 能做什么", question: "AI 为什么能快速生成内容，却仍然可能说错？", description: "先建立“不盲信，也不拒绝”的基本判断。" },
-    { id: "context", concept: "Context", title: "让 AI 看对材料", question: "为什么材料选得对，比把所有资料都塞进去更重要？", description: "学会选择背景、版本、示例和必要信息。" },
-    { id: "workflow", concept: "Workflow", title: "把复杂任务变成流程", question: "事情不止一步时，怎样让过程可以检查和恢复？", description: "把步骤、检查点、人工确认和异常写清楚。" },
-    { id: "agent", concept: "Agent", title: "再判断要不要 Agent", question: "什么时候固定流程不够，需要 AI 根据结果选择下一步？", description: "先理解动态选择，再决定是否需要 Agent。" },
-    { id: "harness", concept: "Harness", title: "让 Agent 安全稳定地工作", question: "AI 会调用工具后，怎样限制权限、记录过程并处理失败？", description: "用权限、验证、记录和恢复管理不确定性。" },
-    { id: "asset", concept: "Skill / AgentOS", title: "把方法变成团队能力", question: "一次有效经验，怎样让别人也能安全复用和持续改进？", description: "把方法整理成可交接、可维护的能力资产。" }
+    { id: "prompt", concept: "AI 与 Prompt", title: "先弄懂 AI 能做什么", question: "AI 为什么能快速生成内容，却仍然可能说错？", description: "先建立“不盲信，也不拒绝”的基本判断。", entryPath: "01-AI基础认知/01-AI到底改变了什么.md" },
+    { id: "context", concept: "Context", title: "让 AI 看对材料", question: "为什么材料选得对，比把所有资料都塞进去更重要？", description: "学会选择背景、版本、示例和必要信息。", entryPath: "02-人机协作基本功/02-上下文包是什么.md" },
+    { id: "workflow", concept: "Workflow", title: "把复杂任务变成流程", question: "事情不止一步时，怎样让过程可以检查和恢复？", description: "把步骤、检查点、人工确认和异常写清楚。", entryPath: "05-工作流与方法沉淀/02-从单次任务到Workflow.md" },
+    { id: "agent", concept: "Agent", title: "再判断要不要 Agent", question: "什么时候固定流程不够，需要 AI 根据结果选择下一步？", description: "先理解动态选择，再决定是否需要 Agent。", entryPath: "05-工作流与方法沉淀/03-什么时候需要Agent.md" },
+    { id: "harness", concept: "Harness", title: "让 Agent 安全稳定地工作", question: "AI 会调用工具后，怎样限制权限、记录过程并处理失败？", description: "用权限、验证、记录和恢复管理不确定性。", entryPath: "09-Agent与Harness工程/01-从Prompt到Harness工程.md" },
+    { id: "asset", concept: "Skill / AgentOS", title: "把方法变成团队能力", question: "一次有效经验，怎样让别人也能安全复用和持续改进？", description: "把方法整理成可交接、可维护的能力资产。", entryPath: "09-Agent与Harness工程/06-从真实工作到AgentOS能力资产.md" }
   ];
 
-  function stageJourney(activeStage) {
-    return `<ol class="novice-route" aria-label="六步学习路线">${readingStages.map((stage, index) => `<li class="${stage.id === activeStage ? "current" : ""}" ${stage.id === activeStage ? 'aria-current="step"' : ""}><span class="novice-route-number">${index + 1}</span><div><span class="eyebrow">${C.escapeHtml(stage.concept)}</span><strong>${C.escapeHtml(stage.title)}</strong><p>${C.escapeHtml(stage.question)}</p></div></li>`).join("")}</ol>`;
+  function articleByPath(path) {
+    return (window.LEARNING_ARTICLES || []).find((item) => item.path === path) || null;
+  }
+
+  function visibleArticles() {
+    return (window.LEARNING_ARTICLES || []).filter((item) => item.visible === true);
+  }
+
+  function courseSequence(layer) {
+    return visibleArticles()
+      .filter((item) => item.layer === layer)
+      .sort((a, b) => (a.courseOrder ?? 99) - (b.courseOrder ?? 99));
   }
 
   function coreReadingSequence() {
-    const stageOrder = new Map(readingStages.map((stage, index) => [stage.id, index]));
-    return (window.LEARNING_ARTICLES || [])
-      .filter((item) => item.pageType === "core-spine")
-      .sort((a, b) => (stageOrder.get(a.stage) ?? 99) - (stageOrder.get(b.stage) ?? 99) || a.order - b.order);
+    return courseSequence("core");
+  }
+
+  function advancedReadingSequence() {
+    return courseSequence("advanced");
+  }
+
+  function coreModules() {
+    return (courseStructure.core?.modules || []).map((module) => ({
+      ...module,
+      articles: (module.units || []).map((unit) => articleByPath(unit.path)).filter(Boolean)
+    }));
+  }
+
+  function courseModuleFor(article) {
+    return coreModules().find((module) => module.moduleId === article?.courseModuleId) || null;
+  }
+
+  function moduleJourney(activeModuleId) {
+    return `<ol class="novice-route" aria-label="五个核心模块">${coreModules().map((module, index) => {
+      const target = module.articles[0];
+      const current = module.moduleId === activeModuleId;
+      return `<li class="${current ? "current" : ""}"><a class="novice-route-link" href="${articleHref(target)}" ${current ? 'aria-current="step"' : ""} aria-label="${C.escapeHtml(`进入${module.title}，打开《${target?.title || module.title}》`)}"><span class="novice-route-number">${index + 1}</span><span class="novice-route-copy"><span class="eyebrow">核心模块 ${index + 1} · ${module.articles.length} 节</span><strong>${C.escapeHtml(module.title)}</strong><span class="novice-route-question">${C.escapeHtml(module.question)}</span></span><span class="novice-route-action">直接进入<span aria-hidden="true"> →</span></span></a></li>`;
+    }).join("")}</ol>`;
   }
 
   function articleHref(article) {
@@ -34,8 +65,8 @@
     const entries = Array.isArray(state.readingHistory) ? state.readingHistory : [];
     for (let index = entries.length - 1; index >= 0; index -= 1) {
       const path = typeof entries[index] === "string" ? entries[index] : entries[index] && entries[index].path;
-      const article = (window.LEARNING_ARTICLES || []).find((item) => item.path === path && item.pageType === "core-spine");
-      if (article) return article;
+      const article = articleByPath(path);
+      if (article?.layer === "core") return article;
     }
     return null;
   }
@@ -58,7 +89,7 @@
         stage: "prompt",
         status: "draft",
         version: 1,
-        fields: { goalAudience: "", goalUse: "", materials: [], outputShape: "", acceptanceCriteria: ["", "", ""], humanResponsibility: "" },
+        fields: { goalAudience: "", goalUse: "", materials: [], outputShape: "", boundaries: "", acceptanceCriteria: ["", "", ""], humanResponsibility: "" },
         criterionResults: [],
         feedbackRecords: [],
         courseRuleVersion: "v3.0",
@@ -69,6 +100,7 @@
       state.drafts[artifact.id] = artifact;
       state.milestones.prompt.status = "in_progress";
     }
+    if (artifact?.fields && typeof artifact.fields.boundaries !== "string") artifact.fields.boundaries = "";
     return artifact;
   }
 
@@ -78,29 +110,32 @@
     const recent = latestReading(state);
     const start = recent || sequence[0];
     const currentIndex = start ? sequence.findIndex((item) => item.path === start.path) : -1;
-    const startLabel = recent ? `继续阅读：${recent.title}` : "从第一篇开始阅读";
-    const stageRoute = stageJourney(start ? start.stage : "prompt");
+    const startLabel = recent ? `继续阅读：${recent.title}` : "从第一节开始";
+    const activeModule = courseModuleFor(start);
+    const routeMap = moduleJourney(activeModule?.moduleId || "M1");
+    const routeArticle = articleByPath("00-课程入口/01-学习路径与交付物.md");
+    const advancedStart = advancedReadingSequence()[0];
 
     app.innerHTML = C.regularShell("learn", `
       <main id="main-content" class="container" data-route="home" data-home-state="reading-first">
         ${state.saveMeta.mode === "session" ? C.saveBanner(state) : ""}
         <section class="home-hero">
           <div class="home-copy">
-            <span class="eyebrow">以阅读和理解为主的 AI 知识库</span>
-            <h1>从理解 AI 开始，逐步读懂 Agent 与 Harness</h1>
-            <p>你可以像读一本结构清楚的书一样学习，不需要先完成任务，也没有必须打卡的进度。案例、互动和练习只在你想验证理解时出现。</p>
-            <div class="reading-promise"><strong>${C.escapeHtml(start ? start.title : "课程导读")}</strong><span>${recent ? `上次读到主线第 ${currentIndex + 1} 篇，继续即可。` : `约 ${start ? start.minutes : 8} 分钟，先建立第一层整体认识。`}</span></div>
-            <div class="home-actions"><a class="btn-primary home-primary" data-primary-cta href="${articleHref(start)}">${C.escapeHtml(startLabel)}</a><a class="btn-secondary" href="#/directory">先看看学习路线</a></div>
+            <span class="eyebrow">面向真实工作的 AI 协作入门课</span>
+            <h1>把 AI 用进一项可核验的真实工作</h1>
+            <p>先用 16 节核心课完成一次可靠协作；需要工具调用和动态决策时，再进入 8 节进阶工程课。案例、练习和工作簿都不阻断阅读。</p>
+            <div class="reading-promise"><strong>${C.escapeHtml(start ? start.title : "课程导读")}</strong><span>${recent ? `上次读到核心课第 ${currentIndex + 1} / ${sequence.length} 节。` : `约 ${start ? start.minutes : 5} 分钟，先判断 AI 能参与什么、不能替你负责什么。`}</span></div>
+            <div class="home-actions"><a class="btn-primary home-primary" data-primary-cta href="${articleHref(start)}">${C.escapeHtml(startLabel)}</a><a class="btn-secondary" href="${articleHref(routeArticle)}">直接查看学习路线</a></div>
           </div>
-          <aside class="home-side"><span class="eyebrow">怎样使用</span><h2>按自己的节奏读</h2><ol class="gentle-steps"><li>沿六个阶段顺序阅读</li><li>遇到术语时使用知识检索</li><li>想动手时再打开案例练习</li></ol><p>阅读是主线，练习不是进入门槛。</p></aside>
+          <aside class="home-side"><span class="eyebrow">三层路线</span><h2>先核心，再按需深入</h2><ol class="gentle-steps"><li>核心入门课：16 节</li><li>进阶工程课：8 节</li><li>按需资料：参考、案例和工作簿</li></ol><p>默认只走核心课，不需要先理解 Agent 或 Harness。</p></aside>
         </section>
         <section class="secondary-section" aria-labelledby="reading-map-title">
-          <div class="section-heading-row"><div><h2 id="reading-map-title">后面只会依次解决六个问题</h2><p>现在不用记住这些概念，顺着读下去就可以。</p></div><a href="#/directory">查看学习路线</a></div>
-          ${stageRoute}
+          <div class="section-heading-row"><div><h2 id="reading-map-title">核心课依次解决五个问题</h2><p>整张卡都可以点击，直接进入你现在最需要的模块。</p></div><a href="#/directory">查看完整 16 节目录</a></div>
+          ${routeMap}
         </section>
         <section class="secondary-section low-pressure-paths" aria-labelledby="other-paths-title">
-          <h2 id="other-paths-title">按需要进入</h2>
-          <div class="mode-grid"><article class="mode-card"><span class="eyebrow">知识检索</span><h2>我只想查一个概念</h2><p>搜索模型、Embedding、RAG、上下文、Agent、Harness 与风险边界。</p><a href="#/reference">打开知识检索</a></article><article class="mode-card"><span class="eyebrow">案例与练习 · 可选</span><h2>我读完后想试一下</h2><p>查看研究、总结、会议、PPT 与 AIGC 案例；练习结果不影响阅读。</p><a href="#/lab">浏览案例练习</a></article></div>
+          <h2 id="other-paths-title">需要时再进入</h2>
+          <div class="mode-grid"><article class="mode-card"><span class="eyebrow">进阶工程课 · 8 节</span><h2>固定流程已经不够用了</h2><p>继续学习 Agent Loop、工具权限、Harness、Eval 和能力资产。</p><a href="${articleHref(advancedStart)}">直接进入进阶第一节</a></article><article class="mode-card"><span class="eyebrow">按需资料</span><h2>我只想查概念或看案例</h2><p>搜索参考资料，或进入两个案例实验室；都不影响核心课进度。</p><a href="#/reference">打开按需资料</a></article></div>
         </section>
       </main>`);
     bindCommon();
@@ -145,7 +180,7 @@
     app.innerHTML = C.focusShell("Prompt · 第 1 份作品 · 约 18 分钟", `
       <main id="main-content" class="wide-container" data-route="first-task">
         ${state.saveMeta.mode === "session" ? C.saveBanner(state) : ""}
-        ${isPassed ? '<section class="notice notice-success" tabindex="-1" id="save-success"><strong>第一份作品已保存</strong><span>目标、材料、输出、验收与人类责任已形成可复用证据。下一步不是多读文章，而是选择真正需要的上下文材料。</span></section>' : ""}
+        ${isPassed ? '<section class="notice notice-success" tabindex="-1" id="save-success"><strong>第一份作品已保存</strong><span>目标、材料、输出、边界、验收与人类责任已形成可复用证据。下一步是选择真正需要的上下文材料。</span></section>' : ""}
         ${renderStepper(currentStep)}
         <div class="workspace">
           <aside class="material-rail">
@@ -155,14 +190,15 @@
             
           </aside>
           <section class="form-panel">
-            <header><span class="eyebrow">第 ${currentStep}/4 步 · 四格任务卡</span><h1>让任务从“帮我研究一下”变得可执行、可验收</h1><p>${C.escapeHtml(D.case.task)}</p></header>
+            <header><span class="eyebrow">第 ${currentStep}/4 步 · 六格任务卡</span><h1>让任务从“帮我研究一下”变得可执行、可验收</h1><p>${C.escapeHtml(D.case.task)}</p></header>
             <form id="task-card-form" novalidate>
               <div class="field" id="goalAudience"><label for="goal-audience">1. 谁会使用这份简报？</label><input id="goal-audience" name="goalAudience" type="text" value="${C.escapeHtml(f.goalAudience)}" ${invalidFor(artifact, "goalAudience")}><p class="field-help">例如：团队负责人。</p></div>
               <div class="field" id="goalUse"><label for="goal-use">要用它做什么决定？</label><textarea id="goal-use" name="goalUse" ${invalidFor(artifact, "goalAudience")}>${C.escapeHtml(f.goalUse)}</textarea><p class="field-help">把“了解情况”改成一个真实决策。</p></div>
               <fieldset id="materials"><legend>2. 可使用哪些材料？</legend><div class="check-grid">${D.materials.slice(0, 4).map((item) => `<label class="check-card"><input type="checkbox" name="materials" value="${item.id}" ${f.materials.includes(item.id) ? "checked" : ""}><span><strong>${C.escapeHtml(item.title)}</strong><small>${C.escapeHtml(item.source)}</small></span></label>`).join("")}</div></fieldset>
               <div class="field" id="outputShape"><label for="output-shape">3. 输出长什么样？</label><textarea id="output-shape" name="outputShape" ${invalidFor(artifact, "outputShape")}>${C.escapeHtml(f.outputShape)}</textarea><p class="field-help">说明篇幅、结构与交付形式。</p></div>
-              <fieldset id="acceptance-0"><legend>4. 怎样才算合格？至少三条</legend><div class="acceptance-list">${[0,1,2].map((index) => `<label><span class="sr-only">验收条件 ${index + 1}</span><input type="text" name="acceptance-${index}" value="${C.escapeHtml(f.acceptanceCriteria[index] || "")}" placeholder="验收条件 ${index + 1}" ${invalidFor(artifact, "acceptance-0")}></label>`).join("")}</div><p class="field-help">能否逐条判断“满足/不满足”？</p></fieldset>
-              <div class="field" id="humanResponsibility"><label for="human-responsibility">5. 哪项判断必须由人负责？</label><textarea id="human-responsibility" name="humanResponsibility" ${invalidFor(artifact, "humanResponsibility")}>${C.escapeHtml(f.humanResponsibility)}</textarea><p class="field-help">例如：核验工具说法、敏感信息与最终发布。</p></div>
+              <div class="field" id="boundaries"><label for="boundaries-text">4. 哪些内容不能做或必须先停下来确认？</label><textarea id="boundaries-text" name="boundaries" ${invalidFor(artifact, "boundaries")}>${C.escapeHtml(f.boundaries || "")}</textarea><p class="field-help">写清禁止项、权限限制、时间范围或不可逆动作前的人工确认。</p></div>
+              <fieldset id="acceptance-0"><legend>5. 怎样才算合格？至少三条</legend><div class="acceptance-list">${[0,1,2].map((index) => `<label><span class="sr-only">验收条件 ${index + 1}</span><input type="text" name="acceptance-${index}" value="${C.escapeHtml(f.acceptanceCriteria[index] || "")}" placeholder="验收条件 ${index + 1}" ${invalidFor(artifact, "acceptance-0")}></label>`).join("")}</div><p class="field-help">能否逐条判断“满足/不满足”？</p></fieldset>
+              <div class="field" id="humanResponsibility"><label for="human-responsibility">6. 哪项判断必须由人负责？</label><textarea id="human-responsibility" name="humanResponsibility" ${invalidFor(artifact, "humanResponsibility")}>${C.escapeHtml(f.humanResponsibility)}</textarea><p class="field-help">例如：核验工具说法、敏感信息与最终发布。</p></div>
               <div class="form-actions"><button type="button" class="btn-secondary" id="fill-example">填入教学示例</button><button type="button" class="btn-secondary" data-copy-task>复制任务卡</button>${action}</div>
             </form>
           </section>
@@ -183,6 +219,7 @@
       goalUse: String(fd.get("goalUse") || "").trim(),
       materials: fd.getAll("materials").map(String),
       outputShape: String(fd.get("outputShape") || "").trim(),
+      boundaries: String(fd.get("boundaries") || "").trim(),
       acceptanceCriteria: [0,1,2].map((i) => String(fd.get(`acceptance-${i}`) || "").trim()),
       humanResponsibility: String(fd.get("humanResponsibility") || "").trim()
     };
@@ -209,6 +246,7 @@
       document.getElementById("goal-use").value = "判断是否用两周时间试行 AI 辅助每周例会纪要，并确定人工审核边界。";
       document.querySelectorAll('input[name="materials"]').forEach((input, index) => { input.checked = index < 4; });
       document.getElementById("output-shape").value = "一页内部研究简报，包含结论、三类证据、风险和两周试行建议。";
+      document.getElementById("boundaries-text").value = "不得把未经核验的工具能力写成事实；不得自动发送；涉及敏感信息或启动试行前必须由负责人确认。";
       ["包含 3 条主要结论，每条标注材料来源。", "分别列出效率、准确性和风险证据。", "一页内明确给出试行建议与人工检查点。"].forEach((value, index) => { form.querySelector(`[name="acceptance-${index}"]`).value = value; });
       document.getElementById("human-responsibility").value = "负责人核验工具说法和敏感内容，并决定是否发布与启动试行。";
       persistTaskFields(true);
@@ -240,7 +278,7 @@
         state.currentStage = "context";
         state.currentUnitId = "learn.context.material-choice";
         state.nextRecommended = "learn.context.material-choice";
-        state.milestones.prompt = { status: "completed", artifactId: artifact.id, passedCriteria: 6, requiredCriteria: 6 };
+        state.milestones.prompt = { status: "completed", artifactId: artifact.id, passedCriteria: 7, requiredCriteria: 7 };
       });
       renderFirstTask(false);
     });
@@ -389,19 +427,21 @@
   }
 
   function renderDirectory() {
-    const articles = window.LEARNING_ARTICLES || [];
     const sequence = coreReadingSequence();
+    const advanced = advancedReadingSequence();
     const state = S.load();
     const recent = latestReading(state);
     const focus = recent || sequence[0];
     const focusIndex = focus ? sequence.findIndex((item) => item.path === focus.path) : 0;
-    const focusStage = readingStages.find((stage) => stage.id === focus?.stage) || readingStages[0];
-    const guide = articles.filter((item) => item.path.startsWith("00-课程入口/") && !item.path.endsWith("03-第一次AI作品路线.md"));
-    const stageSections = readingStages.map((stage, index) => {
-      const items = sequence.filter((item) => item.stage === stage.id);
-      return `<details class="directory-stage" id="directory-${stage.id}"><summary><span class="directory-number">${index + 1}</span><span class="directory-stage-copy"><span class="eyebrow">${C.escapeHtml(stage.concept)}</span><strong>${C.escapeHtml(stage.title)}</strong><small>${C.escapeHtml(stage.question)} · ${items.length} 篇</small></span></summary><div class="directory-stage-body"><p>${C.escapeHtml(stage.description)}</p>${directoryArticleList(items)}</div></details>`;
+    const focusModule = courseModuleFor(focus) || coreModules()[0];
+    const moduleSections = coreModules().map((module, index) => {
+      return `<details class="directory-stage" id="directory-${module.moduleId}" ${module.moduleId === focusModule?.moduleId ? "open" : ""}><summary><span class="directory-number">${index + 1}</span><span class="directory-stage-copy"><span class="eyebrow">核心模块 ${index + 1}</span><strong>${C.escapeHtml(module.title)}</strong><small>${C.escapeHtml(module.question)} · ${module.articles.length} 节</small></span></summary><div class="directory-stage-body"><p>${C.escapeHtml(module.outcome)}</p>${directoryArticleList(module.articles)}</div></details>`;
     }).join("");
-    app.innerHTML = C.regularShell("directory", `<main id="main-content" class="container directory-page" data-route="directory"><header class="page-heading"><span class="eyebrow">学习路线</span><h1>不用研究目录，跟着下一篇读就可以</h1><p>整套知识已经排好顺序。你只需要处理眼前这一篇，后面的内容会在需要时自然出现。</p></header><section class="directory-focus"><div><span class="eyebrow">${recent ? "继续上次阅读" : "第一次来，从这里开始"}</span><h2>${C.escapeHtml(focus ? focus.title : "AI 到底改变了什么")}</h2><p>${C.escapeHtml(focusStage.description)}</p><span class="muted">第 ${focusIndex + 1} 篇 · 约 ${focus ? focus.minutes : 5} 分钟</span></div><a class="btn-primary" data-primary-cta href="${articleHref(focus)}">${recent ? "继续读这一篇" : "开始第一篇"}</a></section><section class="secondary-section" aria-labelledby="six-questions-title"><div class="section-heading-row"><div><h2 id="six-questions-title">整套知识只回答六个问题</h2><p>这些是路标，不是现在要背的目录。</p></div></div>${stageJourney(focusStage.id)}</section><details class="full-directory"><summary><span><strong>我想自己挑选文章</strong><small>展开完整 28 篇目录、导读和补充内容</small></span></summary><div class="full-directory-body"><p class="muted">不确定时不用展开任何阶段，回到上面的推荐阅读即可。</p><div class="directory-stage-list">${stageSections}</div><section class="directory-guide-links"><h2>课程说明与补充内容</h2><div class="guide-links">${guide.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}<a href="#/lab">浏览真实案例</a><a href="#/reference">搜索概念和工具</a></div></section></div></details></main>`);
+    const orientation = courseSequence("orientation").filter((item) => item.path !== "README.md");
+    const references = courseSequence("reference");
+    const labs = courseSequence("lab");
+    const workbook = courseSequence("workbook");
+    app.innerHTML = C.regularShell("directory", `<main id="main-content" class="container directory-page" data-route="directory"><header class="page-heading"><span class="eyebrow">唯一学习路线</span><h1>三层课程，入口全部放在这里</h1><p>默认完成 16 节核心课；只有固定流程不够时再读 8 节进阶课；参考、案例和工作簿随用随查。</p></header><section class="directory-focus"><div><span class="eyebrow">${recent ? "继续上次阅读" : "第一次来，从这里开始"}</span><h2>${C.escapeHtml(focus ? focus.title : "AI 到底改变了什么")}</h2><p>${C.escapeHtml(focusModule?.question || courseStructure.core?.description || "")}</p><span class="muted">核心课第 ${focusIndex + 1} / ${sequence.length} 节 · 约 ${focus ? focus.minutes : 5} 分钟</span></div><a class="btn-primary" data-primary-cta href="${articleHref(focus)}">${recent ? "继续读这一节" : "开始核心课"}</a></section><section class="secondary-section" aria-labelledby="core-course-title"><div class="section-heading-row"><div><h2 id="core-course-title">第一层：核心入门课 · 16 节</h2><p>五个模块，按顺序完成一次从任务判断到方法沉淀的闭环。</p></div></div><div class="directory-stage-list">${moduleSections}</div></section><details class="full-directory"><summary><span><strong>第二层：进阶工程课 · ${advanced.length} 节</strong><small>需要 Agent、工具权限与 Harness 时再展开</small></span></summary><div class="full-directory-body"><p class="muted">${C.escapeHtml(courseStructure.advanced?.description || "")}</p>${directoryArticleList(advanced)}</div></details><details class="full-directory"><summary><span><strong>第三层：按需资料</strong><small>${references.length} 篇参考 · ${labs.length} 个案例实验室 · ${workbook.length} 份工作簿</small></span></summary><div class="full-directory-body"><section class="directory-guide-links"><h2>课程入口</h2><div class="guide-links">${orientation.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}</div></section><section class="directory-guide-links"><h2>参考资料</h2><div class="guide-links">${references.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}</div></section><section class="directory-guide-links"><h2>案例与工作簿</h2><div class="guide-links">${labs.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}${workbook.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}<a href="#/lab">打开案例实验室与任务诊断</a></div></section></div></details></main>`);
     bindCommon();
   }
 
@@ -410,15 +450,15 @@
   }
 
   function renderLab(result) {
-    const labArticles = (window.LEARNING_ARTICLES || []).filter((item) => item.mode === "lab");
-    app.innerHTML = C.regularShell("practice", `<main id="main-content" class="container" data-route="lab" data-interaction="lab-decision"><header class="page-heading"><span class="eyebrow">案例与练习 · 完全可选</span><h1>先读案例；想动手时，再做一个小练习</h1><p>这里不会催你交作业，也不会影响主线阅读。你可以只读案例，也可以把自己的任务带进来试一试。</p></header><section class="secondary-section lab-reading-first"><div class="section-heading-row"><div><h2>11 个真实场景案例</h2><p>每篇都说明输入、关键判断、质量门和人工责任。</p></div><a href="#/portfolio">查看已有练习记录</a></div><div class="reference-grid">${articleCards(labArticles)}</div></section><details class="optional-practice" ${result ? "open" : ""}><summary><span><strong>我有一个具体任务，帮我判断从哪里开始</strong><small>可选 · 约 2 分钟</small></span></summary><div class="optional-practice-body"><form id="lab-form"><div class="field"><label for="task-type">任务类型</label><select id="task-type" name="taskType"><option value="research">资料研究简报</option><option value="summary">长文总结</option><option value="meeting">会议纪要</option><option value="ppt">PPT 大纲</option><option value="aigc">AIGC 创作</option><option value="other">其他任务</option></select></div><div class="diagnostic">${[["repeat","是否重复发生？"],["fixed","路径大体固定吗？"],["external","涉及外部工具或发布吗？"]].map(([id,label]) => `<fieldset><legend>${label}</legend><label class="radio-card"><input type="radio" name="${id}" value="yes">是</label><label class="radio-card"><input type="radio" name="${id}" value="no">否</label></fieldset>`).join("")}</div><div class="form-actions"><a class="text-link" href="#/directory">先回去阅读</a><button class="btn-primary" data-primary-cta id="diagnose-task">查看建议</button></div></form>${result ? `<section class="notice notice-success" id="lab-result" tabindex="-1"><strong>${C.escapeHtml(result.title)}</strong><span>${C.escapeHtml(result.body)}</span><small>这只是学习建议，不是必须完成的升级条件。</small></section>` : ""}</div></details></main>`);
-    document.getElementById("diagnose-task").addEventListener("click", (event) => { event.preventDefault(); const fd = new FormData(document.getElementById("lab-form")); const fixed = fd.get("fixed") === "yes"; const external = fd.get("external") === "yes"; const next = external ? { title: "先写任务卡，再明确权限与人工门", body: "任务涉及外部工具或发布；先确定目标与验收，再为不可逆动作保留人工确认。" } : fixed ? { title: "先写任务卡，再升级成 Workflow", body: "路径大体固定，不必直接上 Agent；先显式化状态、检查点与失败分支。" } : { title: "先用四格任务卡，不需要立刻使用 Agent", body: "先确认目标、材料、输出与验收；只有下一步依赖环境反馈时，才设计 Agent Loop。" }; renderLab(next); requestAnimationFrame(() => document.getElementById("lab-result")?.focus()); }); bindCommon();
+    const labArticles = courseSequence("lab");
+    app.innerHTML = C.regularShell("practice", `<main id="main-content" class="container" data-route="lab" data-interaction="lab-decision"><header class="page-heading"><span class="eyebrow">案例与练习 · 完全可选</span><h1>先读案例；想动手时，再做一个小练习</h1><p>这里不会催你交作业，也不会影响核心课阅读。你可以只读案例，也可以把自己的任务带进来试一试。</p></header><section class="secondary-section lab-reading-first"><div class="section-heading-row"><div><h2>${labArticles.length} 个案例实验室</h2><p>案例用于练习输入判断、质量门和人工责任，不把教学演示冒充真实项目。</p></div><a href="#/portfolio">查看已有练习记录</a></div><div class="reference-grid">${articleCards(labArticles)}</div></section><details class="optional-practice" ${result ? "open" : ""}><summary><span><strong>我有一个具体任务，帮我判断从哪里开始</strong><small>可选 · 约 2 分钟</small></span></summary><div class="optional-practice-body"><form id="lab-form"><div class="field"><label for="task-type">任务类型</label><select id="task-type" name="taskType"><option value="research">资料研究简报</option><option value="summary">长文总结</option><option value="meeting">会议纪要</option><option value="ppt">PPT 大纲</option><option value="aigc">AIGC 创作</option><option value="other">其他任务</option></select></div><div class="diagnostic">${[["repeat","是否重复发生？"],["fixed","路径大体固定吗？"],["external","涉及外部工具或发布吗？"]].map(([id,label]) => `<fieldset><legend>${label}</legend><label class="radio-card"><input type="radio" name="${id}" value="yes">是</label><label class="radio-card"><input type="radio" name="${id}" value="no">否</label></fieldset>`).join("")}</div><div class="form-actions"><a class="text-link" href="#/directory">先回去阅读</a><button class="btn-primary" data-primary-cta id="diagnose-task">查看建议</button></div></form>${result ? `<section class="notice notice-success" id="lab-result" tabindex="-1"><strong>${C.escapeHtml(result.title)}</strong><span>${C.escapeHtml(result.body)}</span><small>这只是学习建议，不是必须完成的升级条件。</small></section>` : ""}</div></details></main>`);
+    document.getElementById("diagnose-task").addEventListener("click", (event) => { event.preventDefault(); const fd = new FormData(document.getElementById("lab-form")); const fixed = fd.get("fixed") === "yes"; const external = fd.get("external") === "yes"; const next = external ? { title: "先写六格任务卡，再明确权限与人工门", body: "任务涉及外部工具或发布；先确定目标、材料、输出、边界和验收，再为不可逆动作保留人工确认。" } : fixed ? { title: "先写六格任务卡，再升级成 Workflow", body: "路径大体固定，不必直接上 Agent；先显式化状态、检查点与失败分支。" } : { title: "先用六格任务卡，不需要立刻使用 Agent", body: "先确认目标、材料、输出、边界、验收与人类责任；只有下一步依赖环境反馈时，才设计 Agent Loop。" }; renderLab(next); requestAnimationFrame(() => document.getElementById("lab-result")?.focus()); }); bindCommon();
   }
 
   function renderReference() {
-    const articles = window.LEARNING_ARTICLES || [];
+    const articles = visibleArticles();
     const initial = articles.slice(0, 80);
-    app.innerHTML = C.regularShell("reference", `<main id="main-content" class="container" data-route="reference"><header class="page-heading"><span class="eyebrow">知识检索 · 全库搜索</span><h1>遇到不懂的概念，再来这里查</h1><p>可以搜索全部课程、案例和专题。检索是阅读的辅助，不要求你先记住术语。</p></header><div class="search-tools"><label><span class="sr-only">搜索全部知识</span><input type="search" id="reference-search" placeholder="搜索上下文、Workflow、Agent、Harness、RAG"></label><button class="btn-secondary" id="clear-search">清空</button></div><div class="filter-row" role="group" aria-label="内容类型筛选">${[["all","全部"],["learn","课程"],["lab","案例"],["reference","专题"],["portfolio","练习资料"]].map(([id,label]) => `<button class="filter-button" data-mode-filter="${id}" aria-pressed="${id === "all" ? "true" : "false"}">${label}</button>`).join("")}</div><p class="muted" id="search-summary" role="status">显示全部 ${initial.length} 条内容</p><div class="reference-grid" id="reference-results">${articleCards(initial)}</div></main>`);
+    app.innerHTML = C.regularShell("reference", `<main id="main-content" class="container" data-route="reference"><header class="page-heading"><span class="eyebrow">按需资料 · 课程内搜索</span><h1>遇到不懂的概念，再来这里查</h1><p>这里只检索三层课程中经过筛选的 ${articles.length} 个正式单元，历史材料不会混入当前学习路线。</p></header><div class="search-tools"><label><span class="sr-only">搜索课程内容</span><input type="search" id="reference-search" placeholder="搜索上下文、Workflow、Agent、Harness、RAG"></label><button class="btn-secondary" id="clear-search">清空</button></div><div class="filter-row" role="group" aria-label="内容类型筛选">${[["all","全部"],["learn","课程"],["lab","案例"],["reference","参考"],["portfolio","工作簿"]].map(([id,label]) => `<button class="filter-button" data-mode-filter="${id}" aria-pressed="${id === "all" ? "true" : "false"}">${label}</button>`).join("")}</div><p class="muted" id="search-summary" role="status">显示全部 ${initial.length} 条内容</p><div class="reference-grid" id="reference-results">${articleCards(initial)}</div></main>`);
     let mode = "all";
     const applySearch = () => { const q = document.getElementById("reference-search").value.trim().toLowerCase(); const filtered = articles.filter((item) => (mode === "all" || item.mode === mode) && (!q || `${item.title} ${item.excerpt} ${item.moduleTitle}`.toLowerCase().includes(q))).slice(0, 80); document.getElementById("reference-results").innerHTML = articleCards(filtered); document.getElementById("search-summary").textContent = `找到 ${filtered.length} 条 · ${mode === "all" ? "全部模式" : mode}`; };
     document.getElementById("reference-search").addEventListener("input", applySearch);
@@ -428,8 +468,8 @@
   }
 
   function articleCards(items) {
-    const labels = { learn: "课程", lab: "案例", reference: "专题", portfolio: "练习资料" };
-    return items.length ? items.map((item) => `<article class="reference-card"><span class="eyebrow">${C.escapeHtml(labels[item.mode] || item.mode)} · ${C.escapeHtml(item.stage || item.moduleTitle)}</span><h2>${C.escapeHtml(item.title)}</h2><p>${C.escapeHtml(item.excerpt)}</p><div class="reference-meta"><span class="feedback-kind">${item.pageType === "core-spine" ? "主线阅读" : "按需阅读"}</span><span class="feedback-kind">约 ${item.minutes} 分钟</span></div><a href="#/read/${encodeURIComponent(item.path)}">打开阅读</a></article>`).join("") : '<section class="notice"><strong>没有找到完全匹配的内容</strong><span>可以清空筛选，或回到学习路线继续阅读。</span><a href="#/directory">查看学习路线</a></section>';
+    const labels = { orientation: "课程入口", core: "核心课", advanced: "进阶课", lab: "案例实验室", reference: "参考资料", workbook: "工作簿" };
+    return items.length ? items.map((item) => `<article class="reference-card"><span class="eyebrow">${C.escapeHtml(labels[item.layer] || item.mode)} · ${C.escapeHtml(item.courseModuleTitle || item.moduleTitle)}</span><h2>${C.escapeHtml(item.title)}</h2><p>${C.escapeHtml(item.excerpt)}</p><div class="reference-meta"><span class="feedback-kind">${item.layer === "core" ? `核心第 ${item.courseOrder} 节` : item.layer === "advanced" ? `进阶第 ${item.courseOrder} 节` : "按需阅读"}</span><span class="feedback-kind">约 ${item.minutes} 分钟</span></div><a href="#/read/${encodeURIComponent(item.path)}">打开阅读</a></article>`).join("") : '<section class="notice"><strong>没有找到完全匹配的内容</strong><span>可以清空筛选，或回到学习路线继续阅读。</span><a href="#/directory">查看学习路线</a></section>';
   }
 
   function markdownHref(href, currentPath) {
@@ -530,19 +570,34 @@
     if (!article) { renderUnknown(); return; }
     rememberReading(article);
     const parts = splitArticleBody(article.body);
-    const sequence = coreReadingSequence();
+    const sequence = article.layer === "core"
+      ? coreReadingSequence()
+      : article.layer === "advanced"
+        ? advancedReadingSequence()
+        : article.layer === "orientation"
+          ? courseSequence("orientation")
+          : [];
     const readingIndex = sequence.findIndex((item) => item.path === article.path);
     const previous = readingIndex > 0 ? sequence[readingIndex - 1] : null;
     const next = readingIndex >= 0 && readingIndex < sequence.length - 1 ? sequence[readingIndex + 1] : null;
-    const backHref = article.pageType === "core-spine" ? "#/directory" : article.mode === "lab" ? "#/lab" : "#/reference";
+    const backHref = ["core", "advanced"].includes(article.layer) ? "#/directory" : article.layer === "orientation" ? "#/home" : article.mode === "lab" ? "#/lab" : "#/reference";
     const active = article.mode === "reference" ? "reference" : article.mode === "lab" || article.mode === "portfolio" ? "practice" : "directory";
-    const currentStage = readingStages.find((stage) => stage.id === article.stage);
-    const currentStageItems = currentStage ? sequence.filter((item) => item.stage === currentStage.id) : [];
-    const currentStagePosition = currentStage ? currentStageItems.findIndex((item) => item.path === article.path) + 1 : 0;
-    const readerKicker = readingIndex >= 0 ? `第 ${readingIndex + 1} 篇 · ${currentStage ? currentStage.title : "主线阅读"}` : "按需补充阅读";
+    const currentModule = courseModuleFor(article);
+    const readerKicker = article.layer === "core"
+      ? `核心课第 ${readingIndex + 1} / ${sequence.length} 节`
+      : article.layer === "advanced"
+        ? `进阶课第 ${readingIndex + 1} / ${sequence.length} 节`
+        : article.layer === "orientation"
+          ? "课程入口"
+          : article.visible
+            ? "按需资料"
+            : "历史补充内容";
+    const sideTitle = currentModule?.title || (article.layer === "advanced" ? "进阶工程课" : article.layer === "orientation" ? "课程入口" : "按需阅读");
+    const sideDescription = currentModule?.question || (article.layer === "advanced" ? courseStructure.advanced?.description : article.layer === "orientation" ? "先确认课程定位与三层学习路线。" : "这篇内容不改变核心课的位置。");
     const practice = parts.practice ? `<details class="reading-practice"><summary><span><strong>想练一下：把这篇知识用于一个小判断</strong><small>完全可选 · 不影响继续阅读</small></span></summary><div class="reading-practice-body markdown-body">${renderMarkdown(parts.practice, article.path)}</div></details>` : "";
-    const nextLinks = `<nav class="reader-next" aria-label="主线上一篇和下一篇">${previous ? `<a href="${articleHref(previous)}"><span>上一篇</span><strong>${C.escapeHtml(previous.title)}</strong></a>` : '<span class="reader-next-empty">这是主线第一篇</span>'}${next ? `<a class="next" href="${articleHref(next)}"><span>下一篇</span><strong>${C.escapeHtml(next.title)}</strong></a>` : '<a class="next" href="#/directory"><span>主线读完后</span><strong>回到学习路线自由探索</strong></a>'}</nav>`;
-    app.innerHTML = C.regularShell(active, `<main id="main-content" class="reader-container" data-route="reader"><article class="reader-article"><header class="reader-heading"><a class="text-link" href="${backHref}">← 返回${article.pageType === "core-spine" ? "学习路线" : article.mode === "lab" ? "案例" : "知识检索"}</a><span class="reader-kicker">${C.escapeHtml(readerKicker)}</span><h1>${C.escapeHtml(article.title)}</h1></header><div class="markdown-body">${renderMarkdown(parts.reading, article.path)}</div>${practice}${readingIndex >= 0 ? nextLinks : ""}</article><aside class="reader-side"><strong>${readingIndex >= 0 && currentStage ? currentStage.title : "按需阅读"}</strong><p>${readingIndex >= 0 && currentStage ? currentStage.question : "这是一篇补充内容，不会打断你的主线位置。"}</p>${readingIndex >= 0 && currentStage ? `<span class="reader-stage-position">本阶段第 ${currentStagePosition} / ${currentStageItems.length} 篇</span>` : ""}${next ? `<a class="reader-side-next" href="${articleHref(next)}"><small>下一篇</small><strong>${C.escapeHtml(next.title)}</strong></a>` : ""}<a href="#/directory">查看六步学习路线</a><a href="#/reference">遇到术语，去搜索</a>${parts.practice ? '<a href="#reading-practice-note" data-open-practice>文末有可选练习</a>' : ""}</aside></main>`);
+    const nextLinks = `<nav class="reader-next" aria-label="上一节和下一节">${previous ? `<a href="${articleHref(previous)}"><span>上一节</span><strong>${C.escapeHtml(previous.title)}</strong></a>` : '<span class="reader-next-empty">这是本层第一节</span>'}${next ? `<a class="next" href="${articleHref(next)}"><span>下一节</span><strong>${C.escapeHtml(next.title)}</strong></a>` : '<a class="next" href="#/directory"><span>本层读完后</span><strong>回到三层学习路线</strong></a>'}</nav>`;
+    const backLabel = ["core", "advanced"].includes(article.layer) ? "学习路线" : article.layer === "orientation" ? "学习首页" : article.mode === "lab" ? "案例实验室" : "按需资料";
+    app.innerHTML = C.regularShell(active, `<main id="main-content" class="reader-container" data-route="reader"><article class="reader-article"><header class="reader-heading"><a class="text-link" href="${backHref}">← 返回${backLabel}</a><span class="reader-kicker">${C.escapeHtml(readerKicker)}</span><h1>${C.escapeHtml(article.title)}</h1></header><div class="markdown-body">${renderMarkdown(parts.reading, article.path)}</div>${practice}${readingIndex >= 0 ? nextLinks : ""}</article><aside class="reader-side"><strong>${C.escapeHtml(sideTitle)}</strong><p>${C.escapeHtml(sideDescription || "")}</p>${article.layer === "core" && currentModule ? `<span class="reader-stage-position">本模块 ${currentModule.articles.findIndex((item) => item.path === article.path) + 1} / ${currentModule.articles.length} 节</span>` : ""}${next ? `<a class="reader-side-next" href="${articleHref(next)}"><small>下一节</small><strong>${C.escapeHtml(next.title)}</strong></a>` : ""}<a href="#/directory">查看三层学习路线</a><a href="#/reference">遇到术语，去搜索</a>${parts.practice ? '<a href="#reading-practice-note" data-open-practice>文末有可选练习</a>' : ""}</aside></main>`);
     document.querySelector("[data-open-practice]")?.addEventListener("click", (event) => { event.preventDefault(); const details = document.querySelector(".reading-practice"); if (details) { details.open = true; details.scrollIntoView({ block: "start" }); } });
     bindCommon();
   }
@@ -550,7 +605,7 @@
   const portfolioDefinitions = [
     {
       id: "artifact-task-card-v1", stage: "Prompt", title: "Prompt 任务卡", route: "#/learn/first-task", nextUse: "为同一判断选择 Context 材料",
-      criteria: [["goal-present", "使用者与用途明确"], ["materials-present", "输入材料范围明确"], ["output-present", "输出形态可执行"], ["acceptance-count", "至少三条验收条件"], ["acceptance-observable", "验收条件可观察"], ["human-responsibility", "人类责任明确"]]
+      criteria: [["goal-present", "使用者与用途明确"], ["materials-present", "输入材料范围明确"], ["output-present", "输出形态可执行"], ["boundaries-present", "禁止项与暂停条件明确"], ["acceptance-count", "至少三条验收条件"], ["acceptance-observable", "验收条件可观察"], ["human-responsibility", "人类责任明确"]]
     },
     {
       id: "artifact-context-template-v1", stage: "Context", title: "Context 材料包", route: "#/learn/stage/context", nextUse: "作为 Workflow 的受控输入",
@@ -641,7 +696,7 @@
     }));
   }
 
-  function formatTask(f) { return `目标对象：${f.goalAudience}\n用途：${f.goalUse}\n材料：${f.materials.join("、")}\n输出：${f.outputShape}\n验收：\n- ${f.acceptanceCriteria.filter(Boolean).join("\n- ")}\n人类责任：${f.humanResponsibility}`; }
+  function formatTask(f) { return `目标对象：${f.goalAudience}\n用途：${f.goalUse}\n材料：${f.materials.join("、")}\n输出：${f.outputShape}\n边界：${f.boundaries || ""}\n验收：\n- ${f.acceptanceCriteria.filter(Boolean).join("\n- ")}\n人类责任：${f.humanResponsibility}`; }
 
   function render() {
     const current = route();

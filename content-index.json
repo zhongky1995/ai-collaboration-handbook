@@ -2,7 +2,7 @@
   {
     "id": "README.md",
     "path": "README.md",
-    "title": "AI 协作知识库",
+    "title": "AI 协作入门课",
     "moduleId": "overview",
     "moduleTitle": "知识库总览",
     "moduleDir": ".",
@@ -10,30 +10,46 @@
     "output": "理解知识库定位和阅读路径",
     "mode": "learn",
     "stage": null,
+    "unitId": "O-00",
+    "layer": "orientation",
+    "courseOrder": 1,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
     "pageType": "entry-wrapper",
     "progressEligible": false,
-    "excerpt": "AI 协作知识库 这是一套以阅读和理解为主的 AI 入门知识库，面向不需要编程、希望系统理解 AI 协作方式的读者。 最轻松的开始方式 打开 离线学习应用，点击 从第一篇开始阅读 。你会先理解...",
+    "excerpt": "AI 协作入门课 这是一套面向非技术工作者的阅读型课程。它不教“万能提示词”，而是帮助你把一个真实工作请求，变成 AI 能参与、自己能核验的交付过程。 从这里开始 打开 离线学习应用，可以直接...",
     "headings": [
       {
         "level": 2,
-        "text": "最轻松的开始方式"
+        "text": "从这里开始"
       },
       {
         "level": 2,
-        "text": "一条贯穿全程的知识路线"
+        "text": "三层课程"
       },
       {
-        "level": 2,
-        "text": "四种使用方式"
+        "level": 3,
+        "text": "第一层：核心入门课 · 16 节"
+      },
+      {
+        "level": 3,
+        "text": "第二层：进阶工程课 · 8 节"
+      },
+      {
+        "level": 3,
+        "text": "第三层：按需资料"
       }
     ],
-    "minutes": 1,
+    "minutes": 2,
     "order": 0
   },
   {
     "id": "00-课程入口/00-课程介绍.md",
     "path": "00-课程入口/00-课程介绍.md",
-    "title": "课程介绍：从理解 AI 到读懂 Agent 与 Harness",
+    "title": "从“会问 AI”到“完成一次可核验交付”",
     "moduleId": "entry",
     "moduleTitle": "阅读导览",
     "moduleDir": "00-课程入口",
@@ -41,26 +57,38 @@
     "output": "理解知识库结构与自由阅读方式",
     "mode": "learn",
     "stage": null,
+    "unitId": "O-01",
+    "layer": "orientation",
+    "courseOrder": 2,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
     "pageType": "entry-wrapper",
     "progressEligible": false,
-    "excerpt": "课程介绍：从理解 AI 到读懂 Agent 与 Harness 这套知识库面向会使用通用 AI、但希望建立系统理解的业务型知识工作者。你不需要编程，也不需要先记住全部术语。 你会理解什么 你会...",
+    "excerpt": "从“会问 AI”到“完成一次可核验交付” 你可能已经会让 AI 写邮件、做总结、列提纲，但真正把它放进工作里时，问题很快就出现了： 回答很快，却不知道哪些内容可信； 文字很顺，却不是同事真正需...",
     "headings": [
       {
         "level": 2,
-        "text": "你会理解什么"
+        "text": "你会学会什么"
       },
       {
         "level": 2,
-        "text": "课程不替你做什么"
+        "text": "这门课适合谁"
+      },
+      {
+        "level": 2,
+        "text": "内容分成三层"
       }
     ],
-    "minutes": 1,
+    "minutes": 3,
     "order": 1
   },
   {
     "id": "00-课程入口/01-学习路径与交付物.md",
     "path": "00-课程入口/01-学习路径与交付物.md",
-    "title": "学习路径：六个知识阶段与可选练习",
+    "title": "学习路线：核心入门、进阶工程与按需资料",
     "moduleId": "entry",
     "moduleTitle": "阅读导览",
     "moduleDir": "00-课程入口",
@@ -68,80 +96,62 @@
     "output": "理解知识库结构与自由阅读方式",
     "mode": "learn",
     "stage": null,
+    "unitId": "O-02",
+    "layer": "orientation",
+    "courseOrder": 3,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
     "pageType": "entry-wrapper",
     "progressEligible": false,
-    "excerpt": "学习路径：六个知识阶段与可选练习 阶段 主要理解 阅读后可以尝试（可选） --- --- --- Prompt 模型为什么只能生成候选答案，任务为什么需要目标、输入、输出和验收 写一张任务卡 ...",
-    "headings": [],
-    "minutes": 1,
-    "order": 2
-  },
-  {
-    "id": "00-课程入口/02-完整课程地图.md",
-    "path": "00-课程入口/02-完整课程地图.md",
-    "title": "完整课程地图：什么时候进入哪一种模式",
-    "moduleId": "entry",
-    "moduleTitle": "阅读导览",
-    "moduleDir": "00-课程入口",
-    "phase": "定向",
-    "output": "理解知识库结构与自由阅读方式",
-    "mode": "learn",
-    "stage": null,
-    "pageType": "entry-wrapper",
-    "progressEligible": false,
-    "excerpt": "完整课程地图：什么时候进入哪一种模式 要从零学习 ：从 AI 到底改变了什么 开始，沿六个阶段阅读。 想浏览完整结构 ：使用离线应用中的“课程目录”。 只想查概念 ：从 入门术语地图、工具地图...",
-    "headings": [],
-    "minutes": 1,
-    "order": 3
-  },
-  {
-    "id": "00-课程入口/03-第一次AI作品路线.md",
-    "path": "00-课程入口/03-第一次AI作品路线.md",
-    "title": "可选练习：15–20 分钟完成一张任务卡",
-    "moduleId": "entry",
-    "moduleTitle": "阅读导览",
-    "moduleDir": "00-课程入口",
-    "phase": "定向",
-    "output": "理解知识库结构与自由阅读方式",
-    "mode": "learn",
-    "stage": null,
-    "pageType": "entry-wrapper",
-    "progressEligible": false,
-    "excerpt": "可选练习：15–20 分钟完成一张任务卡 这不是进入知识库的第一步，也不是继续阅读的前置条件。建议先阅读 Prompt 阶段的基础内容；当你想验证自己是否理解“目标、输入、输出、验收和人类责任...",
+    "excerpt": "学习路线：核心入门、进阶工程与按需资料 这是一张可以直接跳转的路线图。第一次学习，默认完成 16 节核心课；固定流程不够用时再进入 8 节进阶课；参考、案例和工作簿随用随查。 第一层：核心入门...",
     "headings": [
       {
         "level": 2,
-        "text": "四步完成"
+        "text": "第一层：核心入门课 · 16 节"
+      },
+      {
+        "level": 3,
+        "text": "模块一：先建立正确的 AI 判断"
+      },
+      {
+        "level": 3,
+        "text": "模块二：把模糊请求变成可协作任务"
+      },
+      {
+        "level": 3,
+        "text": "模块三：完成四类常见工作"
+      },
+      {
+        "level": 3,
+        "text": "模块四：核查结果与风险"
+      },
+      {
+        "level": 3,
+        "text": "模块五：把一次成功沉淀成方法"
       },
       {
         "level": 2,
-        "text": "任务卡模板"
+        "text": "第二层：进阶工程课 · 8 节"
+      },
+      {
+        "level": 2,
+        "text": "第三层：按需资料"
+      },
+      {
+        "level": 2,
+        "text": "怎样算“学会了”"
       }
     ],
-    "minutes": 1,
-    "order": 4
-  },
-  {
-    "id": "01-AI基础认知/README.md",
-    "path": "01-AI基础认知/README.md",
-    "title": "AI 基础认知",
-    "moduleId": "foundation",
-    "moduleTitle": "AI 基础与按需原理",
-    "moduleDir": "01-AI基础认知",
-    "phase": "Prompt / Context",
-    "output": "理解候选答案、上下文与人类责任",
-    "mode": "learn",
-    "stage": null,
-    "pageType": "entry-wrapper",
-    "progressEligible": false,
-    "excerpt": "AI 基础认知 路线/目录页 · 不计能力进度。需要学习时回到当前阶段作品；需要做任务或查概念时从下列入口按需进入。 AI 到底改变了什么 · 核心主线 AI 不是搜索框，也不是数据库 · 核...",
-    "headings": [],
-    "minutes": 1,
-    "order": 5
+    "minutes": 3,
+    "order": 2
   },
   {
     "id": "01-AI基础认知/01-AI到底改变了什么.md",
     "path": "01-AI基础认知/01-AI到底改变了什么.md",
-    "title": "AI 到底改变了什么",
+    "title": "AI 不是答案机器：它先给你一个候选",
     "moduleId": "foundation",
     "moduleTitle": "AI 基础与按需原理",
     "moduleDir": "01-AI基础认知",
@@ -149,180 +159,45 @@
     "output": "理解候选答案、上下文与人类责任",
     "mode": "learn",
     "stage": "prompt",
+    "unitId": "C-01",
+    "layer": "core",
+    "courseOrder": 1,
+    "courseModuleId": "M1",
+    "courseModuleTitle": "先建立正确的 AI 判断",
+    "courseModuleQuestion": "AI 能参与什么，为什么不能替人负责？",
+    "courseModuleOutcome": "判断一项任务适合 AI 参与、需要人工复核，还是不应委托。",
+    "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
-    "excerpt": "AI 到底改变了什么 深入理解与原有知识 这一讲解决什么问题 很多读者接触 AI 后，会在两种感受之间摇摆。 一方面，AI 很神奇：它能写文章、总结资料、生成方案、翻译、改写、写代码、做头脑风...",
+    "excerpt": "AI 不是答案机器：它先给你一个候选 负责人把几份用户反馈发给你，说：“帮我看看下周的分享会应该讲什么。” 以前，你可能要先通读材料、归纳问题，再写一版建议。现在，AI 一分钟就能给出一份结构...",
     "headings": [
       {
         "level": 2,
-        "text": "AI 的价值到底落在工作哪一环？"
-      },
-      {
-        "level": 3,
-        "text": "在固定研究简报中操作"
-      },
-      {
-        "level": 3,
-        "text": "在「AI 到底改变了什么」中最容易犯的错"
-      },
-      {
-        "level": 3,
-        "text": "「任务卡」应留下什么证据"
+        "text": "变化不只是“写得更快”"
       },
       {
         "level": 2,
-        "text": "深入理解与原有知识"
+        "text": "看一个很小的例子"
       },
       {
         "level": 2,
-        "text": "这一讲解决什么问题"
+        "text": "哪些任务适合让 AI 参与"
       },
       {
         "level": 2,
-        "text": "常见错误理解"
+        "text": "人的工作没有消失，只是位置变了"
       },
       {
         "level": 3,
-        "text": "错误一：AI 是更聪明的搜索框"
+        "text": "做一个 5 分钟任务判断"
       },
       {
         "level": 3,
-        "text": "错误二：AI 是万能助手"
-      },
-      {
-        "level": 3,
-        "text": "错误三：AI 用不好，是因为提示词不够神"
-      },
-      {
-        "level": 2,
-        "text": "核心模型：执行动作和思考动作"
-      },
-      {
-        "level": 2,
-        "text": "这不等于把思考交给 AI"
-      },
-      {
-        "level": 2,
-        "text": "一个完整工作例子"
-      },
-      {
-        "level": 2,
-        "text": "入门阶段最重要的三个判断"
-      },
-      {
-        "level": 3,
-        "text": "判断一：这个任务是否适合 AI 参与"
-      },
-      {
-        "level": 3,
-        "text": "判断二：人应该保留什么"
-      },
-      {
-        "level": 3,
-        "text": "判断三：AI 输出是否可验收"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
+        "text": "教学反馈"
       }
     ],
     "minutes": 5,
     "order": 6
-  },
-  {
-    "id": "01-AI基础认知/02-AI不是搜索框也不是数据库.md",
-    "path": "01-AI基础认知/02-AI不是搜索框也不是数据库.md",
-    "title": "AI 不是搜索框，也不是数据库",
-    "moduleId": "foundation",
-    "moduleTitle": "AI 基础与按需原理",
-    "moduleDir": "01-AI基础认知",
-    "phase": "Prompt / Context",
-    "output": "理解候选答案、上下文与人类责任",
-    "mode": "learn",
-    "stage": "prompt",
-    "pageType": "core-spine",
-    "progressEligible": true,
-    "excerpt": "AI 不是搜索框，也不是数据库 深入理解与原有知识 这一讲解决什么问题 很多人第一次使用 AI 时，会自然把它理解成“更聪明的搜索框”。这种理解有一部分对，但不够。 搜索框、数据库、传统软件和...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "什么时候该生成，什么时候该检索或查记录？"
-      },
-      {
-        "level": 3,
-        "text": "在固定研究简报中操作"
-      },
-      {
-        "level": 3,
-        "text": "在「AI 不是搜索框，也不是数据库」中最容易犯的错"
-      },
-      {
-        "level": 3,
-        "text": "「任务卡」应留下什么证据"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "四类能力的区别"
-      },
-      {
-        "level": 2,
-        "text": "一个例子"
-      },
-      {
-        "level": 2,
-        "text": "为什么这个区别重要"
-      },
-      {
-        "level": 3,
-        "text": "需要查证的任务"
-      },
-      {
-        "level": 3,
-        "text": "需要生成候选结果的任务"
-      },
-      {
-        "level": 2,
-        "text": "判断方法"
-      },
-      {
-        "level": 2,
-        "text": "常见误解"
-      },
-      {
-        "level": 3,
-        "text": "误解一：AI 会说得很确定，所以它一定知道"
-      },
-      {
-        "level": 3,
-        "text": "误解二：AI 能回答很多问题，所以它像一个大数据库"
-      },
-      {
-        "level": 3,
-        "text": "误解三：AI 不联网就完全没用"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 4,
-    "order": 7
   },
   {
     "id": "01-AI基础认知/03-模型如何生成回答.md",
@@ -335,6 +210,14 @@
     "output": "理解候选答案、上下文与人类责任",
     "mode": "learn",
     "stage": "prompt",
+    "unitId": "C-02",
+    "layer": "core",
+    "courseOrder": 2,
+    "courseModuleId": "M1",
+    "courseModuleTitle": "先建立正确的 AI 判断",
+    "courseModuleQuestion": "AI 能参与什么，为什么不能替人负责？",
+    "courseModuleOutcome": "判断一项任务适合 AI 参与、需要人工复核，还是不应委托。",
+    "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
     "excerpt": "模型如何生成回答 深入理解与原有知识 这一讲解决什么问题 很多人知道 AI 会“生成内容”，但不知道生成到底意味着什么。 如果不了解这一点，就很难理解： 为什么 AI 能快速写出一段完整文字。...",
@@ -432,7 +315,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 5,
+    "minutes": 8,
     "order": 8
   },
   {
@@ -446,6 +329,14 @@
     "output": "理解候选答案、上下文与人类责任",
     "mode": "reference",
     "stage": null,
+    "unitId": "R-01",
+    "layer": "reference",
+    "courseOrder": 1,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
     "pageType": "reference",
     "progressEligible": false,
     "excerpt": "Embedding 与语义检索 深入理解与原有知识 这一讲解决什么问题 很多人第一次听到 embedding，会得到一句很抽象的解释： 这句话没错，但对实际使用帮助不大。读者真正需要理解的是：...",
@@ -535,242 +426,8 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 6,
+    "minutes": 16,
     "order": 9
-  },
-  {
-    "id": "01-AI基础认知/05-上下文窗口与记忆.md",
-    "path": "01-AI基础认知/05-上下文窗口与记忆.md",
-    "title": "上下文窗口与记忆",
-    "moduleId": "foundation",
-    "moduleTitle": "AI 基础与按需原理",
-    "moduleDir": "01-AI基础认知",
-    "phase": "Prompt / Context",
-    "output": "理解候选答案、上下文与人类责任",
-    "mode": "learn",
-    "stage": "context",
-    "pageType": "core-spine",
-    "progressEligible": true,
-    "excerpt": "上下文窗口与记忆 深入理解与原有知识 这一讲解决什么问题 很多读者会问： 要理解这些问题，需要先理解两个概念：上下文窗口和记忆。 入门阶段不需要掌握技术细节，但必须知道：AI 每次回答时，只能...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "上下文、记忆和知识库分别解决什么？"
-      },
-      {
-        "level": 3,
-        "text": "在固定研究简报中操作"
-      },
-      {
-        "level": 3,
-        "text": "在「上下文窗口与记忆」中最容易犯的错"
-      },
-      {
-        "level": 3,
-        "text": "「模板与上下文材料包」应留下什么证据"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "什么是上下文"
-      },
-      {
-        "level": 2,
-        "text": "什么是上下文窗口"
-      },
-      {
-        "level": 2,
-        "text": "上下文窗口不是记忆仓库"
-      },
-      {
-        "level": 2,
-        "text": "什么是记忆"
-      },
-      {
-        "level": 2,
-        "text": "四种信息来源的区别"
-      },
-      {
-        "level": 2,
-        "text": "为什么这会影响输出"
-      },
-      {
-        "level": 2,
-        "text": "长上下文不等于好上下文"
-      },
-      {
-        "level": 2,
-        "text": "上下文包是什么"
-      },
-      {
-        "level": 2,
-        "text": "常见失败"
-      },
-      {
-        "level": 3,
-        "text": "失败一：只给任务，不给背景"
-      },
-      {
-        "level": 3,
-        "text": "失败二：给很多材料，但不说重点"
-      },
-      {
-        "level": 3,
-        "text": "失败三：在长对话里不断追加要求"
-      },
-      {
-        "level": 3,
-        "text": "失败四：以为 AI 永远记得你说过的话"
-      },
-      {
-        "level": 3,
-        "text": "失败五：把资料库当成当前上下文"
-      },
-      {
-        "level": 3,
-        "text": "失败六：不处理新旧信息冲突"
-      },
-      {
-        "level": 2,
-        "text": "怎么管理上下文"
-      },
-      {
-        "level": 2,
-        "text": "进阶：上下文如何成为系统能力"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 5,
-    "order": 10
-  },
-  {
-    "id": "01-AI基础认知/06-RAG与知识库问答.md",
-    "path": "01-AI基础认知/06-RAG与知识库问答.md",
-    "title": "RAG 与知识库问答",
-    "moduleId": "foundation",
-    "moduleTitle": "AI 基础与按需原理",
-    "moduleDir": "01-AI基础认知",
-    "phase": "Prompt / Context",
-    "output": "理解候选答案、上下文与人类责任",
-    "mode": "reference",
-    "stage": null,
-    "pageType": "reference",
-    "progressEligible": false,
-    "excerpt": "RAG 与知识库问答 深入理解与原有知识 这一讲解决什么问题 学完 embedding 之后，很多读者会自然问： 答案是：不一定。 RAG 解决的是“让模型有机会基于外部资料回答”，但它不自动...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "30 秒判断"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "先看一个场景"
-      },
-      {
-        "level": 2,
-        "text": "RAG 是什么"
-      },
-      {
-        "level": 2,
-        "text": "为什么需要 RAG"
-      },
-      {
-        "level": 2,
-        "text": "RAG 和 embedding 的关系"
-      },
-      {
-        "level": 2,
-        "text": "一个完整流程"
-      },
-      {
-        "level": 2,
-        "text": "RAG 会错在哪里"
-      },
-      {
-        "level": 3,
-        "text": "1. 资料本身不可靠"
-      },
-      {
-        "level": 3,
-        "text": "2. 检索找错材料"
-      },
-      {
-        "level": 3,
-        "text": "3. 文档切分不合理"
-      },
-      {
-        "level": 3,
-        "text": "4. 生成阶段过度推断"
-      },
-      {
-        "level": 3,
-        "text": "5. 用户问题太模糊"
-      },
-      {
-        "level": 2,
-        "text": "RAG 输出怎么检查"
-      },
-      {
-        "level": 2,
-        "text": "好问题怎么写"
-      },
-      {
-        "level": 2,
-        "text": "RAG 和普通搜索有什么区别"
-      },
-      {
-        "level": 2,
-        "text": "常见误解"
-      },
-      {
-        "level": 3,
-        "text": "误解一：接了知识库就不会幻觉"
-      },
-      {
-        "level": 3,
-        "text": "误解二：知识库越大越好"
-      },
-      {
-        "level": 3,
-        "text": "误解三：RAG 可以替代内容建设"
-      },
-      {
-        "level": 2,
-        "text": "判断清单"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 5,
-    "order": 11
   },
   {
     "id": "01-AI基础认知/07-能力边界与人机分工.md",
@@ -783,6 +440,14 @@
     "output": "理解候选答案、上下文与人类责任",
     "mode": "learn",
     "stage": "prompt",
+    "unitId": "C-03",
+    "layer": "core",
+    "courseOrder": 3,
+    "courseModuleId": "M1",
+    "courseModuleTitle": "先建立正确的 AI 判断",
+    "courseModuleQuestion": "AI 能参与什么，为什么不能替人负责？",
+    "courseModuleOutcome": "判断一项任务适合 AI 参与、需要人工复核，还是不应委托。",
+    "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
     "excerpt": "能力边界与人机分工 深入理解与原有知识 这一讲解决什么问题 AI 入门最重要的能力之一，是知道什么能交给 AI，什么不能交给 AI。 如果边界不清，实际使用会出现两类问题： 该让 AI 辅助的...",
@@ -868,7 +533,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 3,
+    "minutes": 9,
     "order": 12
   },
   {
@@ -882,6 +547,14 @@
     "output": "理解候选答案、上下文与人类责任",
     "mode": "reference",
     "stage": null,
+    "unitId": "R-02",
+    "layer": "reference",
+    "courseOrder": 2,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
     "pageType": "reference",
     "progressEligible": false,
     "excerpt": "入门术语地图 深入理解与原有知识 这一讲解决什么问题 AI 术语很多：模型、prompt、token、上下文窗口、RAG、agent、workflow、eval、tool calling、em...",
@@ -979,31 +652,13 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 5,
+    "minutes": 11,
     "order": 13
-  },
-  {
-    "id": "02-人机协作基本功/README.md",
-    "path": "02-人机协作基本功/README.md",
-    "title": "人机协作基本功",
-    "moduleId": "collaboration",
-    "moduleTitle": "任务卡与上下文",
-    "moduleDir": "02-人机协作基本功",
-    "phase": "Prompt / Context",
-    "output": "任务卡与上下文材料包",
-    "mode": "learn",
-    "stage": null,
-    "pageType": "entry-wrapper",
-    "progressEligible": false,
-    "excerpt": "人机协作基本功 路线/目录页 · 不计能力进度。需要学习时回到当前阶段作品；需要做任务或查概念时从下列入口按需进入。 把模糊问题变成 AI 能执行的任务 · 核心主线 上下文包是什么 · 核心...",
-    "headings": [],
-    "minutes": 1,
-    "order": 14
   },
   {
     "id": "02-人机协作基本功/01-把模糊问题变成AI能执行的任务.md",
     "path": "02-人机协作基本功/01-把模糊问题变成AI能执行的任务.md",
-    "title": "把模糊问题变成 AI 能执行的任务",
+    "title": "把模糊请求变成 AI 能执行的任务",
     "moduleId": "collaboration",
     "moduleTitle": "任务卡与上下文",
     "moduleDir": "02-人机协作基本功",
@@ -1011,120 +666,60 @@
     "output": "任务卡与上下文材料包",
     "mode": "learn",
     "stage": "prompt",
+    "unitId": "C-04",
+    "layer": "core",
+    "courseOrder": 4,
+    "courseModuleId": "M2",
+    "courseModuleTitle": "把模糊请求变成可协作任务",
+    "courseModuleQuestion": "怎样让 AI 看见正确任务、正确材料和明确反馈？",
+    "courseModuleOutcome": "完成一张六格任务卡、一份材料选择表和一次可执行反馈。",
+    "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
-    "excerpt": "把模糊问题变成 AI 能执行的任务 深入理解与原有知识 这一讲解决什么问题 很多 AI 输出不稳定，不是因为模型太差，而是因为人给出的任务太模糊。 读者常见的提问方式是： 这些话在同事之间有时...",
+    "excerpt": "把模糊请求变成 AI 能执行的任务 “帮我做一份竞品分析。” 这句话对同事来说已经很模糊，对 AI 更是如此。它不知道分析给谁看、要支持什么决定、可以使用哪些材料，也不知道怎样才算完成。于是它...",
     "headings": [
       {
         "level": 2,
-        "text": "怎样把一句需求变成可执行合同？"
-      },
-      {
-        "level": 3,
-        "text": "在固定研究简报中操作"
-      },
-      {
-        "level": 3,
-        "text": "在「把模糊问题变成 AI 能执行的任务」中最容易犯的错"
-      },
-      {
-        "level": 3,
-        "text": "「任务卡」应留下什么证据"
+        "text": "先别改措辞，先补齐六格任务卡"
       },
       {
         "level": 2,
-        "text": "深入理解与原有知识"
+        "text": "同一个请求，补齐以后会发生什么"
+      },
+      {
+        "level": 3,
+        "text": "模糊版本"
+      },
+      {
+        "level": 3,
+        "text": "可执行版本"
       },
       {
         "level": 2,
-        "text": "这一讲解决什么问题"
+        "text": "看输出差异：不是“更长”，而是更容易判断"
       },
       {
         "level": 2,
-        "text": "先看一个失败例子"
+        "text": "验收标准要能被观察"
       },
       {
         "level": 2,
-        "text": "任务说明卡的七个字段"
+        "text": "边界不是附加项"
       },
       {
         "level": 2,
-        "text": "把模糊问题改写成任务说明"
+        "text": "一张可以直接使用的空白卡"
       },
       {
         "level": 3,
-        "text": "原始模糊问题"
+        "text": "用自己的任务试一次"
       },
       {
         "level": 3,
-        "text": "改写后的任务说明"
-      },
-      {
-        "level": 2,
-        "text": "任务说明卡模板"
-      },
-      {
-        "level": 2,
-        "text": "七个字段怎么写才有效"
-      },
-      {
-        "level": 3,
-        "text": "目标：不要只写动作，要写用途"
-      },
-      {
-        "level": 3,
-        "text": "背景：告诉 AI 为什么现在要做"
-      },
-      {
-        "level": 3,
-        "text": "目标读者：决定表达深度"
-      },
-      {
-        "level": 3,
-        "text": "输入材料：减少 AI 凭空补全"
-      },
-      {
-        "level": 3,
-        "text": "约束边界：告诉 AI 什么不能做"
-      },
-      {
-        "level": 3,
-        "text": "输出格式：让结果可直接使用"
-      },
-      {
-        "level": 3,
-        "text": "验收标准：提前定义好坏"
-      },
-      {
-        "level": 2,
-        "text": "完整案例：把“帮我做竞品分析”改写成任务"
-      },
-      {
-        "level": 3,
-        "text": "原始请求"
-      },
-      {
-        "level": 3,
-        "text": "任务拆解"
-      },
-      {
-        "level": 3,
-        "text": "改写后的任务说明"
-      },
-      {
-        "level": 2,
-        "text": "常见失败和修正方式"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
+        "text": "自检"
       }
     ],
-    "minutes": 4,
+    "minutes": 7,
     "order": 15
   },
   {
@@ -1138,6 +733,14 @@
     "output": "任务卡与上下文材料包",
     "mode": "learn",
     "stage": "context",
+    "unitId": "C-05",
+    "layer": "core",
+    "courseOrder": 5,
+    "courseModuleId": "M2",
+    "courseModuleTitle": "把模糊请求变成可协作任务",
+    "courseModuleQuestion": "怎样让 AI 看见正确任务、正确材料和明确反馈？",
+    "courseModuleOutcome": "完成一张六格任务卡、一份材料选择表和一次可执行反馈。",
+    "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
     "excerpt": "上下文包是什么 深入理解与原有知识 这一讲解决什么问题 很多人知道要“给 AI 上下文”，但不知道上下文到底该给什么。 于是常见做法是： 把所有材料一股脑贴进去。 只给一句背景。 反复在对话后...",
@@ -1195,99 +798,8 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 3,
+    "minutes": 10,
     "order": 16
-  },
-  {
-    "id": "02-人机协作基本功/03-约束边界与输出格式.md",
-    "path": "02-人机协作基本功/03-约束边界与输出格式.md",
-    "title": "约束边界与输出格式",
-    "moduleId": "collaboration",
-    "moduleTitle": "任务卡与上下文",
-    "moduleDir": "02-人机协作基本功",
-    "phase": "Prompt / Context",
-    "output": "任务卡与上下文材料包",
-    "mode": "learn",
-    "stage": "prompt",
-    "pageType": "core-spine",
-    "progressEligible": true,
-    "excerpt": "约束边界与输出格式 深入理解与原有知识 这一讲解决什么问题 很多 AI 输出“看起来能用，实际用不了”，常见原因不是内容太少，而是边界和格式没定义。 例如： AI 可能写得很完整，但你拿到后发...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "一句禁止指令为什么不等于真正权限？"
-      },
-      {
-        "level": 3,
-        "text": "在固定研究简报中操作"
-      },
-      {
-        "level": 3,
-        "text": "在「约束边界与输出格式」中最容易犯的错"
-      },
-      {
-        "level": 3,
-        "text": "「任务卡」应留下什么证据"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "什么是约束边界"
-      },
-      {
-        "level": 2,
-        "text": "什么是输出格式"
-      },
-      {
-        "level": 2,
-        "text": "一个例子"
-      },
-      {
-        "level": 2,
-        "text": "为什么格式会影响思考"
-      },
-      {
-        "level": 2,
-        "text": "常用输出格式"
-      },
-      {
-        "level": 3,
-        "text": "事实核查格式"
-      },
-      {
-        "level": 3,
-        "text": "行动项格式"
-      },
-      {
-        "level": 3,
-        "text": "方案比较格式"
-      },
-      {
-        "level": 3,
-        "text": "页面任务格式"
-      },
-      {
-        "level": 2,
-        "text": "常见失败"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 3,
-    "order": 17
   },
   {
     "id": "02-人机协作基本功/04-示例反馈和迭代.md",
@@ -1300,6 +812,14 @@
     "output": "任务卡与上下文材料包",
     "mode": "learn",
     "stage": "context",
+    "unitId": "C-06",
+    "layer": "core",
+    "courseOrder": 6,
+    "courseModuleId": "M2",
+    "courseModuleTitle": "把模糊请求变成可协作任务",
+    "courseModuleQuestion": "怎样让 AI 看见正确任务、正确材料和明确反馈？",
+    "courseModuleOutcome": "完成一张六格任务卡、一份材料选择表和一次可执行反馈。",
+    "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
     "excerpt": "示例、反馈和迭代 深入理解与原有知识 这一讲解决什么问题 很多人希望 AI 一次输出就完美。但真实协作里，更稳定的做法是：先给示例，再看初稿，再反馈，再迭代。 AI 不是只能听命令。它也能从样...",
@@ -1377,227 +897,90 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 3,
+    "minutes": 5,
     "order": 18
-  },
-  {
-    "id": "02-人机协作基本功/05-把Prompt变成可复用模板.md",
-    "path": "02-人机协作基本功/05-把Prompt变成可复用模板.md",
-    "title": "把 Prompt 变成可复用模板",
-    "moduleId": "collaboration",
-    "moduleTitle": "任务卡与上下文",
-    "moduleDir": "02-人机协作基本功",
-    "phase": "Prompt / Context",
-    "output": "任务卡与上下文材料包",
-    "mode": "learn",
-    "stage": "context",
-    "pageType": "core-spine",
-    "progressEligible": true,
-    "excerpt": "把 Prompt 变成可复用模板 深入理解与原有知识 这一讲解决什么问题 很多人用 AI 有一个共同问题：这次问得不错，下次又从零开始。 如果每次都重新写 prompt，你很难积累方法。真正能...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "哪些内容应该固定，哪些必须留成变量？"
-      },
-      {
-        "level": 3,
-        "text": "在固定研究简报中操作"
-      },
-      {
-        "level": 3,
-        "text": "在「把 Prompt 变成可复用模板」中最容易犯的错"
-      },
-      {
-        "level": 3,
-        "text": "「模板与上下文材料包」应留下什么证据"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "Prompt 和 Prompt Template 的区别"
-      },
-      {
-        "level": 2,
-        "text": "什么内容适合模板化"
-      },
-      {
-        "level": 2,
-        "text": "模板的基本结构"
-      },
-      {
-        "level": 2,
-        "text": "从一次 prompt 到模板"
-      },
-      {
-        "level": 3,
-        "text": "第一步：找出稳定部分"
-      },
-      {
-        "level": 3,
-        "text": "第二步：找出变量"
-      },
-      {
-        "level": 3,
-        "text": "第三步：固定输出格式"
-      },
-      {
-        "level": 3,
-        "text": "第四步：加入验收标准"
-      },
-      {
-        "level": 2,
-        "text": "模板示例：会议纪要"
-      },
-      {
-        "level": 2,
-        "text": "模板维护"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 3,
-    "order": 19
-  },
-  {
-    "id": "03-高频场景实战/README.md",
-    "path": "03-高频场景实战/README.md",
-    "title": "高频场景实战",
-    "moduleId": "scenarios",
-    "moduleTitle": "高频任务实验室",
-    "moduleDir": "03-高频场景实战",
-    "phase": "迁移",
-    "output": "真实任务迁移作品",
-    "mode": "learn",
-    "stage": null,
-    "pageType": "entry-wrapper",
-    "progressEligible": false,
-    "excerpt": "高频场景实战 路线/目录页 · 不计能力进度。需要学习时回到当前阶段作品；需要做任务或查概念时从下列入口按需进入。 用 AI 做资料研究：完整案例 · 任务实验室 用 AI 做长文总结 · 任...",
-    "headings": [],
-    "minutes": 1,
-    "order": 20
   },
   {
     "id": "03-高频场景实战/01-用AI做资料研究完整案例.md",
     "path": "03-高频场景实战/01-用AI做资料研究完整案例.md",
-    "title": "用 AI 做资料研究：完整案例",
+    "title": "资料研究完整演示：从 AI 初稿到可核验简报",
     "moduleId": "scenarios",
     "moduleTitle": "高频任务实验室",
     "moduleDir": "03-高频场景实战",
     "phase": "迁移",
     "output": "真实任务迁移作品",
-    "mode": "lab",
-    "stage": null,
-    "pageType": "lab",
-    "progressEligible": false,
-    "excerpt": "用 AI 做资料研究：完整案例 深入理解与原有知识 这一讲解决什么问题 很多人让 AI 做资料研究时，会直接问： AI 通常会输出一篇看起来完整的报告：市场背景、趋势、竞品、机会、风险、建议。...",
+    "mode": "learn",
+    "stage": "context",
+    "unitId": "C-07",
+    "layer": "core",
+    "courseOrder": 7,
+    "courseModuleId": "M3",
+    "courseModuleTitle": "完成四类真实工作",
+    "courseModuleQuestion": "怎样把同一套协作方法迁移到常见交付？",
+    "courseModuleOutcome": "看懂研究、总结、会议沟通和汇报视觉四类交付的关键判断。",
+    "visible": true,
+    "pageType": "core-spine",
+    "progressEligible": true,
+    "excerpt": "资料研究完整演示：从 AI 初稿到可核验简报 资料研究最容易制造一种错觉：AI 读得快、写得顺，所以研究已经完成。 真正可靠的研究交付，不是把几份材料压缩成一篇长文，而是让使用者看得出： 哪些...",
     "headings": [
       {
         "level": 2,
-        "text": "任务合同"
+        "text": "情境：下一场内部 AI 分享应该讲什么"
       },
       {
         "level": 2,
-        "text": "反馈怎么用"
+        "text": "第一步：先把研究问题缩小"
       },
       {
         "level": 2,
-        "text": "深入理解与原有知识"
+        "text": "第二步：先看一版容易出现的 AI 初稿"
       },
       {
         "level": 2,
-        "text": "这一讲解决什么问题"
+        "text": "第三步：人工批注不是润色，而是查证据链"
       },
       {
         "level": 2,
-        "text": "案例背景"
+        "text": "第四步：把材料整理成“事实—推断—边界”"
       },
       {
         "level": 2,
-        "text": "错误问法"
-      },
-      {
-        "level": 2,
-        "text": "第一步：把研究任务说清楚"
-      },
-      {
-        "level": 2,
-        "text": "第二步：让 AI 先整理事实"
-      },
-      {
-        "level": 2,
-        "text": "第三步：再做推断，但必须标记依据"
-      },
-      {
-        "level": 2,
-        "text": "第四步：定位 AI 可能介入的流程环节"
-      },
-      {
-        "level": 2,
-        "text": "第五步：形成研究简报"
-      },
-      {
-        "level": 2,
-        "text": "最终简报示例"
+        "text": "第五步：形成可交付的一页简报"
       },
       {
         "level": 3,
-        "text": "一句话结论"
+        "text": "建议"
       },
       {
         "level": 3,
-        "text": "研究问题"
+        "text": "依据"
       },
       {
         "level": 3,
-        "text": "材料支持的核心发现"
+        "text": "45 分钟结构"
       },
       {
         "level": 3,
-        "text": "AI 可介入的流程"
+        "text": "待确认项"
       },
       {
         "level": 3,
-        "text": "主要风险"
-      },
-      {
-        "level": 3,
-        "text": "当前不能下结论的地方"
-      },
-      {
-        "level": 3,
-        "text": "建议产品讨论会重点讨论的问题"
+        "text": "人工确认"
       },
       {
         "level": 2,
-        "text": "人工验收"
+        "text": "修改前后，真正变化在哪里"
       },
       {
-        "level": 2,
-        "text": "沉淀成 workflow"
+        "level": 3,
+        "text": "从一段 AI 输出开始复盘"
       },
       {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
+        "level": 3,
+        "text": "自检"
       }
     ],
-    "minutes": 6,
+    "minutes": 12,
     "order": 21
   },
   {
@@ -1609,10 +992,18 @@
     "moduleDir": "03-高频场景实战",
     "phase": "迁移",
     "output": "真实任务迁移作品",
-    "mode": "lab",
+    "mode": "learn",
     "stage": null,
-    "pageType": "lab",
-    "progressEligible": false,
+    "unitId": "C-08",
+    "layer": "core",
+    "courseOrder": 8,
+    "courseModuleId": "M3",
+    "courseModuleTitle": "完成四类真实工作",
+    "courseModuleQuestion": "怎样把同一套协作方法迁移到常见交付？",
+    "courseModuleOutcome": "看懂研究、总结、会议沟通和汇报视觉四类交付的关键判断。",
+    "visible": true,
+    "pageType": "core-spine",
+    "progressEligible": true,
     "excerpt": "用 AI 做长文总结 深入理解与原有知识 这一讲解决什么问题 长文总结不是把文章压短。真正有价值的总结，是让读者更快判断： 这篇材料讲了什么。 哪些信息对我当前任务有用。 哪些地方只是作者的观...",
     "headings": [
       {
@@ -1688,7 +1079,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 3,
+    "minutes": 5,
     "order": 22
   },
   {
@@ -1700,10 +1091,18 @@
     "moduleDir": "03-高频场景实战",
     "phase": "迁移",
     "output": "真实任务迁移作品",
-    "mode": "lab",
+    "mode": "learn",
     "stage": null,
-    "pageType": "lab",
-    "progressEligible": false,
+    "unitId": "C-09",
+    "layer": "core",
+    "courseOrder": 9,
+    "courseModuleId": "M3",
+    "courseModuleTitle": "完成四类真实工作",
+    "courseModuleQuestion": "怎样把同一套协作方法迁移到常见交付？",
+    "courseModuleOutcome": "看懂研究、总结、会议沟通和汇报视觉四类交付的关键判断。",
+    "visible": true,
+    "pageType": "core-spine",
+    "progressEligible": true,
     "excerpt": "用 AI 做会议纪要 深入理解与原有知识 这一讲解决什么问题 会议纪要不是会议录音的文字版。它的核心作用是把一次讨论变成后续行动的共同依据。 一份可用的会议纪要至少要回答： 这次会议讨论了什么...",
     "headings": [
       {
@@ -1787,7 +1186,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 3,
+    "minutes": 6,
     "order": 23
   },
   {
@@ -1799,10 +1198,18 @@
     "moduleDir": "03-高频场景实战",
     "phase": "迁移",
     "output": "真实任务迁移作品",
-    "mode": "lab",
+    "mode": "learn",
     "stage": null,
-    "pageType": "lab",
-    "progressEligible": false,
+    "unitId": "C-10",
+    "layer": "core",
+    "courseOrder": 10,
+    "courseModuleId": "M3",
+    "courseModuleTitle": "完成四类真实工作",
+    "courseModuleQuestion": "怎样把同一套协作方法迁移到常见交付？",
+    "courseModuleOutcome": "看懂研究、总结、会议沟通和汇报视觉四类交付的关键判断。",
+    "visible": true,
+    "pageType": "core-spine",
+    "progressEligible": true,
     "excerpt": "用 AI 做 PPT 大纲 深入理解与原有知识 这一讲解决什么问题 让 AI 做 PPT，不是让它先写一堆页面标题。真正有效的做法，是先定义这份汇报要改变听众的什么判断。 PPT 大纲的核心不...",
     "headings": [
       {
@@ -1866,99 +1273,8 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 3,
+    "minutes": 6,
     "order": 24
-  },
-  {
-    "id": "03-高频场景实战/05-用AI写通知邮件和方案.md",
-    "path": "03-高频场景实战/05-用AI写通知邮件和方案.md",
-    "title": "用 AI 写通知、邮件和方案",
-    "moduleId": "scenarios",
-    "moduleTitle": "高频任务实验室",
-    "moduleDir": "03-高频场景实战",
-    "phase": "迁移",
-    "output": "真实任务迁移作品",
-    "mode": "lab",
-    "stage": null,
-    "pageType": "lab",
-    "progressEligible": false,
-    "excerpt": "用 AI 写通知、邮件和方案 深入理解与原有知识 这一讲解决什么问题 工作文本不是“写得好看”就够了。通知、邮件和方案的共同目标，是让接收者正确理解信息，并采取你期待的动作。 AI 很适合帮助...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "任务合同"
-      },
-      {
-        "level": 2,
-        "text": "反馈怎么用"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "三类文本的本质差异"
-      },
-      {
-        "level": 3,
-        "text": "通知"
-      },
-      {
-        "level": 3,
-        "text": "邮件"
-      },
-      {
-        "level": 3,
-        "text": "方案"
-      },
-      {
-        "level": 2,
-        "text": "常见错误"
-      },
-      {
-        "level": 2,
-        "text": "操作流程"
-      },
-      {
-        "level": 3,
-        "text": "第一步：先写沟通目标"
-      },
-      {
-        "level": 3,
-        "text": "第二步：补齐关系和约束"
-      },
-      {
-        "level": 3,
-        "text": "第三步：要求多版本"
-      },
-      {
-        "level": 3,
-        "text": "第四步：人工检查承诺和边界"
-      },
-      {
-        "level": 2,
-        "text": "工作文本模板"
-      },
-      {
-        "level": 2,
-        "text": "常见失败"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 2,
-    "order": 25
   },
   {
     "id": "03-高频场景实战/06-用AI设计自学路径.md",
@@ -1971,6 +1287,14 @@
     "output": "真实任务迁移作品",
     "mode": "lab",
     "stage": null,
+    "unitId": "L-01",
+    "layer": "lab",
+    "courseOrder": 1,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
     "pageType": "lab",
     "progressEligible": false,
     "excerpt": "用 AI 设计自学路径 深入理解与原有知识 这一讲解决什么问题 学习一个新主题时，很多人会让 AI “给我推荐资料”。这通常会得到一堆书、视频、课程和概念清单，但不一定形成学习能力。 AI 更...",
@@ -2056,26 +1380,8 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 2,
+    "minutes": 5,
     "order": 26
-  },
-  {
-    "id": "04-AIGC与多模态创作/README.md",
-    "path": "04-AIGC与多模态创作/README.md",
-    "title": "AIGC 与多模态创作",
-    "moduleId": "aigc",
-    "moduleTitle": "AIGC 任务实验室",
-    "moduleDir": "04-AIGC与多模态创作",
-    "phase": "迁移",
-    "output": "视觉 Brief、候选与发布检查",
-    "mode": "learn",
-    "stage": null,
-    "pageType": "entry-wrapper",
-    "progressEligible": false,
-    "excerpt": "AIGC 与多模态创作 路线/目录页 · 不计能力进度。需要学习时回到当前阶段作品；需要做任务或查概念时从下列入口按需进入。 AIGC 到底在生成什么 · 参考库 从文字需求到视觉 brief...",
-    "headings": [],
-    "minutes": 1,
-    "order": 27
   },
   {
     "id": "04-AIGC与多模态创作/01-AIGC到底在生成什么.md",
@@ -2088,6 +1394,14 @@
     "output": "视觉 Brief、候选与发布检查",
     "mode": "reference",
     "stage": null,
+    "unitId": "R-04",
+    "layer": "reference",
+    "courseOrder": 4,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
     "pageType": "reference",
     "progressEligible": false,
     "excerpt": "AIGC 到底在生成什么 深入理解与原有知识 这一讲解决什么问题 很多人第一次接触 AIGC，会把它理解成“AI 画图”或“AI 做视频”。这个理解太窄。 AIGC 指的是用 AI 生成内容，...",
@@ -2157,194 +1471,8 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 4,
+    "minutes": 10,
     "order": 28
-  },
-  {
-    "id": "04-AIGC与多模态创作/02-从文字需求到视觉Brief.md",
-    "path": "04-AIGC与多模态创作/02-从文字需求到视觉Brief.md",
-    "title": "从文字需求到视觉 brief",
-    "moduleId": "aigc",
-    "moduleTitle": "AIGC 任务实验室",
-    "moduleDir": "04-AIGC与多模态创作",
-    "phase": "迁移",
-    "output": "视觉 Brief、候选与发布检查",
-    "mode": "lab",
-    "stage": null,
-    "pageType": "lab",
-    "progressEligible": false,
-    "excerpt": "从文字需求到视觉 brief 深入理解与原有知识 这一讲解决什么问题 很多 AIGC 输出不好，不是模型不会画，而是人的视觉需求没有说清楚。 文字任务需要任务说明卡。视觉任务也一样，只是它要多...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "任务合同"
-      },
-      {
-        "level": 2,
-        "text": "反馈怎么用"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "视觉 brief 包含什么"
-      },
-      {
-        "level": 2,
-        "text": "brief、prompt 和参考素材有什么区别"
-      },
-      {
-        "level": 2,
-        "text": "视觉语言怎么写得更具体"
-      },
-      {
-        "level": 2,
-        "text": "从模糊需求到视觉 brief"
-      },
-      {
-        "level": 3,
-        "text": "原始需求"
-      },
-      {
-        "level": 3,
-        "text": "改写后的视觉 brief"
-      },
-      {
-        "level": 2,
-        "text": "从 brief 到 prompt 的三步"
-      },
-      {
-        "level": 3,
-        "text": "第一步：保留用途和主体"
-      },
-      {
-        "level": 3,
-        "text": "第二步：补充风格、构图和颜色"
-      },
-      {
-        "level": 3,
-        "text": "第三步：写清限制和验收"
-      },
-      {
-        "level": 2,
-        "text": "图像 prompt 的基本结构"
-      },
-      {
-        "level": 2,
-        "text": "什么时候需要参考图"
-      },
-      {
-        "level": 2,
-        "text": "为什么要写“避免项”"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 4,
-    "order": 29
-  },
-  {
-    "id": "04-AIGC与多模态创作/03-AIGC创作技巧从抽卡到可控.md",
-    "path": "04-AIGC与多模态创作/03-AIGC创作技巧从抽卡到可控.md",
-    "title": "AIGC 创作技巧：从抽卡到可控",
-    "moduleId": "aigc",
-    "moduleTitle": "AIGC 任务实验室",
-    "moduleDir": "04-AIGC与多模态创作",
-    "phase": "迁移",
-    "output": "视觉 Brief、候选与发布检查",
-    "mode": "lab",
-    "stage": null,
-    "pageType": "lab",
-    "progressEligible": false,
-    "excerpt": "AIGC 创作技巧：从抽卡到可控 深入理解与原有知识 这一讲解决什么问题 很多人做 AIGC 时会遇到同一个问题：同一句 prompt 有时很好，有时很怪；越加形容词，结果越不稳定。 原因通常...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "任务合同"
-      },
-      {
-        "level": 2,
-        "text": "反馈怎么用"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "技巧一：先决定这次要控制哪个变量"
-      },
-      {
-        "level": 2,
-        "text": "技巧二：少用抽象形容词，多写可见细节"
-      },
-      {
-        "level": 2,
-        "text": "技巧三：把参考素材的角色说清楚"
-      },
-      {
-        "level": 2,
-        "text": "技巧四：先生成候选方向，再做小步迭代"
-      },
-      {
-        "level": 2,
-        "text": "技巧五：图像里的文字要谨慎"
-      },
-      {
-        "level": 2,
-        "text": "技巧六：图生视频时，图片负责画面，prompt 负责运动"
-      },
-      {
-        "level": 2,
-        "text": "技巧七：用时间线写短视频"
-      },
-      {
-        "level": 2,
-        "text": "技巧八：建立自己的候选评审表"
-      },
-      {
-        "level": 2,
-        "text": "可复用 prompt 模板"
-      },
-      {
-        "level": 3,
-        "text": "图片生成模板"
-      },
-      {
-        "level": 3,
-        "text": "参考素材模板"
-      },
-      {
-        "level": 3,
-        "text": "图生视频模板"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 4,
-    "order": 30
   },
   {
     "id": "04-AIGC与多模态创作/04-三个常见AIGC创作案例拆解.md",
@@ -2357,6 +1485,14 @@
     "output": "视觉 Brief、候选与发布检查",
     "mode": "lab",
     "stage": null,
+    "unitId": "L-02",
+    "layer": "lab",
+    "courseOrder": 2,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
     "pageType": "lab",
     "progressEligible": false,
     "excerpt": "三个常见 AIGC 创作案例拆解 深入理解与原有知识 这一讲解决什么问题 前面已经知道视觉 brief 和创作技巧。这一讲把方法放进三个真实场景：公司学习活动图、PPT 封面、图生视频分镜。 ...",
@@ -2458,259 +1594,8 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 3,
+    "minutes": 11,
     "order": 31
-  },
-  {
-    "id": "04-AIGC与多模态创作/05-示例生成一张AIGC工作流配图.md",
-    "path": "04-AIGC与多模态创作/05-示例生成一张AIGC工作流配图.md",
-    "title": "示例：生成一张 AIGC 工作流配图",
-    "moduleId": "aigc",
-    "moduleTitle": "AIGC 任务实验室",
-    "moduleDir": "04-AIGC与多模态创作",
-    "phase": "迁移",
-    "output": "视觉 Brief、候选与发布检查",
-    "mode": "lab",
-    "stage": null,
-    "pageType": "lab",
-    "progressEligible": false,
-    "excerpt": "示例：生成一张 AIGC 工作流配图 深入理解与原有知识 这一讲解决什么问题 这一讲用一个完整例子说明：当你需要一张配图时，怎样从用途和表达目标出发，写出视觉 brief，生成候选图，再判断它...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "任务合同"
-      },
-      {
-        "level": 2,
-        "text": "反馈怎么用"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "任务目标"
-      },
-      {
-        "level": 2,
-        "text": "可复用的生成 prompt"
-      },
-      {
-        "level": 2,
-        "text": "生成结果"
-      },
-      {
-        "level": 2,
-        "text": "人工验收"
-      },
-      {
-        "level": 2,
-        "text": "为什么不在图里写字"
-      },
-      {
-        "level": 2,
-        "text": "这张图适合怎么用"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 3,
-    "order": 32
-  },
-  {
-    "id": "04-AIGC与多模态创作/06-AIGC发布边界与验收清单.md",
-    "path": "04-AIGC与多模态创作/06-AIGC发布边界与验收清单.md",
-    "title": "AIGC 的发布边界与验收清单",
-    "moduleId": "aigc",
-    "moduleTitle": "AIGC 任务实验室",
-    "moduleDir": "04-AIGC与多模态创作",
-    "phase": "迁移",
-    "output": "视觉 Brief、候选与发布检查",
-    "mode": "lab",
-    "stage": null,
-    "pageType": "lab",
-    "progressEligible": false,
-    "excerpt": "AIGC 的发布边界与验收清单 深入理解与原有知识 这一讲解决什么问题 AIGC 输出看起来直观，反而容易让人放松检查。文本错误可以通过读句子发现，视觉错误有时更隐蔽：人物手部异常、品牌相似、...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "任务合同"
-      },
-      {
-        "level": 2,
-        "text": "反馈怎么用"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "AIGC 的四类风险"
-      },
-      {
-        "level": 2,
-        "text": "哪些场景可以直接试"
-      },
-      {
-        "level": 2,
-        "text": "哪些场景必须谨慎"
-      },
-      {
-        "level": 2,
-        "text": "发布前检查清单"
-      },
-      {
-        "level": 2,
-        "text": "AIGC 验收提示词"
-      },
-      {
-        "level": 2,
-        "text": "常见失败"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 3,
-    "order": 33
-  },
-  {
-    "id": "04-判断验证与风险/README.md",
-    "path": "04-判断验证与风险/README.md",
-    "title": "判断验证与风险",
-    "moduleId": "validation",
-    "moduleTitle": "验证、风险与人工门",
-    "moduleDir": "04-判断验证与风险",
-    "phase": "Prompt → Harness",
-    "output": "核查记录、Eval 与权限判断",
-    "mode": "learn",
-    "stage": null,
-    "pageType": "entry-wrapper",
-    "progressEligible": false,
-    "excerpt": "判断验证与风险 路线/目录页 · 不计能力进度。需要学习时回到当前阶段作品；需要做任务或查概念时从下列入口按需进入。 幻觉不是小概率错误，而是必须管理的不确定性 · 核心主线 如何做事实核查 ...",
-    "headings": [],
-    "minutes": 1,
-    "order": 34
-  },
-  {
-    "id": "04-判断验证与风险/01-幻觉不是小概率错误.md",
-    "path": "04-判断验证与风险/01-幻觉不是小概率错误.md",
-    "title": "幻觉不是小概率错误，而是必须管理的不确定性",
-    "moduleId": "validation",
-    "moduleTitle": "验证、风险与人工门",
-    "moduleDir": "04-判断验证与风险",
-    "phase": "Prompt → Harness",
-    "output": "核查记录、Eval 与权限判断",
-    "mode": "learn",
-    "stage": "prompt",
-    "pageType": "core-spine",
-    "progressEligible": true,
-    "excerpt": "幻觉不是小概率错误，而是必须管理的不确定性 深入理解与原有知识 这一讲解决什么问题 很多读者第一次听到“AI 幻觉”，会把它理解成一种偶发 bug：平时可以忽略，只要模型更强，以后自然会消失。...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "怎样把不确定性变成可处理状态？"
-      },
-      {
-        "level": 3,
-        "text": "在固定研究简报中操作"
-      },
-      {
-        "level": 3,
-        "text": "在「幻觉不是小概率错误，而是必须管理的不确定性」中最容易犯的错"
-      },
-      {
-        "level": 3,
-        "text": "「任务卡」应留下什么证据"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "一个常见场景"
-      },
-      {
-        "level": 2,
-        "text": "幻觉的本质"
-      },
-      {
-        "level": 2,
-        "text": "幻觉通常从哪里来"
-      },
-      {
-        "level": 2,
-        "text": "幻觉不只出现在没有资料时"
-      },
-      {
-        "level": 2,
-        "text": "哪些内容最容易出问题"
-      },
-      {
-        "level": 2,
-        "text": "三道防线"
-      },
-      {
-        "level": 3,
-        "text": "1. 输入防线"
-      },
-      {
-        "level": 3,
-        "text": "2. 输出防线"
-      },
-      {
-        "level": 3,
-        "text": "3. 发布防线"
-      },
-      {
-        "level": 2,
-        "text": "四类输出标签"
-      },
-      {
-        "level": 2,
-        "text": "可直接使用的提示"
-      },
-      {
-        "level": 2,
-        "text": "完整案例：检查一段 AI 输出"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 5,
-    "order": 35
   },
   {
     "id": "04-判断验证与风险/02-如何做事实核查.md",
@@ -2723,6 +1608,14 @@
     "output": "核查记录、Eval 与权限判断",
     "mode": "learn",
     "stage": "prompt",
+    "unitId": "C-11",
+    "layer": "core",
+    "courseOrder": 11,
+    "courseModuleId": "M4",
+    "courseModuleTitle": "核查结果与风险",
+    "courseModuleQuestion": "哪些内容优先核查，什么时候必须停下来？",
+    "courseModuleOutcome": "完成事实核查与发布前判断，保留不可逆动作前的人工门。",
+    "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
     "excerpt": "如何做事实核查 深入理解与原有知识 这一讲解决什么问题 AI 可以帮助你快速生成内容，但事实核查不能被省略。尤其是对外发布、汇报、客户材料和决策材料，错误事实会直接损害信任。 事实核查不是把整...",
@@ -2796,7 +1689,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 3,
+    "minutes": 9,
     "order": 36
   },
   {
@@ -2810,6 +1703,14 @@
     "output": "核查记录、Eval 与权限判断",
     "mode": "learn",
     "stage": "workflow",
+    "unitId": "C-12",
+    "layer": "core",
+    "courseOrder": 12,
+    "courseModuleId": "M4",
+    "courseModuleTitle": "核查结果与风险",
+    "courseModuleQuestion": "哪些内容优先核查，什么时候必须停下来？",
+    "courseModuleOutcome": "完成事实核查与发布前判断，保留不可逆动作前的人工门。",
+    "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
     "excerpt": "高风险场景与发布边界 深入理解与原有知识 这一讲解决什么问题 AI 输出越像专业内容，越容易让人放松警惕。尤其在高风险场景中，AI 可以辅助整理，但不能替人下结论。 这一讲的目标是建立发布边界...",
@@ -2871,7 +1772,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 3,
+    "minutes": 10,
     "order": 37
   },
   {
@@ -2885,6 +1786,14 @@
     "output": "核查记录、Eval 与权限判断",
     "mode": "learn",
     "stage": "workflow",
+    "unitId": "C-14",
+    "layer": "core",
+    "courseOrder": 14,
+    "courseModuleId": "M5",
+    "courseModuleTitle": "把一次成功沉淀成方法",
+    "courseModuleQuestion": "怎样判断方法能否复用，以及是否真的需要 Agent？",
+    "courseModuleOutcome": "画出最小 Workflow，用轻量 Eval 检查稳定性，并保存个人方法资产。",
+    "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
     "excerpt": "如何设计轻量 Eval 深入理解与原有知识 这一讲解决什么问题 很多人判断 AI 好不好，只看一次输出。如果这次看起来不错，就认为 prompt 好；如果这次不理想，就认为模型不行。 这不够。...",
@@ -2978,102 +1887,13 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 5,
+    "minutes": 18,
     "order": 38
-  },
-  {
-    "id": "05-工作流与方法沉淀/README.md",
-    "path": "05-工作流与方法沉淀/README.md",
-    "title": "工作流与方法沉淀",
-    "moduleId": "workflow",
-    "moduleTitle": "Workflow 与 Agent",
-    "moduleDir": "05-工作流与方法沉淀",
-    "phase": "Context → Agent",
-    "output": "模板、工作流、Agent 运行卡与 Skill",
-    "mode": "learn",
-    "stage": null,
-    "pageType": "entry-wrapper",
-    "progressEligible": false,
-    "excerpt": "工作流与方法沉淀 路线/目录页 · 不计能力进度。需要学习时回到当前阶段作品；需要做任务或查概念时从下列入口按需进入。 从模板到方法资产 · 核心主线 从单次任务到 Workflow · 核心...",
-    "headings": [],
-    "minutes": 1,
-    "order": 39
-  },
-  {
-    "id": "05-工作流与方法沉淀/01-从Prompt到PromptTemplate.md",
-    "path": "05-工作流与方法沉淀/01-从Prompt到PromptTemplate.md",
-    "title": "从模板到方法资产",
-    "moduleId": "workflow",
-    "moduleTitle": "Workflow 与 Agent",
-    "moduleDir": "05-工作流与方法沉淀",
-    "phase": "Context → Agent",
-    "output": "模板、工作流、Agent 运行卡与 Skill",
-    "mode": "learn",
-    "stage": "context",
-    "pageType": "core-spine",
-    "progressEligible": true,
-    "excerpt": "从模板到方法资产 深入理解与原有知识 这一讲解决什么问题 在人机协作基本功里，你已经学过如何把一次 prompt 改成 prompt template。到了工作流与方法沉淀阶段，问题不再是“会...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "一次成功什么时候值得沉淀成模板？"
-      },
-      {
-        "level": 3,
-        "text": "在固定研究简报中操作"
-      },
-      {
-        "level": 3,
-        "text": "在「从模板到方法资产」中最容易犯的错"
-      },
-      {
-        "level": 3,
-        "text": "「模板与上下文材料包」应留下什么证据"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "模板草稿和方法资产的区别"
-      },
-      {
-        "level": 2,
-        "text": "方法资产包含什么"
-      },
-      {
-        "level": 2,
-        "text": "示例：会议纪要方法资产"
-      },
-      {
-        "level": 2,
-        "text": "什么时候升级成 workflow"
-      },
-      {
-        "level": 2,
-        "text": "方法资产管理表"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 3,
-    "order": 40
   },
   {
     "id": "05-工作流与方法沉淀/02-从单次任务到Workflow.md",
     "path": "05-工作流与方法沉淀/02-从单次任务到Workflow.md",
-    "title": "从单次任务到 Workflow",
+    "title": "从一次有效做法到 Workflow",
     "moduleId": "workflow",
     "moduleTitle": "Workflow 与 Agent",
     "moduleDir": "05-工作流与方法沉淀",
@@ -3081,84 +1901,52 @@
     "output": "模板、工作流、Agent 运行卡与 Skill",
     "mode": "learn",
     "stage": "workflow",
+    "unitId": "C-13",
+    "layer": "core",
+    "courseOrder": 13,
+    "courseModuleId": "M5",
+    "courseModuleTitle": "把一次成功沉淀成方法",
+    "courseModuleQuestion": "怎样判断方法能否复用，以及是否真的需要 Agent？",
+    "courseModuleOutcome": "画出最小 Workflow，用轻量 Eval 检查稳定性，并保存个人方法资产。",
+    "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
-    "excerpt": "从单次任务到 Workflow 深入理解与原有知识 这一讲解决什么问题 当任务只有一步时，prompt 就够了。当任务有多个环节、多个判断点和多个输出要求时，prompt 容易变得很长，也容易...",
+    "excerpt": "从一次有效做法到 Workflow 上一讲你看过一份资料研究演示：限定材料、提取事实、形成推断、写出建议，再由负责人确认。即使你还没有亲自做过，也可以先观察这条做法怎样被整理成流程。 下个月，...",
     "headings": [
       {
         "level": 2,
-        "text": "步骤清单怎样升级为可恢复的 Workflow？"
+        "text": "Workflow 不等于步骤清单"
+      },
+      {
+        "level": 2,
+        "text": "用资料研究案例画一条最小流程"
+      },
+      {
+        "level": 2,
+        "text": "给异常留一个出口"
+      },
+      {
+        "level": 2,
+        "text": "把人工门放在不可逆动作之前"
+      },
+      {
+        "level": 2,
+        "text": "先观察真实工作，再整理理想流程"
+      },
+      {
+        "level": 2,
+        "text": "什么时候先不要做 Workflow"
       },
       {
         "level": 3,
-        "text": "在固定研究简报中操作"
+        "text": "画一条五行流程"
       },
       {
         "level": 3,
-        "text": "在「从单次任务到 Workflow」中最容易犯的错"
-      },
-      {
-        "level": 3,
-        "text": "「工作流」应留下什么证据"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "一个问题：为什么复杂任务容易失败"
-      },
-      {
-        "level": 2,
-        "text": "先看真实工作，再画理想流程"
-      },
-      {
-        "level": 2,
-        "text": "Workflow 和 Prompt Template 的区别"
-      },
-      {
-        "level": 2,
-        "text": "Workflow 的基本结构"
-      },
-      {
-        "level": 2,
-        "text": "示例：资料研究 Workflow"
-      },
-      {
-        "level": 2,
-        "text": "工作流不是越细越好"
-      },
-      {
-        "level": 2,
-        "text": "Workflow 常见失败"
-      },
-      {
-        "level": 2,
-        "text": "人工确认点很关键"
-      },
-      {
-        "level": 2,
-        "text": "Workflow 什么时候需要 Harness"
-      },
-      {
-        "level": 2,
-        "text": "一个可复用的 Workflow 模板"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
+        "text": "自检"
       }
     ],
-    "minutes": 5,
+    "minutes": 7,
     "order": 41
   },
   {
@@ -3172,6 +1960,14 @@
     "output": "模板、工作流、Agent 运行卡与 Skill",
     "mode": "learn",
     "stage": "agent",
+    "unitId": "C-15",
+    "layer": "core",
+    "courseOrder": 15,
+    "courseModuleId": "M5",
+    "courseModuleTitle": "把一次成功沉淀成方法",
+    "courseModuleQuestion": "怎样判断方法能否复用，以及是否真的需要 Agent？",
+    "courseModuleOutcome": "画出最小 Workflow，用轻量 Eval 检查稳定性，并保存个人方法资产。",
+    "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
     "excerpt": "什么时候需要 Agent 深入理解与原有知识 这一讲解决什么问题 Agent 是很多 AI 课程里最容易被提前讲复杂的概念。对入门阶段的读者来说，过早追求 agent，反而会让学习路径跑偏。 ...",
@@ -3257,7 +2053,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 4,
+    "minutes": 10,
     "order": 42
   },
   {
@@ -3271,6 +2067,14 @@
     "output": "模板、工作流、Agent 运行卡与 Skill",
     "mode": "learn",
     "stage": "asset",
+    "unitId": "C-16",
+    "layer": "core",
+    "courseOrder": 16,
+    "courseModuleId": "M5",
+    "courseModuleTitle": "把一次成功沉淀成方法",
+    "courseModuleQuestion": "怎样判断方法能否复用，以及是否真的需要 Agent？",
+    "courseModuleOutcome": "画出最小 Workflow，用轻量 Eval 检查稳定性，并保存个人方法资产。",
+    "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
     "excerpt": "整理个人 Skill 与案例库 深入理解与原有知识 这一讲解决什么问题 学完前面的内容后，读者可能已经有了一些 prompt、模板、workflow 和案例。但如果这些东西散落在聊天记录里，很...",
@@ -3336,26 +2140,8 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 3,
+    "minutes": 4,
     "order": 43
-  },
-  {
-    "id": "06-工具地图与个人系统/README.md",
-    "path": "06-工具地图与个人系统/README.md",
-    "title": "工具地图与个人系统",
-    "moduleId": "tools",
-    "moduleTitle": "工具与能力资产",
-    "moduleDir": "06-工具地图与个人系统",
-    "phase": "Reference / Asset",
-    "output": "工具选择、registry 与版本反馈",
-    "mode": "learn",
-    "stage": null,
-    "pageType": "entry-wrapper",
-    "progressEligible": false,
-    "excerpt": "工具地图与个人系统 路线/目录页 · 不计能力进度。需要学习时回到当前阶段作品；需要做任务或查概念时从下列入口按需进入。 按任务类型理解 AI 工具 · 参考库 工具如何搭配 · 参考库 建立...",
-    "headings": [],
-    "minutes": 1,
-    "order": 44
   },
   {
     "id": "06-工具地图与个人系统/01-按任务类型理解AI工具.md",
@@ -3368,6 +2154,14 @@
     "output": "工具选择、registry 与版本反馈",
     "mode": "reference",
     "stage": null,
+    "unitId": "R-03",
+    "layer": "reference",
+    "courseOrder": 3,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
     "pageType": "reference",
     "progressEligible": false,
     "excerpt": "按任务类型理解 AI 工具 深入理解与原有知识 这一讲解决什么问题 工具选择最容易让人分心。看到新工具就试，最后会得到很多账号、很多收藏夹，却没有稳定产出。 本课程的原则是：先判断任务，再选择...",
@@ -3429,283 +2223,8 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 2,
+    "minutes": 5,
     "order": 45
-  },
-  {
-    "id": "06-工具地图与个人系统/02-工具如何搭配.md",
-    "path": "06-工具地图与个人系统/02-工具如何搭配.md",
-    "title": "工具如何搭配",
-    "moduleId": "tools",
-    "moduleTitle": "工具与能力资产",
-    "moduleDir": "06-工具地图与个人系统",
-    "phase": "Reference / Asset",
-    "output": "工具选择、registry 与版本反馈",
-    "mode": "reference",
-    "stage": null,
-    "pageType": "reference",
-    "progressEligible": false,
-    "excerpt": "工具如何搭配 深入理解与原有知识 这一讲解决什么问题 真实工作很少只靠一个工具完成。一个研究简报可能需要搜索、阅读、总结、写作、核查和排版；一个 PPT 方案可能需要材料整理、故事线设计、页面...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "30 秒判断"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "基本搭配原则"
-      },
-      {
-        "level": 3,
-        "text": "1. 主工具负责推进"
-      },
-      {
-        "level": 3,
-        "text": "2. 专用工具负责高要求环节"
-      },
-      {
-        "level": 3,
-        "text": "3. 验证工具负责检查"
-      },
-      {
-        "level": 2,
-        "text": "常见组合"
-      },
-      {
-        "level": 3,
-        "text": "资料研究组合"
-      },
-      {
-        "level": 3,
-        "text": "长文输出组合"
-      },
-      {
-        "level": 3,
-        "text": "汇报制作组合"
-      },
-      {
-        "level": 2,
-        "text": "工具链不要过长"
-      },
-      {
-        "level": 2,
-        "text": "个人搭配模板"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 2,
-    "order": 46
-  },
-  {
-    "id": "06-工具地图与个人系统/03-建立个人AI工作台.md",
-    "path": "06-工具地图与个人系统/03-建立个人AI工作台.md",
-    "title": "建立个人 AI 工作台",
-    "moduleId": "tools",
-    "moduleTitle": "工具与能力资产",
-    "moduleDir": "06-工具地图与个人系统",
-    "phase": "Reference / Asset",
-    "output": "工具选择、registry 与版本反馈",
-    "mode": "learn",
-    "stage": "asset",
-    "pageType": "core-spine",
-    "progressEligible": true,
-    "excerpt": "建立个人 AI 工作台 深入理解与原有知识 这一讲解决什么问题 如果每次使用 AI 都从空白对话开始，你的能力很难沉淀。个人 AI 工作台的目的，是把任务、材料、模板、案例和复盘放到一个稳定位...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "工作台应该按工具还是按能力组织？"
-      },
-      {
-        "level": 3,
-        "text": "在固定研究简报中操作"
-      },
-      {
-        "level": 3,
-        "text": "在「建立个人 AI 工作台」中最容易犯的错"
-      },
-      {
-        "level": 3,
-        "text": "「能力资产包」应留下什么证据"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "工作台的最小结构"
-      },
-      {
-        "level": 3,
-        "text": "00-任务入口"
-      },
-      {
-        "level": 3,
-        "text": "01-常用模板"
-      },
-      {
-        "level": 3,
-        "text": "02-资料包"
-      },
-      {
-        "level": 3,
-        "text": "03-案例库"
-      },
-      {
-        "level": 3,
-        "text": "04-检查清单"
-      },
-      {
-        "level": 3,
-        "text": "05-复盘记录"
-      },
-      {
-        "level": 2,
-        "text": "从个人文件夹到能力资产系统"
-      },
-      {
-        "level": 2,
-        "text": "建立步骤"
-      },
-      {
-        "level": 2,
-        "text": "工作台的核心原则"
-      },
-      {
-        "level": 3,
-        "text": "只沉淀可复用的东西"
-      },
-      {
-        "level": 3,
-        "text": "模板要能修改"
-      },
-      {
-        "level": 3,
-        "text": "案例要保留人工判断"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 3,
-    "order": 47
-  },
-  {
-    "id": "06-工具地图与个人系统/04-维护模板资料案例和复盘.md",
-    "path": "06-工具地图与个人系统/04-维护模板资料案例和复盘.md",
-    "title": "维护模板、资料、案例和复盘",
-    "moduleId": "tools",
-    "moduleTitle": "工具与能力资产",
-    "moduleDir": "06-工具地图与个人系统",
-    "phase": "Reference / Asset",
-    "output": "工具选择、registry 与版本反馈",
-    "mode": "learn",
-    "stage": "asset",
-    "pageType": "core-spine",
-    "progressEligible": true,
-    "excerpt": "维护模板、资料、案例和复盘 深入理解与原有知识 这一讲解决什么问题 个人 AI 系统不是建好一次就结束。真正有价值的是持续维护，让它随着你的任务变化而更新。 维护的对象主要有四类： 模板。 资...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "怎样让失败真正推动下一版？"
-      },
-      {
-        "level": 3,
-        "text": "在固定研究简报中操作"
-      },
-      {
-        "level": 3,
-        "text": "在「维护模板、资料、案例和复盘」中最容易犯的错"
-      },
-      {
-        "level": 3,
-        "text": "「能力资产包」应留下什么证据"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "模板怎么维护"
-      },
-      {
-        "level": 2,
-        "text": "资料怎么维护"
-      },
-      {
-        "level": 2,
-        "text": "案例怎么维护"
-      },
-      {
-        "level": 2,
-        "text": "复盘怎么维护"
-      },
-      {
-        "level": 2,
-        "text": "每周维护节奏"
-      },
-      {
-        "level": 2,
-        "text": "常见失败"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 2,
-    "order": 48
-  },
-  {
-    "id": "07-共生视角与建设者路径/README.md",
-    "path": "07-共生视角与建设者路径/README.md",
-    "title": "共生视角与建设者路径",
-    "moduleId": "electives",
-    "moduleTitle": "建设者选修",
-    "moduleDir": "07-共生视角与建设者路径",
-    "phase": "选修",
-    "output": "长期视角与组织扩展",
-    "mode": "learn",
-    "stage": null,
-    "pageType": "entry-wrapper",
-    "progressEligible": false,
-    "excerpt": "共生视角与建设者路径 路线/目录页 · 不计能力进度。需要学习时回到当前阶段作品；需要做任务或查概念时从下列入口按需进入。 消费者、使用者、建设者的差异 · 参考库 程序自动化与 AI 自动化...",
-    "headings": [],
-    "minutes": 1,
-    "order": 49
   },
   {
     "id": "07-共生视角与建设者路径/01-消费者使用者建设者.md",
@@ -3718,6 +2237,14 @@
     "output": "长期视角与组织扩展",
     "mode": "reference",
     "stage": null,
+    "unitId": "R-05",
+    "layer": "reference",
+    "courseOrder": 5,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
     "pageType": "reference",
     "progressEligible": false,
     "excerpt": "消费者、使用者、建设者的差异 深入理解与原有知识 这一讲解决什么问题 AI 还在快速发展。面对一个尚未完全成熟的技术，人可以站在不同位置： 消费者：等待产品成熟，购买现成能力。 使用者：把现有...",
@@ -3763,386 +2290,13 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 2,
-    "order": 50
-  },
-  {
-    "id": "07-共生视角与建设者路径/02-程序自动化与AI自动化.md",
-    "path": "07-共生视角与建设者路径/02-程序自动化与AI自动化.md",
-    "title": "程序自动化与 AI 自动化",
-    "moduleId": "electives",
-    "moduleTitle": "建设者选修",
-    "moduleDir": "07-共生视角与建设者路径",
-    "phase": "选修",
-    "output": "长期视角与组织扩展",
-    "mode": "reference",
-    "stage": null,
-    "pageType": "reference",
-    "progressEligible": false,
-    "excerpt": "程序自动化与 AI 自动化 深入理解与原有知识 这一讲解决什么问题 程序做的事，是把可定义标准的执行动作自动化、批量化。 AI 做的事，是把可定义标准的思考动作自动化、批量化。 这句话可以作为...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "30 秒判断"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "程序自动化什么"
-      },
-      {
-        "level": 2,
-        "text": "AI 自动化什么"
-      },
-      {
-        "level": 2,
-        "text": "两者不是替代关系"
-      },
-      {
-        "level": 2,
-        "text": "例子：资料研究"
-      },
-      {
-        "level": 2,
-        "text": "例子：会议纪要"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 2,
-    "order": 51
-  },
-  {
-    "id": "07-共生视角与建设者路径/03-前台因果化后台协议化.md",
-    "path": "07-共生视角与建设者路径/03-前台因果化后台协议化.md",
-    "title": "前台沟通因果化，后台过程协议化",
-    "moduleId": "electives",
-    "moduleTitle": "建设者选修",
-    "moduleDir": "07-共生视角与建设者路径",
-    "phase": "选修",
-    "output": "长期视角与组织扩展",
-    "mode": "reference",
-    "stage": null,
-    "pageType": "reference",
-    "progressEligible": false,
-    "excerpt": "前台沟通因果化，后台过程协议化 深入理解与原有知识 这一讲解决什么问题 未来人和 AI 的沟通，可以理解为： 前台沟通因果化，后台过程协议化。 前台是人直接表达目标、原因、约束和判断的地方。后...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "30 秒判断"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "前台沟通为什么要因果化"
-      },
-      {
-        "level": 2,
-        "text": "后台过程为什么要协议化"
-      },
-      {
-        "level": 2,
-        "text": "从 prompt 到协议"
-      },
-      {
-        "level": 2,
-        "text": "例子：从一句请求到后台协议"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 2,
-    "order": 52
-  },
-  {
-    "id": "07-共生视角与建设者路径/04-从个人方法到行业建设.md",
-    "path": "07-共生视角与建设者路径/04-从个人方法到行业建设.md",
-    "title": "从个人方法到行业建设",
-    "moduleId": "electives",
-    "moduleTitle": "建设者选修",
-    "moduleDir": "07-共生视角与建设者路径",
-    "phase": "选修",
-    "output": "长期视角与组织扩展",
-    "mode": "reference",
-    "stage": null,
-    "pageType": "reference",
-    "progressEligible": false,
-    "excerpt": "从个人方法到行业建设 深入理解与原有知识 这一讲解决什么问题 很多 AI 机会不是来自“又出现了一个新工具”，而是来自某类行业任务终于可以被重新结构化。 个人方法如果只停留在自己使用，就只是效...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "30 秒判断"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "行业建设不一定很大"
-      },
-      {
-        "level": 2,
-        "text": "从个人经验到行业资产"
-      },
-      {
-        "level": 3,
-        "text": "1. 个人试用"
-      },
-      {
-        "level": 3,
-        "text": "2. 方法沉淀"
-      },
-      {
-        "level": 3,
-        "text": "3. 团队复用"
-      },
-      {
-        "level": 3,
-        "text": "4. 标准化"
-      },
-      {
-        "level": 3,
-        "text": "5. 产品化或课程化"
-      },
-      {
-        "level": 2,
-        "text": "识别建设机会"
-      },
-      {
-        "level": 2,
-        "text": "保持边界"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 2,
-    "order": 53
-  },
-  {
-    "id": "07-共生视角与建设者路径/05-人与AI共生经济体系入门.md",
-    "path": "07-共生视角与建设者路径/05-人与AI共生经济体系入门.md",
-    "title": "人与 AI 共生经济体系入门",
-    "moduleId": "electives",
-    "moduleTitle": "建设者选修",
-    "moduleDir": "07-共生视角与建设者路径",
-    "phase": "选修",
-    "output": "长期视角与组织扩展",
-    "mode": "reference",
-    "stage": null,
-    "pageType": "reference",
-    "progressEligible": false,
-    "excerpt": "人与 AI 共生经济体系入门 深入理解与原有知识 这一讲解决什么问题 当 AI 不再只是一个问答工具，而能参与任务理解、内容生成、流程执行和反馈学习时，人和 AI 的关系就不只是“使用工具”。...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "30 秒判断"
-      },
-      {
-        "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "这一讲解决什么问题"
-      },
-      {
-        "level": 2,
-        "text": "为什么说是共生"
-      },
-      {
-        "level": 2,
-        "text": "探索与利用"
-      },
-      {
-        "level": 2,
-        "text": "经济体系里的变化"
-      },
-      {
-        "level": 2,
-        "text": "不要过早下结论"
-      },
-      {
-        "level": 2,
-        "text": "对个人的启发"
-      },
-      {
-        "level": 2,
-        "text": "练习"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
-      }
-    ],
-    "minutes": 2,
-    "order": 54
-  },
-  {
-    "id": "08-练习册与案例库/README.md",
-    "path": "08-练习册与案例库/README.md",
-    "title": "练习册与案例库",
-    "moduleId": "workbook",
-    "moduleTitle": "作品库",
-    "moduleDir": "08-练习册与案例库",
-    "phase": "证据",
-    "output": "阶段作品、评分、版本与复盘",
-    "mode": "learn",
-    "stage": null,
-    "pageType": "entry-wrapper",
-    "progressEligible": false,
-    "excerpt": "练习册与案例库 路线/目录页 · 不计能力进度。需要学习时回到当前阶段作品；需要做任务或查概念时从下列入口按需进入。 阶段作业与评分标准 · 作品库 可复制作品模板 · 作品库 案例索引与复盘...",
-    "headings": [],
-    "minutes": 1,
-    "order": 55
-  },
-  {
-    "id": "08-练习册与案例库/01-阶段作业与评分标准.md",
-    "path": "08-练习册与案例库/01-阶段作业与评分标准.md",
-    "title": "六阶段作品与升级标准",
-    "moduleId": "workbook",
-    "moduleTitle": "作品库",
-    "moduleDir": "08-练习册与案例库",
-    "phase": "证据",
-    "output": "阶段作品、评分、版本与复盘",
-    "mode": "portfolio",
-    "stage": null,
-    "pageType": "portfolio",
-    "progressEligible": false,
-    "excerpt": "六阶段作品与升级标准 所有作品共用的证据合同 每次检查都必须留下以下字段。缺少字段时只能标为 draft 或 needs revision，不能因为“文件已经保存”就判通过。 字段 要回答的问...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "先看结论：正式作品只有六份"
-      },
-      {
-        "level": 2,
-        "text": "所有作品共用的证据合同"
-      },
-      {
-        "level": 2,
-        "text": "S1 · Prompt 任务卡"
-      },
-      {
-        "level": 3,
-        "text": "Required 条件"
-      },
-      {
-        "level": 3,
-        "text": "通过证据与反馈"
-      },
-      {
-        "level": 2,
-        "text": "S2 · Context 材料包"
-      },
-      {
-        "level": 3,
-        "text": "Required 条件"
-      },
-      {
-        "level": 3,
-        "text": "通过证据与反馈"
-      },
-      {
-        "level": 2,
-        "text": "S3 · Workflow"
-      },
-      {
-        "level": 3,
-        "text": "Required 条件"
-      },
-      {
-        "level": 3,
-        "text": "通过证据与反馈"
-      },
-      {
-        "level": 2,
-        "text": "S4 · Agent 运行卡"
-      },
-      {
-        "level": 3,
-        "text": "Required 条件"
-      },
-      {
-        "level": 3,
-        "text": "通过证据与反馈"
-      },
-      {
-        "level": 2,
-        "text": "S5 · 最小 Harness"
-      },
-      {
-        "level": 3,
-        "text": "Required 条件"
-      },
-      {
-        "level": 3,
-        "text": "通过证据与反馈"
-      },
-      {
-        "level": 2,
-        "text": "S6 · Skill / AgentOS 能力资产包"
-      },
-      {
-        "level": 3,
-        "text": "Required 条件"
-      },
-      {
-        "level": 3,
-        "text": "通过证据与反馈"
-      },
-      {
-        "level": 2,
-        "text": "版本与状态怎样推进"
-      },
-      {
-        "level": 2,
-        "text": "旧练习怎样保留，但不竞争主线"
-      }
-    ],
     "minutes": 5,
-    "order": 56
+    "order": 50
   },
   {
     "id": "08-练习册与案例库/02-可复制作品模板.md",
     "path": "08-练习册与案例库/02-可复制作品模板.md",
-    "title": "六阶段可复制作品模板",
+    "title": "可选工作簿：从六格任务卡到方法沉淀",
     "moduleId": "workbook",
     "moduleTitle": "作品库",
     "moduleDir": "08-练习册与案例库",
@@ -4150,143 +2304,58 @@
     "output": "阶段作品、评分、版本与复盘",
     "mode": "portfolio",
     "stage": null,
-    "pageType": "portfolio",
+    "unitId": "W-01",
+    "layer": "workbook",
+    "courseOrder": 1,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
+    "pageType": "workbook",
     "progressEligible": false,
-    "excerpt": "六阶段可复制作品模板 每份作品都先复制这段元数据 一次反馈建议这样记录： 01 · Prompt 任务卡 任务适合性判断保留在这里作为前置证据：把任务拆成事实查找、材料整理、候选生成、业务判断...",
+    "excerpt": "可选工作簿：从六格任务卡到方法沉淀 这份工作簿服务于 16 节核心课。它不是作业清单，也不决定你能不能继续阅读。你只需要复制当前任务用得上的一张卡。 打开可保存并获得结构反馈的六格任务卡 01...",
     "headings": [
       {
         "level": 2,
-        "text": "怎样使用这页"
+        "text": "01 · 先判断 AI 参与哪一段"
       },
       {
         "level": 2,
-        "text": "每份作品都先复制这段元数据"
+        "text": "02 · 六格任务卡"
       },
       {
         "level": 2,
-        "text": "01 · Prompt 任务卡"
+        "text": "03 · 材料选择表"
       },
       {
         "level": 2,
-        "text": "02 · Context 材料包"
+        "text": "04 · 研究证据与建议"
       },
       {
         "level": 2,
-        "text": "03 · Workflow"
+        "text": "05 · 事实核查记录"
       },
       {
         "level": 2,
-        "text": "04 · Agent 运行卡"
+        "text": "06 · 最小 Workflow"
       },
       {
         "level": 2,
-        "text": "05 · 最小 Harness"
+        "text": "07 · 方法复盘卡"
       },
       {
         "level": 2,
-        "text": "06 · Skill / AgentOS 能力资产包"
-      },
-      {
-        "level": 2,
-        "text": "提交前只做这四项检查"
+        "text": "什么时候需要进阶模板"
       }
     ],
-    "minutes": 2,
+    "minutes": 6,
     "order": 57
-  },
-  {
-    "id": "08-练习册与案例库/03-案例索引与复盘卡.md",
-    "path": "08-练习册与案例库/03-案例索引与复盘卡.md",
-    "title": "案例索引与证据复盘",
-    "moduleId": "workbook",
-    "moduleTitle": "作品库",
-    "moduleDir": "08-练习册与案例库",
-    "phase": "证据",
-    "output": "阶段作品、评分、版本与复盘",
-    "mode": "portfolio",
-    "stage": null,
-    "pageType": "portfolio",
-    "progressEligible": false,
-    "excerpt": "案例索引与证据复盘 同一个资料研究简报怎样留下六段证据 下面不是要照抄的答案，而是帮助你识别每一阶段新增的控制。 Prompt 任务卡：先让任务可验收 原始请求是“帮我研究一下 AI 会议纪要...",
-    "headings": [
-      {
-        "level": 2,
-        "text": "先定位问题，再打开案例"
-      },
-      {
-        "level": 2,
-        "text": "同一个资料研究简报怎样留下六段证据"
-      },
-      {
-        "level": 3,
-        "text": "1. Prompt 任务卡：先让任务可验收"
-      },
-      {
-        "level": 3,
-        "text": "2. Context 材料包：只保留支持当前决定的材料"
-      },
-      {
-        "level": 3,
-        "text": "3. Workflow：让长任务停在可恢复的位置"
-      },
-      {
-        "level": 3,
-        "text": "4. Agent 运行卡：环境变化时才动态选择"
-      },
-      {
-        "level": 3,
-        "text": "5. 最小 Harness：结果与轨迹一起验收"
-      },
-      {
-        "level": 3,
-        "text": "6. Skill / AgentOS 能力资产包：让方法可交接"
-      },
-      {
-        "level": 2,
-        "text": "三类反馈怎样落到修改动作"
-      },
-      {
-        "level": 2,
-        "text": "按真实任务找迁移练习"
-      },
-      {
-        "level": 2,
-        "text": "单次运行证据复盘卡"
-      },
-      {
-        "level": 2,
-        "text": "多案例后才判断是否值得沉淀"
-      },
-      {
-        "level": 2,
-        "text": "复盘通过的最低标准"
-      }
-    ],
-    "minutes": 4,
-    "order": 58
-  },
-  {
-    "id": "09-Agent与Harness工程/README.md",
-    "path": "09-Agent与Harness工程/README.md",
-    "title": "Agent 与 Harness 工程",
-    "moduleId": "harness",
-    "moduleTitle": "Agent、Harness 与能力资产",
-    "moduleDir": "09-Agent与Harness工程",
-    "phase": "Agent → Asset",
-    "output": "Agent 运行卡、最小 Harness 与能力资产包",
-    "mode": "learn",
-    "stage": null,
-    "pageType": "entry-wrapper",
-    "progressEligible": false,
-    "excerpt": "Agent 与 Harness 工程 路线/目录页 · 不计能力进度。需要学习时回到当前阶段作品；需要做任务或查概念时从下列入口按需进入。 从 Prompt 到 Harness 工程 · 核心...",
-    "headings": [],
-    "minutes": 1,
-    "order": 59
   },
   {
     "id": "09-Agent与Harness工程/01-从Prompt到Harness工程.md",
     "path": "09-Agent与Harness工程/01-从Prompt到Harness工程.md",
-    "title": "从 Prompt 到 Harness 工程",
+    "title": "进入 Agent 之前：从 Prompt 到 Harness",
     "moduleId": "harness",
     "moduleTitle": "Agent、Harness 与能力资产",
     "moduleDir": "09-Agent与Harness工程",
@@ -4294,84 +2363,64 @@
     "output": "Agent 运行卡、最小 Harness 与能力资产包",
     "mode": "learn",
     "stage": "harness",
-    "pageType": "core-spine",
+    "unitId": "A-01",
+    "layer": "advanced",
+    "courseOrder": 1,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
+    "pageType": "advanced-spine",
     "progressEligible": true,
-    "excerpt": "从 Prompt 到 Harness 工程 深入理解与原有知识 一句话结论 当 AI 只需要完成一次低风险生成时，Prompt 可能已经够用；当它要跨多轮读资料、调用工具、改变外部状态并持续推...",
+    "excerpt": "进入 Agent 之前：从 Prompt 到 Harness 这一篇是进阶课入口。 如果你还没有稳定完成过“定义任务—准备材料—核验输出—整理 Workflow”，可以先停在核心课。Agent...",
     "headings": [
       {
         "level": 2,
-        "text": "为什么长 Prompt 仍不是 Harness？"
+        "text": "先看一个会不断重复的任务"
+      },
+      {
+        "level": 2,
+        "text": "五个层次分别解决什么"
+      },
+      {
+        "level": 2,
+        "text": "Agent 和 Harness 不是一回事"
+      },
+      {
+        "level": 2,
+        "text": "回到每周竞品简报"
+      },
+      {
+        "level": 2,
+        "text": "进入进阶层前，先过三个判断"
       },
       {
         "level": 3,
-        "text": "在固定研究简报中操作"
+        "text": "1. 任务已经稳定吗"
       },
       {
         "level": 3,
-        "text": "在「从 Prompt 到 Harness 工程」中最容易犯的错"
+        "text": "2. 动态选择真的必要吗"
       },
       {
         "level": 3,
-        "text": "「最小 Harness」应留下什么证据"
+        "text": "3. 运行责任有人承担吗"
       },
       {
         "level": 2,
-        "text": "深入理解与原有知识"
-      },
-      {
-        "level": 2,
-        "text": "一句话结论"
-      },
-      {
-        "level": 2,
-        "text": "为什么“换更强模型”还不够"
-      },
-      {
-        "level": 2,
-        "text": "五个层级解决不同问题"
-      },
-      {
-        "level": 2,
-        "text": "Harness 的八个构件"
-      },
-      {
-        "level": 2,
-        "text": "一个业务案例：竞品动态简报"
-      },
-      {
-        "level": 2,
-        "text": "零号门：先确认值得解决，再判断是否 Agent 化"
-      },
-      {
-        "level": 2,
-        "text": "四道门：任务值得 Agent 化吗"
-      },
-      {
-        "level": 2,
-        "text": "三个反模式"
+        "text": "这一层不承诺什么"
       },
       {
         "level": 3,
-        "text": "反模式一：用超长 Prompt 冒充系统"
+        "text": "画一张最小运行护栏草图"
       },
       {
         "level": 3,
-        "text": "反模式二：先给全部权限，再补安全规则"
-      },
-      {
-        "level": 3,
-        "text": "反模式三：只验收最后一份漂亮报告"
-      },
-      {
-        "level": 2,
-        "text": "练习：画出你的 Harness 八宫格"
-      },
-      {
-        "level": 2,
-        "text": "验收标准"
+        "text": "自检"
       }
     ],
-    "minutes": 6,
+    "minutes": 7,
     "order": 60
   },
   {
@@ -4385,7 +2434,15 @@
     "output": "Agent 运行卡、最小 Harness 与能力资产包",
     "mode": "learn",
     "stage": "agent",
-    "pageType": "core-spine",
+    "unitId": "A-02",
+    "layer": "advanced",
+    "courseOrder": 2,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
+    "pageType": "advanced-spine",
     "progressEligible": true,
     "excerpt": "Agent Loop 与状态推进 深入理解与原有知识 一句话结论 Agent Loop 不是“让模型多回答几轮”，而是一个持续更新状态的控制循环：准备上下文，调用模型，选择动作，检查权限，执行...",
     "headings": [
@@ -4482,7 +2539,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 6,
+    "minutes": 19,
     "order": 61
   },
   {
@@ -4496,7 +2553,15 @@
     "output": "Agent 运行卡、最小 Harness 与能力资产包",
     "mode": "learn",
     "stage": "context",
-    "pageType": "core-spine",
+    "unitId": "A-03",
+    "layer": "advanced",
+    "courseOrder": 3,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
+    "pageType": "advanced-spine",
     "progressEligible": true,
     "excerpt": "上下文工程与长任务 深入理解与原有知识 一句话结论 上下文工程不是“尽量把更多资料塞给模型”，而是每一轮都为当前任务选择最小但足够的高信号工作集，并让重要状态在压缩、换人、换 Agent 和跨...",
     "headings": [
@@ -4597,7 +2662,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 5,
+    "minutes": 13,
     "order": 62
   },
   {
@@ -4611,7 +2676,15 @@
     "output": "Agent 运行卡、最小 Harness 与能力资产包",
     "mode": "learn",
     "stage": "harness",
-    "pageType": "core-spine",
+    "unitId": "A-04",
+    "layer": "advanced",
+    "courseOrder": 4,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
+    "pageType": "advanced-spine",
     "progressEligible": true,
     "excerpt": "工具权限与安全边界 深入理解与原有知识 一句话结论 模型提出动作，不等于系统应该执行动作。可靠 Harness 必须在工具层再次检查范围、参数、权限和风险：低风险动作可自动，高风险动作要确认，...",
     "headings": [
@@ -4712,7 +2785,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 6,
+    "minutes": 19,
     "order": 63
   },
   {
@@ -4726,7 +2799,15 @@
     "output": "Agent 运行卡、最小 Harness 与能力资产包",
     "mode": "learn",
     "stage": "asset",
-    "pageType": "core-spine",
+    "unitId": "A-05",
+    "layer": "advanced",
+    "courseOrder": 5,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
+    "pageType": "advanced-spine",
     "progressEligible": true,
     "excerpt": "Skill、SubAgent 与多 Agent 分工 深入理解与原有知识 一句话结论 Skill 解决“主 Agent 如何获得一套可复用能力”，SubAgent 解决“如何把一项工作放到独立...",
     "headings": [
@@ -4823,7 +2904,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 6,
+    "minutes": 15,
     "order": 64
   },
   {
@@ -4837,7 +2918,15 @@
     "output": "Agent 运行卡、最小 Harness 与能力资产包",
     "mode": "learn",
     "stage": "asset",
-    "pageType": "core-spine",
+    "unitId": "A-07",
+    "layer": "advanced",
+    "courseOrder": 7,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
+    "pageType": "advanced-spine",
     "progressEligible": true,
     "excerpt": "从真实工作到 AgentOS 能力资产 深入理解与原有知识 一句话结论 真正可积累的不是“我有多少条 Prompt”，而是：一项真实工作能否被整理成 AI 可读取、可执行、可交接、可评测、可迭...",
     "headings": [
@@ -4934,7 +3023,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 7,
+    "minutes": 23,
     "order": 65
   },
   {
@@ -4948,7 +3037,15 @@
     "output": "Agent 运行卡、最小 Harness 与能力资产包",
     "mode": "learn",
     "stage": "harness",
-    "pageType": "core-spine",
+    "unitId": "A-06",
+    "layer": "advanced",
+    "courseOrder": 6,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
+    "pageType": "advanced-spine",
     "progressEligible": true,
     "excerpt": "Eval、可观测性与持续改进 深入理解与原有知识 一句话结论 Eval 回答“这套方法在代表性样例上是否可靠”，可观测性回答“这一次运行发生了什么、失败在哪一步”。两者结合，才能把坏结果转成可...",
     "headings": [
@@ -5029,7 +3126,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 7,
+    "minutes": 23,
     "order": 66
   },
   {
@@ -5043,7 +3140,15 @@
     "output": "Agent 运行卡、最小 Harness 与能力资产包",
     "mode": "learn",
     "stage": "harness",
-    "pageType": "core-spine",
+    "unitId": "A-08",
+    "layer": "advanced",
+    "courseOrder": 8,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
+    "pageType": "advanced-spine",
     "progressEligible": true,
     "excerpt": "设计一个最小 Harness 深入理解与原有知识 这次练习要交付什么 你不需要写代码。选择一项真实、重复、能在小范围试跑的工作，完成一张最小 Harness 设计卡、一次人工模拟和至少 3 个...",
     "headings": [
@@ -5164,7 +3269,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 5,
+    "minutes": 13,
     "order": 67
   }
 ]

@@ -14,9 +14,14 @@ const sandbox = { window: {} };
 vm.createContext(sandbox);
 vm.runInContext(fs.readFileSync(path.join(root, "content.generated.js"), "utf8"), sandbox);
 
-pass("article count", articleIndex.length === 68, String(articleIndex.length));
+pass("article count", articleIndex.length === 35, String(articleIndex.length));
 pass("generated article count", sandbox.window.LEARNING_ARTICLES?.length === articleIndex.length);
-pass("module count", learningIndex.modules?.length === 12, String(learningIndex.modules?.length));
+const expectedLayers = { orientation: 3, core: 16, advanced: 8, reference: 5, lab: 2, workbook: 1 };
+for (const [layer, expected] of Object.entries(expectedLayers)) {
+  const actual = sandbox.window.LEARNING_ARTICLES?.filter((article) => article.layer === layer).length || 0;
+  pass(`${layer} unit count`, actual === expected, `${actual} / ${expected}`);
+}
+pass("course structure exists", Boolean(sandbox.window.COURSE_STRUCTURE?.core?.modules), "COURSE_STRUCTURE");
 
 for (const article of articleIndex) {
   const sourcePath = path.join(root, "content", ...article.path.split("/"));
@@ -53,4 +58,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Release check passed: ${articleIndex.length} articles, ${learningIndex.modules.length} modules, no forbidden internal files or markers.`);
+console.log(`Release check passed: ${articleIndex.length} formal units, three-layer structure, no forbidden internal files or markers.`);

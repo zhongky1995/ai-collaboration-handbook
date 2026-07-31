@@ -14,6 +14,7 @@
       result("goal-present", Boolean(String(fields.goalAudience || "").trim() && String(fields.goalUse || "").trim()), "目标对象和用途都已说明", "补充谁会使用这份简报，以及要用它做什么决定。", "deterministic", "goalAudience"),
       result("materials-present", selectedMaterials.length >= 2, "至少选择了两项可用材料", "选择当前流程与决策标准等能支持判断的材料。", "deterministic", "materials"),
       result("output-present", Boolean(String(fields.outputShape || "").trim()), "输出形态已说明", "说明篇幅、结构或交付形式，例如“一页简报”。", "deterministic", "outputShape"),
+      result("boundaries-present", Boolean(String(fields.boundaries || "").trim()), "禁止项与暂停条件已说明", "写明不能做什么、何时必须暂停并请人确认，例如“不得自动发送”。", "human_verification", "boundaries"),
       result("acceptance-count", criteria.length >= 3, "至少有三条验收条件", "再补充可逐项检查的验收条件，至少三条。", "deterministic", "acceptance-0"),
       result("acceptance-observable", criteria.length >= 3 && criteria.every((item) => observablePattern.test(item)), "验收条件可观察", "把“专业一点”改成“包含 3 条结论，每条标注材料来源”这类可检查表达。", "bounded_case", "acceptance-0"),
       result("human-responsibility", Boolean(String(fields.humanResponsibility || "").trim()), "人类责任已标出", "写明哪项判断必须由人负责，例如事实、权限或最终发布。", "human_verification", "humanResponsibility")

@@ -172,7 +172,7 @@ Agent：下一步做什么？
 Harness：你现在能看见什么、能做什么、做到什么程度必须停、怎样证明做对了？
 ```
 
-更强的 Agent 不能替代 Harness。模型越能自主行动，越需要显式的状态、权限、停止条件和可观测记录。完成本页“是否需要 Agent”的判断后，可进入 [Agent 与 Harness 工程](../09-Agent与Harness工程/README.md) 系统学习。
+更强的 Agent 不能替代 Harness。模型越能自主行动，越需要显式的状态、权限、停止条件和可观测记录。完成本页“是否需要 Agent”的判断后，可进入 [进阶第一节：从 Prompt 到 Harness](../09-Agent与Harness工程/01-从Prompt到Harness工程.md) 系统学习。
 
 ## Agent 任务说明卡
 
