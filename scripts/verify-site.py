@@ -50,12 +50,12 @@ with sync_playwright() as playwright:
         check(
             "current application version",
             desktop.locator('meta[name="application-version"]').get_attribute("content")
-            == "course-20260731.2",
+            == "course-20260731.3",
         )
         check(
             "versioned frontend assets",
             desktop.locator(
-                'script[src$="?v=course-20260731.2"], link[href$="?v=course-20260731.2"]'
+                'script[src$="?v=course-20260731.3"], link[href$="?v=course-20260731.3"]'
             ).count()
             == 8,
         )
@@ -118,6 +118,31 @@ with sync_playwright() as playwright:
         check(
             "core reader order",
             desktop.locator(".reader-kicker").inner_text() == "核心课第 1 / 16 节",
+        )
+        c01_reading = desktop.locator(".reader-article > .markdown-body")
+        c01_text = c01_reading.inner_text()
+        check(
+            "first lesson builds problem bridge",
+            "三个更重要的问题" in c01_text
+            and "把“生成完成”和“可以采用”当作两件事" in c01_text,
+        )
+        check(
+            "first lesson defines candidate state",
+            "已经值得讨论，但还没有通过采用条件" in c01_text
+            and "材料事实" in c01_text
+            and "未知项" in c01_text,
+        )
+        check(
+            "first lesson has three decision gates",
+            all(
+                label in c01_text
+                for label in ["任务能描述吗", "结果能验收吗", "出错能兜底吗"]
+            ),
+        )
+        check(
+            "first lesson renders four learning tables",
+            c01_reading.locator("table").count() == 4,
+            c01_reading.locator("table").count(),
         )
         check(
             "optional practice is collapsed",
