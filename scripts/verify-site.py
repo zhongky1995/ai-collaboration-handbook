@@ -47,6 +47,18 @@ with sync_playwright() as playwright:
         desktop.on("pageerror", lambda error: browser_errors.append(str(error)))
 
         open_route(desktop, "home")
+        check(
+            "current application version",
+            desktop.locator('meta[name="application-version"]').get_attribute("content")
+            == "course-20260731.2",
+        )
+        check(
+            "versioned frontend assets",
+            desktop.locator(
+                'script[src$="?v=course-20260731.2"], link[href$="?v=course-20260731.2"]'
+            ).count()
+            == 8,
+        )
         counts = desktop.evaluate(
             """() => Object.fromEntries(
               ["orientation", "core", "advanced", "reference", "lab", "workbook"]
