@@ -50,12 +50,12 @@ with sync_playwright() as playwright:
         check(
             "current application version",
             desktop.locator('meta[name="application-version"]').get_attribute("content")
-            == "course-20260731.5",
+            == "course-20260731.6",
         )
         check(
             "versioned frontend assets",
             desktop.locator(
-                'script[src$="?v=course-20260731.5"], link[href$="?v=course-20260731.5"]'
+                'script[src$="?v=course-20260731.6"], link[href$="?v=course-20260731.6"]'
             ).count()
             == 8,
         )
