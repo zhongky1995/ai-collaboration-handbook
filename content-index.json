@@ -145,7 +145,7 @@
         "text": "怎样算“学会了”"
       }
     ],
-    "minutes": 3,
+    "minutes": 4,
     "order": 2
   },
   {
@@ -640,6 +640,10 @@
     "headings": [
       {
         "level": 2,
+        "text": "用途从哪里来：先确认一次具体经历"
+      },
+      {
+        "level": 2,
         "text": "先别改措辞，先补齐六格任务卡"
       },
       {
@@ -679,7 +683,7 @@
         "text": "自检"
       }
     ],
-    "minutes": 7,
+    "minutes": 9,
     "order": 15
   },
   {
@@ -809,6 +813,14 @@
         "text": "一张可复用的反馈卡"
       },
       {
+        "level": 2,
+        "text": "工具出问题时，怎样向 AI 求助"
+      },
+      {
+        "level": 2,
+        "text": "交给别人用一次，发现自己看不到的问题"
+      },
+      {
         "level": 3,
         "text": "把一句含糊反馈改成可执行反馈"
       },
@@ -817,7 +829,7 @@
         "text": "教学反馈"
       }
     ],
-    "minutes": 9,
+    "minutes": 11,
     "order": 18
   },
   {
@@ -1280,6 +1292,65 @@
     "order": 26
   },
   {
+    "id": "03-高频场景实战/07-用AI做资料核查面板.md",
+    "path": "03-高频场景实战/07-用AI做资料核查面板.md",
+    "title": "用 AI 做一个资料核查面板",
+    "moduleId": "scenarios",
+    "moduleTitle": "高频任务实验室",
+    "moduleDir": "03-高频场景实战",
+    "phase": "迁移",
+    "output": "真实任务迁移作品",
+    "mode": "lab",
+    "stage": null,
+    "unitId": "L-03",
+    "layer": "lab",
+    "courseOrder": 3,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
+    "pageType": "lab",
+    "progressEligible": false,
+    "excerpt": "用 AI 做一个资料核查面板 写简报前，你需要逐条看材料、区分证据与想法、保留尚未确认的冲突。你可以把这些动作做成一个小页面，试试任务卡和反馈方法怎样用于制作工具。 这是 可选案例实验室 。建...",
+    "headings": [
+      {
+        "level": 2,
+        "text": "任务合同"
+      },
+      {
+        "level": 2,
+        "text": "第一步：从一个小问题确定范围"
+      },
+      {
+        "level": 2,
+        "text": "第二步：准备可逐条核对的输入"
+      },
+      {
+        "level": 2,
+        "text": "第三步：把六格任务卡变成页面要求"
+      },
+      {
+        "level": 2,
+        "text": "第四步：先看对照，再检查自己的结果"
+      },
+      {
+        "level": 2,
+        "text": "第五步：围绕一个可复现的问题修改"
+      },
+      {
+        "level": 2,
+        "text": "第六步：请别人试用，再决定是否继续"
+      },
+      {
+        "level": 2,
+        "text": "怎样算完成，下一步学什么"
+      }
+    ],
+    "minutes": 12,
+    "order": 27
+  },
+  {
     "id": "04-AIGC与多模态创作/01-AIGC到底在生成什么.md",
     "path": "04-AIGC与多模态创作/01-AIGC到底在生成什么.md",
     "title": "AIGC 到底在生成什么",
@@ -1368,7 +1439,7 @@
       }
     ],
     "minutes": 10,
-    "order": 28
+    "order": 29
   },
   {
     "id": "04-AIGC与多模态创作/04-三个常见AIGC创作案例拆解.md",
@@ -1487,7 +1558,7 @@
       }
     ],
     "minutes": 11,
-    "order": 31
+    "order": 32
   },
   {
     "id": "04-判断验证与风险/02-如何做事实核查.md",
@@ -1570,7 +1641,7 @@
       }
     ],
     "minutes": 11,
-    "order": 36
+    "order": 37
   },
   {
     "id": "04-判断验证与风险/03-高风险场景与发布边界.md",
@@ -1637,7 +1708,7 @@
       }
     ],
     "minutes": 10,
-    "order": 37
+    "order": 38
   },
   {
     "id": "04-判断验证与风险/04-如何设计轻量Eval.md",
@@ -1708,7 +1779,7 @@
       }
     ],
     "minutes": 15,
-    "order": 38
+    "order": 39
   },
   {
     "id": "05-工作流与方法沉淀/02-从单次任务到Workflow.md",
@@ -1766,8 +1837,8 @@
         "text": "自检"
       }
     ],
-    "minutes": 7,
-    "order": 41
+    "minutes": 8,
+    "order": 42
   },
   {
     "id": "05-工作流与方法沉淀/03-什么时候需要Agent.md",
@@ -1858,7 +1929,7 @@
       }
     ],
     "minutes": 10,
-    "order": 42
+    "order": 43
   },
   {
     "id": "05-工作流与方法沉淀/04-整理个人Skill与案例库.md",
@@ -1925,7 +1996,7 @@
       }
     ],
     "minutes": 10,
-    "order": 43
+    "order": 44
   },
   {
     "id": "06-工具地图与个人系统/01-按任务类型理解AI工具.md",
@@ -2012,7 +2083,7 @@
       }
     ],
     "minutes": 8,
-    "order": 45
+    "order": 46
   },
   {
     "id": "07-共生视角与建设者路径/01-消费者使用者建设者.md",
@@ -2083,7 +2154,7 @@
       }
     ],
     "minutes": 7,
-    "order": 50
+    "order": 51
   },
   {
     "id": "08-练习册与案例库/02-可复制作品模板.md",
@@ -2138,11 +2209,23 @@
       },
       {
         "level": 2,
+        "text": "08 · 需求证据卡"
+      },
+      {
+        "level": 2,
+        "text": "09 · 问题求助卡"
+      },
+      {
+        "level": 2,
+        "text": "10 · 试用与修改记录卡"
+      },
+      {
+        "level": 2,
         "text": "什么时候需要进阶模板"
       }
     ],
     "minutes": 6,
-    "order": 57
+    "order": 58
   },
   {
     "id": "09-Agent与Harness工程/01-从Prompt到Harness工程.md",
@@ -2213,7 +2296,7 @@
       }
     ],
     "minutes": 7,
-    "order": 60
+    "order": 61
   },
   {
     "id": "09-Agent与Harness工程/02-AgentLoop与状态推进.md",
@@ -2316,7 +2399,7 @@
       }
     ],
     "minutes": 18,
-    "order": 61
+    "order": 62
   },
   {
     "id": "09-Agent与Harness工程/03-上下文工程与长任务.md",
@@ -2423,7 +2506,7 @@
       }
     ],
     "minutes": 12,
-    "order": 62
+    "order": 63
   },
   {
     "id": "09-Agent与Harness工程/04-工具权限与安全边界.md",
@@ -2530,7 +2613,7 @@
       }
     ],
     "minutes": 18,
-    "order": 63
+    "order": 64
   },
   {
     "id": "09-Agent与Harness工程/05-SkillSubAgent与多Agent分工.md",
@@ -2633,7 +2716,7 @@
       }
     ],
     "minutes": 14,
-    "order": 64
+    "order": 65
   },
   {
     "id": "09-Agent与Harness工程/06-从真实工作到AgentOS能力资产.md",
@@ -2736,7 +2819,7 @@
       }
     ],
     "minutes": 22,
-    "order": 65
+    "order": 66
   },
   {
     "id": "09-Agent与Harness工程/07-Eval可观测性与持续改进.md",
@@ -2823,7 +2906,7 @@
       }
     ],
     "minutes": 22,
-    "order": 66
+    "order": 67
   },
   {
     "id": "09-Agent与Harness工程/08-设计一个最小Harness.md",
@@ -2946,6 +3029,6 @@
       }
     ],
     "minutes": 12,
-    "order": 67
+    "order": 68
   }
 ]

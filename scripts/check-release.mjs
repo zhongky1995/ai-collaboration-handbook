@@ -22,12 +22,13 @@ const detailContracts = new Map([
   ["A-02", ["状态不是聊天记录", "同步循环与异步续跑不是一回事", "恢复不是无限重试"]],
   ["R-03", ["一个任务为什么可能需要多种工具", "核对当前功能与发布日期", "每种工具只承担它擅长且能被检查的动作"]],
   ["R-05", ["用会议纪要看角色怎样变化", "什么时候值得从使用者走向建设者", "过早建设会把偶然做法固化成负担"]],
-  ["L-01", ["可选案例实验室", "任务合同", "学习路径要通向可检验的作品"]]
+  ["L-01", ["可选案例实验室", "任务合同", "学习路径要通向可检验的作品"]],
+  ["L-03", ["字段检查通过，只证明记录填全", "问题求助卡", "假设的修改过程", "资料核查面板示例"]]
 ]);
 
-pass("article count", articleIndex.length === 35, String(articleIndex.length));
+pass("article count", articleIndex.length === 36, String(articleIndex.length));
 pass("generated article count", sandbox.window.LEARNING_ARTICLES?.length === articleIndex.length);
-const expectedLayers = { orientation: 3, core: 16, advanced: 8, reference: 5, lab: 2, workbook: 1 };
+const expectedLayers = { orientation: 3, core: 16, advanced: 8, reference: 5, lab: 3, workbook: 1 };
 for (const [layer, expected] of Object.entries(expectedLayers)) {
   const actual = sandbox.window.LEARNING_ARTICLES?.filter((article) => article.layer === layer).length || 0;
   pass(`${layer} unit count`, actual === expected, `${actual} / ${expected}`);
@@ -70,14 +71,14 @@ for (const article of articleIndex) {
 const forbidden = ["_kb-control", "_task-control", ".playwright-cli", ".DS_Store", "/Users/", "/var/folders/"];
 const publicTextFiles = [
   "index.html", "app.js", "components.js", "course-data.js", "storage.js", "validators.js",
-  "learning-index.json", "content-index.json", "README.md"
+  "learning-index.json", "content-index.json", "course-structure.json", "README.md", "assets/demos/evidence-panel.html"
 ];
 for (const file of publicTextFiles) {
   const text = fs.readFileSync(path.join(root, file), "utf8");
   for (const marker of forbidden) pass("forbidden marker absent", !text.includes(marker), `${file}: ${marker}`);
 }
 
-for (const asset of ["tokens.css", "styles.css", "content.generated.js", "course-data.js", "validators.js", "storage.js", "components.js", "app.js", "assets/aigc/aigc-workflow-sample.png"]) {
+for (const asset of ["tokens.css", "styles.css", "content.generated.js", "course-data.js", "validators.js", "storage.js", "components.js", "app.js", "assets/aigc/aigc-workflow-sample.png", "assets/demos/evidence-panel.html", "course-structure.json"]) {
   pass("runtime asset exists", fs.existsSync(path.join(root, asset)), asset);
 }
 

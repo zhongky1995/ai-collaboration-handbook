@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "productMode": "reader-led",
+  "defaultLayer": "core",
+  "orientation": {
+    "title": "课程入口",
+    "units": [
+      {
+        "unitId": "O-00",
+        "path": "README.md"
+      },
+      {
+        "unitId": "O-01",
+        "path": "00-课程入口/00-课程介绍.md"
+      },
+      {
+        "unitId": "O-02",
+        "path": "00-课程入口/01-学习路径与交付物.md"
+      }
+    ]
+  },
+  "core": {
+    "title": "核心入门课",
+    "description": "从真实任务出发，完成一次可核验的 AI 协作，并把有效方法保存下来。",
+    "modules": [
+      {
+        "moduleId": "M1",
+        "title": "先建立正确的 AI 判断",
+        "question": "AI 能参与什么，为什么不能替人负责？",
+        "outcome": "判断一项任务适合 AI 参与、需要人工复核，还是不应委托。",
+        "units": [
+          {
+            "unitId": "C-01",
+            "path": "01-AI基础认知/01-AI到底改变了什么.md"
+          },
+          {
+            "unitId": "C-02",
+            "path": "01-AI基础认知/03-模型如何生成回答.md"
+          },
+          {
+            "unitId": "C-03",
+            "path": "01-AI基础认知/07-能力边界与人机分工.md"
+          }
+        ]
+      },
+      {
+        "moduleId": "M2",
+        "title": "把模糊请求变成可协作任务",
+        "question": "怎样让 AI 看见正确任务、正确材料和明确反馈？",
+        "outcome": "完成一张六格任务卡、一份材料选择表和一次可执行反馈。",
+        "units": [
+          {
+            "unitId": "C-04",
+            "path": "02-人机协作基本功/01-把模糊问题变成AI能执行的任务.md"
+          },
+          {
+            "unitId": "C-05",
+            "path": "02-人机协作基本功/02-上下文包是什么.md"
+          },
+          {
+            "unitId": "C-06",
+            "path": "02-人机协作基本功/04-示例反馈和迭代.md"
+          }
+        ]
+      },
+      {
+        "moduleId": "M3",
+        "title": "完成四类真实工作",
+        "question": "怎样把同一套协作方法迁移到常见交付？",
+        "outcome": "看懂研究、总结、会议沟通和汇报视觉四类交付的关键判断。",
+        "units": [
+          {
+            "unitId": "C-07",
+            "path": "03-高频场景实战/01-用AI做资料研究完整案例.md"
+          },
+          {
+            "unitId": "C-08",
+            "path": "03-高频场景实战/02-用AI做长文总结.md"
+          },
+          {
+            "unitId": "C-09",
+            "path": "03-高频场景实战/03-用AI做会议纪要.md"
+          },
+          {
+            "unitId": "C-10",
+            "path": "03-高频场景实战/04-用AI做PPT大纲.md"
+          }
+        ]
+      },
+      {
+        "moduleId": "M4",
+        "title": "核查结果与风险",
+        "question": "哪些内容优先核查，什么时候必须停下来？",
+        "outcome": "完成事实核查与发布前判断，保留不可逆动作前的人工门。",
+        "units": [
+          {
+            "unitId": "C-11",
+            "path": "04-判断验证与风险/02-如何做事实核查.md"
+          },
+          {
+            "unitId": "C-12",
+            "path": "04-判断验证与风险/03-高风险场景与发布边界.md"
+          }
+        ]
+      },
+      {
+        "moduleId": "M5",
+        "title": "把一次成功沉淀成方法",
+        "question": "怎样判断方法能否复用，以及是否真的需要 Agent？",
+        "outcome": "画出最小 Workflow，用轻量 Eval 检查稳定性，并保存个人方法资产。",
+        "units": [
+          {
+            "unitId": "C-13",
+            "path": "05-工作流与方法沉淀/02-从单次任务到Workflow.md"
+          },
+          {
+            "unitId": "C-14",
+            "path": "04-判断验证与风险/04-如何设计轻量Eval.md"
+          },
+          {
+            "unitId": "C-15",
+            "path": "05-工作流与方法沉淀/03-什么时候需要Agent.md"
+          },
+          {
+            "unitId": "C-16",
+            "path": "05-工作流与方法沉淀/04-整理个人Skill与案例库.md"
+          }
+        ]
+      }
+    ]
+  },
+  "advanced": {
+    "title": "进阶工程课",
+    "description": "只有固定流程不够、系统需要工具和动态选择时再进入。",
+    "units": [
+      {
+        "unitId": "A-01",
+        "path": "09-Agent与Harness工程/01-从Prompt到Harness工程.md"
+      },
+      {
+        "unitId": "A-02",
+        "path": "09-Agent与Harness工程/02-AgentLoop与状态推进.md"
+      },
+      {
+        "unitId": "A-03",
+        "path": "09-Agent与Harness工程/03-上下文工程与长任务.md"
+      },
+      {
+        "unitId": "A-04",
+        "path": "09-Agent与Harness工程/04-工具权限与安全边界.md"
+      },
+      {
+        "unitId": "A-05",
+        "path": "09-Agent与Harness工程/05-SkillSubAgent与多Agent分工.md"
+      },
+      {
+        "unitId": "A-06",
+        "path": "09-Agent与Harness工程/07-Eval可观测性与持续改进.md"
+      },
+      {
+        "unitId": "A-07",
+        "path": "09-Agent与Harness工程/06-从真实工作到AgentOS能力资产.md"
+      },
+      {
+        "unitId": "A-08",
+        "path": "09-Agent与Harness工程/08-设计一个最小Harness.md"
+      }
+    ]
+  },
+  "reference": {
+    "title": "按需资料",
+    "units": [
+      {
+        "unitId": "R-01",
+        "path": "01-AI基础认知/04-Embedding与语义检索.md"
+      },
+      {
+        "unitId": "R-02",
+        "path": "01-AI基础认知/08-入门术语地图.md"
+      },
+      {
+        "unitId": "R-03",
+        "path": "06-工具地图与个人系统/01-按任务类型理解AI工具.md"
+      },
+      {
+        "unitId": "R-04",
+        "path": "04-AIGC与多模态创作/01-AIGC到底在生成什么.md"
+      },
+      {
+        "unitId": "R-05",
+        "path": "07-共生视角与建设者路径/01-消费者使用者建设者.md"
+      }
+    ]
+  },
+  "lab": {
+    "title": "案例实验室",
+    "units": [
+      {
+        "unitId": "L-01",
+        "path": "03-高频场景实战/06-用AI设计自学路径.md"
+      },
+      {
+        "unitId": "L-02",
+        "path": "04-AIGC与多模态创作/04-三个常见AIGC创作案例拆解.md"
+      },
+      {
+        "unitId": "L-03",
+        "path": "03-高频场景实战/07-用AI做资料核查面板.md"
+      }
+    ]
+  },
+  "workbook": {
+    "title": "可选工作簿",
+    "units": [
+      {
+        "unitId": "W-01",
+        "path": "08-练习册与案例库/02-可复制作品模板.md"
+      }
+    ]
+  }
+}

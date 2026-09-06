@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>资料核查面板 · 选修课示例</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; color: #233c38; background: #f5f7f4; line-height: 1.7; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 900px; margin: auto; padding: 32px 24px 64px; }
+    a { color: #086c61; text-underline-offset: 4px; }
+    .back { display: inline-block; min-height: 44px; padding: 8px 0; }
+    .eyebrow { margin: 26px 0 8px; font-size: 12px; letter-spacing: .12em; color: #526960; }
+    h1 { margin: 0; font-size: clamp(28px, 5vw, 40px); line-height: 1.3; letter-spacing: -.03em; }
+    .intro { max-width: 690px; font-size: 16px; }
+    .notice { padding: 16px 20px; border: 1px solid #d1ded6; border-radius: 12px; background: #eaf1eb; font-size: 14px; }
+    .notice p { margin: 0; }
+    .notice p + p { margin-top: 6px; }
+    .progress { display: flex; align-items: center; gap: 16px; margin: 32px 0 14px; }
+    .progress h2 { margin: 0; font-size: 19px; }
+    .progress span { margin-left: auto; color: #526960; font-size: 14px; }
+    .material { padding: 24px; margin: 16px 0; background: white; border: 1px solid #d7e0d9; border-radius: 16px; }
+    .material h3 { font-size: 15px; margin: 0 0 8px; color: #086c61; }
+    .source { font-size: 17px; margin: 0 0 20px; }
+    .fields { display: grid; grid-template-columns: 180px 1fr; gap: 20px; }
+    label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    select, textarea { font: inherit; color: inherit; background: #fff; border: 1px solid #9aaca1; border-radius: 8px; width: 100%; padding: 10px 12px; min-height: 46px; }
+    textarea { min-height: 100px; resize: vertical; }
+    .hint { display: block; color: #526960; font-size: 12px; margin-top: 5px; }
+    :focus-visible { outline: 3px solid #197969; outline-offset: 3px; }
+    [aria-invalid="true"] { border-color: #ab3c28; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 24px; }
+    button { font: inherit; font-weight: 600; padding: 12px 24px; min-height: 48px; border: 0; border-radius: 10px; color: white; background: #096c5e; cursor: pointer; }
+    button:hover { background: #075448; }
+    .actions p { margin: 0; font-size: 13px; color: #526960; }
+    #message { margin: 16px 0 0; padding: 12px 16px; border-radius: 10px; background: #eaf1eb; overflow-wrap: anywhere; }
+    #message.error { color: #822d20; background: #fff0e9; }
+    [hidden] { display: none !important; }
+    details { border-top: 1px solid #d7e0d9; padding-top: 16px; margin-top: 32px; }
+    summary { cursor: pointer; padding: 8px 0; min-height: 44px; font-weight: 600; }
+    li { margin: 8px 0; }
+    @media (max-width: 600px) { main { padding: 20px 16px 40px; } .material { padding: 18px; } .fields { grid-template-columns: 1fr; gap: 12px; } .progress { align-items: flex-start; } .progress span { white-space: nowrap; } }
+  </style>
+</head>
+<body>
+<main>
+  <a class="back" href="../../index.html#/read/03-%E9%AB%98%E9%A2%91%E5%9C%BA%E6%99%AF%E5%AE%9E%E6%88%98%2F07-%E7%94%A8AI%E5%81%9A%E8%B5%84%E6%96%99%E6%A0%B8%E6%9F%A5%E9%9D%A2%E6%9D%BF.md">← 返回选修课</a>
+  <p class="eyebrow">AI 协作入门课 / 可选实践</p>
+  <h1>资料核查面板</h1>
+  <p class="intro">逐条看原文，记录它能支持什么、还不能确定什么，再带走一份可追溯的判断记录。</p>
+  <aside class="notice" aria-label="示例说明">
+    <p><strong>虚构教学材料。</strong>状态和依据由你填写；本页不调用模型，也不自动核查事实。</p>
+    <p>填写内容只留在当前页面，不上传、不自动保存。<strong>刷新或关闭会丢失内容，请先导出。</strong></p>
+  </aside>
+  <form id="review-form" novalidate>
+    <div class="progress"><h2>三条材料，逐一判断</h2><span id="progress" aria-live="polite">已填写 0 / 3 条</span></div>
+    <div id="materials"></div>
+    <div class="actions"><button type="submit">导出记录</button><p>下载文本文件 · 字段完整不代表判断正确</p></div>
+    <p id="message" role="status" aria-live="polite" hidden></p>
+  </form>
+  <details>
+    <summary>怎样检查自己的记录？</summary>
+    <ul>
+      <li>每条记录都有材料编号和原文，填写的状态与依据没有丢失。</li>
+      <li>单次经历不能推成普遍现象，功能愿望不能当作已验证需求，冲突不能自动消失。</li>
+      <li>试着只填空格，检查漏项提示；补齐后导出，核对文本与页面是否一致。</li>
+      <li>即使填入无依据的结论，字段检查也可能通过。事实和推断仍需你核验。</li>
+    </ul>
+  </details>
+  <noscript>请启用 JavaScript 使用面板；也可以回到选修课复制材料，手动填写核查记录。</noscript>
+</main>
+<script>
+  "use strict";
+  const materials = [
+    { id: "E01", text: "某次内部活动反馈称，提交给负责人前曾重新核对资料出处。" },
+    { id: "E02", text: "一条想法记录称，希望简报能自动检查所有事实。" },
+    { id: "E03", text: "两份说明对同一材料的使用范围描述不同，尚无负责人确认。" }
+  ];
+  const states = ["未处理", "支持有限结论", "仅为想法", "待确认"];
+  let dirty = false;
+  const form = document.getElementById("review-form");
+  const message = document.getElementById("message");
+  document.getElementById("materials").innerHTML = materials.map(m => `
+    <section class="material" aria-labelledby="title-${m.id}">
+      <h3 id="title-${m.id}">${m.id} · 材料原文</h3>
+      <p class="source">${m.text}</p>
+      <div class="fields">
+        <div><label for="state-${m.id}">${m.id} 判断状态</label>
+          <select id="state-${m.id}" aria-describedby="state-hint-${m.id}">${states.map((s, i) => `<option value="${i ? s : ""}">${s}</option>`).join("")}</select>
+          <small class="hint" id="state-hint-${m.id}">由你判断，不代表事实已核实。</small></div>
+        <div><label for="reason-${m.id}">${m.id} 判断依据</label>
+          <textarea id="reason-${m.id}" aria-describedby="reason-hint-${m.id}" placeholder="写出原文支持什么、还缺什么信息。"></textarea>
+          <small class="hint" id="reason-hint-${m.id}">内容应能回到这条材料，不用猜测补齐。</small></div>
+      </div>
+    </section>`).join("");
+  function records() {
+    return materials.map(m => ({ ...m, state: document.getElementById(`state-${m.id}`).value, reason: document.getElementById(`reason-${m.id}`).value.trim() }));
+  }
+  function updated(event) {
+    dirty = true;
+    event.target.removeAttribute("aria-invalid");
+    message.hidden = true;
+    document.getElementById("progress").textContent = `已填写 ${records().filter(r => r.state && r.reason).length} / 3 条`;
+  }
+  form.addEventListener("input", updated);
+  form.addEventListener("change", updated);
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    const rows = records();
+    const missing = [];
+    form.querySelectorAll('[aria-invalid="true"]').forEach(el => el.removeAttribute("aria-invalid"));
+    for (const row of rows) {
+      if (!row.state) missing.push({ id: `state-${row.id}`, text: `${row.id} 未选择状态` });
+      if (!row.reason) missing.push({ id: `reason-${row.id}`, text: `${row.id} 缺少依据` });
+    }
+    message.hidden = false;
+    message.className = missing.length ? "error" : "";
+    if (missing.length) {
+      message.textContent = `尚未导出：${missing.map(m => m.text).join("；")}。已填写的内容保留，请补齐后再试。`;
+      missing.forEach(m => document.getElementById(m.id).setAttribute("aria-invalid", "true"));
+      document.getElementById(missing[0].id).focus();
+      return;
+    }
+    const text = "资料核查记录\n虚构教学材料；状态与依据由使用者填写，不代表事实已核实。\n\n" + rows.map(r => `编号：${r.id}\n原文：${r.text}\n状态：${r.state}\n依据：${r.reason}`).join("\n\n");
+    const url = URL.createObjectURL(new Blob(["\uFEFF", text], { type: "text/plain;charset=utf-8" }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `资料核查记录-${new Date().toISOString().replace(/[:.]/g, "-")}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+    dirty = false;
+    message.textContent = "已发起文本下载，请在下载列表中确认文件，并核对三条记录。字段检查只确认填写完整，判断依据仍需你核验。";
+  });
+  window.addEventListener("beforeunload", event => {
+    if (dirty) { event.preventDefault(); event.returnValue = ""; }
+  });
+</script>
+</body>
+</html>

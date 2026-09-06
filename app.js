@@ -135,7 +135,7 @@
         </section>
         <section class="secondary-section low-pressure-paths" aria-labelledby="other-paths-title">
           <h2 id="other-paths-title">需要时再进入</h2>
-          <div class="mode-grid"><article class="mode-card"><span class="eyebrow">进阶工程课 · 8 节</span><h2>固定流程已经不够用了</h2><p>继续学习 Agent Loop、工具权限、Harness、Eval 和能力资产。</p><a href="${articleHref(advancedStart)}">直接进入进阶第一节</a></article><article class="mode-card"><span class="eyebrow">按需资料</span><h2>我只想查概念或看案例</h2><p>搜索参考资料，或进入两个案例实验室；都不影响核心课进度。</p><a href="#/reference">打开按需资料</a></article></div>
+          <div class="mode-grid"><article class="mode-card"><span class="eyebrow">进阶工程课 · 8 节</span><h2>固定流程已经不够用了</h2><p>继续学习 Agent Loop、工具权限、Harness、Eval 和能力资产。</p><a href="${articleHref(advancedStart)}">直接进入进阶第一节</a></article><article class="mode-card"><span class="eyebrow">按需资料</span><h2>我只想查概念或看案例</h2><p>搜索参考资料，或进入案例实验室；都不影响核心课进度。</p><a href="#/reference">打开按需资料</a></article></div>
         </section>
       </main>`);
     bindCommon();
@@ -476,6 +476,7 @@
     const value = String(href || "").trim();
     if (/^https?:\/\//i.test(value) || /^mailto:/i.test(value)) return value;
     if (value.startsWith("#/")) return value;
+    if (/^(?:\.\.\/|\.\/)assets\/demos\/[a-z0-9-]+\.html$/.test(value)) return value;
 
     const target = value.split("#")[0];
     if (!currentPath || !target.endsWith(".md")) return "#/reference";
