@@ -78,7 +78,7 @@ for (const file of publicTextFiles) {
   for (const marker of forbidden) pass("forbidden marker absent", !text.includes(marker), `${file}: ${marker}`);
 }
 
-for (const asset of ["tokens.css", "styles.css", "content.generated.js", "course-data.js", "validators.js", "storage.js", "components.js", "app.js", "assets/aigc/aigc-workflow-sample.png", "assets/demos/evidence-panel.html", "course-structure.json"]) {
+for (const asset of ["tokens.css", "styles.css", "reading-design.css", "content.generated.js", "course-data.js", "validators.js", "storage.js", "components.js", "app.js", "assets/aigc/aigc-workflow-sample.png", "assets/demos/evidence-panel.html", "course-structure.json"]) {
   pass("runtime asset exists", fs.existsSync(path.join(root, asset)), asset);
 }
 

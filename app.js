@@ -7,6 +7,23 @@
   const S = window.CourseStorage;
   const C = window.CourseComponents;
   const courseStructure = window.COURSE_STRUCTURE || {};
+  const readingPreferences = {
+    get(key, fallback) { try { return JSON.parse(localStorage.getItem("ai-course-reader." + key)) ?? fallback; } catch (_) { return fallback; } },
+    set(key, value) { try { localStorage.setItem("ai-course-reader." + key, JSON.stringify(value)); } catch (_) {} }
+  };
+  let readerFont = Number(readingPreferences.get("font", 17));
+  readerFont = Number.isFinite(readerFont) ? Math.max(15, Math.min(21, readerFont)) : 17;
+  document.documentElement.style.setProperty("--reader-font-size", readerFont + "px");
+  let displayedArticle = null;
+  let restoringPosition = false;
+  let resumeReading = false;
+  let positionTimer;
+  function saveReadingPosition() {
+    if (!displayedArticle || restoringPosition || document.querySelector(".course-sidebar.is-open")) return;
+    const positions = readingPreferences.get("positions", {});
+    positions[displayedArticle] = window.scrollY;
+    readingPreferences.set("positions", positions);
+  }
   const readingStages = [
     { id: "prompt", concept: "AI 与 Prompt", title: "先弄懂 AI 能做什么", question: "AI 为什么能快速生成内容，却仍然可能说错？", description: "先建立“不盲信，也不拒绝”的基本判断。", entryPath: "01-AI基础认知/01-AI到底改变了什么.md" },
     { id: "context", concept: "Context", title: "让 AI 看对材料", question: "为什么材料选得对，比把所有资料都塞进去更重要？", description: "学会选择背景、版本、示例和必要信息。", entryPath: "02-人机协作基本功/02-上下文包是什么.md" },
@@ -109,10 +126,8 @@
     const sequence = coreReadingSequence();
     const recent = latestReading(state);
     const start = recent || sequence[0];
-    const currentIndex = start ? sequence.findIndex((item) => item.path === start.path) : -1;
-    const startLabel = recent ? `继续阅读：${recent.title}` : "从第一节开始";
-    const activeModule = courseModuleFor(start);
-    const routeMap = moduleJourney(activeModule?.moduleId || "M1");
+    const startLabel = recent ? "继续上次阅读" : "从第一节开始";
+    const routeMap = `<div class="course-map-grid">${coreModules().map((module, index) => `<a class="course-map-card" href="${articleHref(module.articles[0])}"><span class="course-map-number">${String(index + 1).padStart(2, "0")}</span><div><h3>${C.escapeHtml(module.title)}</h3><p>${C.escapeHtml(module.question)}</p><span class="course-map-foot">${module.articles.length} 节 · ${C.escapeHtml(["AI 判断与人机分工", "任务卡 · 材料 · 反馈", "研究 · 总结 · 纪要 · 汇报", "事实核查与发布边界", "Workflow · Eval · Skill"][index])}<span aria-hidden="true">↗</span></span></div></a>`).join("")}</div>`;
     const routeArticle = articleByPath("00-课程入口/01-学习路径与交付物.md");
     const advancedStart = advancedReadingSequence()[0];
 
@@ -121,20 +136,21 @@
         ${state.saveMeta.mode === "session" ? C.saveBanner(state) : ""}
         <section class="home-hero">
           <div class="home-copy">
-            <span class="eyebrow">面向真实工作的 AI 协作入门课</span>
-            <h1>把 AI 用进一项可核验的真实工作</h1>
-            <p>先用 16 节核心课完成一次可靠协作；需要工具调用和动态决策时，再进入 8 节进阶工程课。案例、练习和工作簿都不阻断阅读。</p>
-            <div class="reading-promise"><strong>${C.escapeHtml(start ? start.title : "课程导读")}</strong><span>${recent ? `上次读到核心课第 ${currentIndex + 1} / ${sequence.length} 节。` : `约 ${start ? start.minutes : 5} 分钟，先判断 AI 能参与什么、不能替你负责什么。`}</span></div>
-            <div class="home-actions"><a class="btn-primary home-primary" data-primary-cta href="${articleHref(start)}">${C.escapeHtml(startLabel)}</a><a class="btn-secondary" href="${articleHref(routeArticle)}">直接查看学习路线</a></div>
+            <span class="eyebrow course-overline">A guide to working with AI</span>
+            <h1>AI 协作入门课</h1>
+            <p class="course-home-lead">从一句模糊的请求，<br>走到一份自己能核验的真实交付。</p>
+            <p class="course-home-sub">为非技术工作者写。先学会判断、提问与核查，再把有效做法整理成自己的方法。</p>
+            <div class="home-actions"><a class="btn-primary home-primary" data-primary-cta ${recent ? "data-resume-reading" : ""} href="${articleHref(start)}">${C.escapeHtml(startLabel)}<span aria-hidden="true">↗</span></a><a class="btn-secondary" href="${articleHref(routeArticle)}">直接查看学习路线<span aria-hidden="true">→</span></a></div>
+            <p class="course-start-note">${recent ? "上次读到" : "第一节"}：${C.escapeHtml(start?.title || "课程导读")}</p>
           </div>
-          <aside class="home-side"><span class="eyebrow">三层路线</span><h2>先核心，再按需深入</h2><ol class="gentle-steps"><li>核心入门课：16 节</li><li>进阶工程课：8 节</li><li>按需资料：参考、案例和工作簿</li></ol><p>默认只走核心课，不需要先理解 Agent 或 Harness。</p></aside>
+          <div class="course-home-facts" aria-label="课程阅读方式"><span>16 节核心课</span><span>8 节按需进阶</span><span>自由阅读 · 练习可选</span></div>
         </section>
         <section class="secondary-section" aria-labelledby="reading-map-title">
-          <div class="section-heading-row"><div><h2 id="reading-map-title">核心课依次解决五个问题</h2><p>整张卡都可以点击，直接进入你现在最需要的模块。</p></div><a href="#/directory">查看完整 16 节目录</a></div>
+          <div class="section-heading-row"><div><h2 id="reading-map-title">五个问题，串起一次 AI 协作</h2><p>可以从头读，也可以直接进入眼前需要的模块。</p></div><a href="#/directory">完整目录 →</a></div>
           ${routeMap}
         </section>
         <section class="secondary-section low-pressure-paths" aria-labelledby="other-paths-title">
-          <h2 id="other-paths-title">需要时再进入</h2>
+          <h2 id="other-paths-title">沿着需要，继续探索</h2>
           <div class="mode-grid"><article class="mode-card"><span class="eyebrow">进阶工程课 · 8 节</span><h2>固定流程已经不够用了</h2><p>继续学习 Agent Loop、工具权限、Harness、Eval 和能力资产。</p><a href="${articleHref(advancedStart)}">直接进入进阶第一节</a></article><article class="mode-card"><span class="eyebrow">按需资料</span><h2>我只想查概念或看案例</h2><p>搜索参考资料，或进入案例实验室；都不影响核心课进度。</p><a href="#/reference">打开按需资料</a></article></div>
         </section>
       </main>`);
@@ -441,7 +457,7 @@
     const references = courseSequence("reference");
     const labs = courseSequence("lab");
     const workbook = courseSequence("workbook");
-    app.innerHTML = C.regularShell("directory", `<main id="main-content" class="container directory-page" data-route="directory"><header class="page-heading"><span class="eyebrow">唯一学习路线</span><h1>三层课程，入口全部放在这里</h1><p>默认完成 16 节核心课；只有固定流程不够时再读 8 节进阶课；参考、案例和工作簿随用随查。</p></header><section class="directory-focus"><div><span class="eyebrow">${recent ? "继续上次阅读" : "第一次来，从这里开始"}</span><h2>${C.escapeHtml(focus ? focus.title : "AI 到底改变了什么")}</h2><p>${C.escapeHtml(focusModule?.question || courseStructure.core?.description || "")}</p><span class="muted">核心课第 ${focusIndex + 1} / ${sequence.length} 节 · 约 ${focus ? focus.minutes : 5} 分钟</span></div><a class="btn-primary" data-primary-cta href="${articleHref(focus)}">${recent ? "继续读这一节" : "开始核心课"}</a></section><section class="secondary-section" aria-labelledby="core-course-title"><div class="section-heading-row"><div><h2 id="core-course-title">第一层：核心入门课 · 16 节</h2><p>五个模块，按顺序完成一次从任务判断到方法沉淀的闭环。</p></div></div><div class="directory-stage-list">${moduleSections}</div></section><details class="full-directory"><summary><span><strong>第二层：进阶工程课 · ${advanced.length} 节</strong><small>需要 Agent、工具权限与 Harness 时再展开</small></span></summary><div class="full-directory-body"><p class="muted">${C.escapeHtml(courseStructure.advanced?.description || "")}</p>${directoryArticleList(advanced)}</div></details><details class="full-directory"><summary><span><strong>第三层：按需资料</strong><small>${references.length} 篇参考 · ${labs.length} 个案例实验室 · ${workbook.length} 份工作簿</small></span></summary><div class="full-directory-body"><section class="directory-guide-links"><h2>课程入口</h2><div class="guide-links">${orientation.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}</div></section><section class="directory-guide-links"><h2>参考资料</h2><div class="guide-links">${references.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}</div></section><section class="directory-guide-links"><h2>案例与工作簿</h2><div class="guide-links">${labs.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}${workbook.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}<a href="#/lab">打开案例实验室与任务诊断</a></div></section></div></details></main>`);
+    app.innerHTML = C.regularShell("directory", `<main id="main-content" class="container directory-page" data-route="directory"><header class="page-heading"><span class="eyebrow">唯一学习路线</span><h1>三层课程，入口全部放在这里</h1><p>从 16 节核心课开始；需要工具调用和动态选择时，再读 8 节进阶课。参考、案例和工作簿随用随查。</p></header><section class="directory-focus"><div><span class="eyebrow">${recent ? "继续上次阅读" : "第一次来，从这里开始"}</span><h2>${C.escapeHtml(focus ? focus.title : "AI 到底改变了什么")}</h2><p>${C.escapeHtml(focusModule?.question || courseStructure.core?.description || "")}</p><span class="muted">核心课第 ${focusIndex + 1} / ${sequence.length} 节 · 约 ${focus ? focus.minutes : 5} 分钟</span></div><a class="btn-primary" data-primary-cta ${recent ? "data-resume-reading" : ""} href="${articleHref(focus)}">${recent ? "继续读这一节" : "开始核心课"}</a></section><section class="secondary-section" aria-labelledby="core-course-title"><div class="section-heading-row"><div><h2 id="core-course-title">第一层：核心入门课 · 16 节</h2><p>五个模块，依次理解任务判断、材料选择、交付、核查与方法沉淀。</p></div></div><div class="directory-stage-list">${moduleSections}</div></section><details class="full-directory"><summary><span><strong>第二层：进阶工程课 · ${advanced.length} 节</strong><small>需要 Agent、工具权限与 Harness 时再展开</small></span></summary><div class="full-directory-body"><p class="muted">${C.escapeHtml(courseStructure.advanced?.description || "")}</p>${directoryArticleList(advanced)}</div></details><details class="full-directory"><summary><span><strong>第三层：按需资料</strong><small>${references.length} 篇参考 · ${labs.length} 个案例实验室 · ${workbook.length} 份工作簿</small></span></summary><div class="full-directory-body"><section class="directory-guide-links"><h2>课程入口</h2><div class="guide-links">${orientation.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}</div></section><section class="directory-guide-links"><h2>参考资料</h2><div class="guide-links">${references.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}</div></section><section class="directory-guide-links"><h2>案例与工作簿</h2><div class="guide-links">${labs.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}${workbook.map((item) => `<a href="${articleHref(item)}">${C.escapeHtml(item.title)}</a>`).join("")}<a href="#/lab">打开案例实验室与任务诊断</a></div></section></div></details></main>`);
     bindCommon();
   }
 
@@ -460,7 +476,7 @@
     const initial = articles.slice(0, 80);
     app.innerHTML = C.regularShell("reference", `<main id="main-content" class="container" data-route="reference"><header class="page-heading"><span class="eyebrow">按需资料 · 课程内搜索</span><h1>遇到不懂的概念，再来这里查</h1><p>这里只检索三层课程中经过筛选的 ${articles.length} 个正式单元，历史材料不会混入当前学习路线。</p></header><div class="search-tools"><label><span class="sr-only">搜索课程内容</span><input type="search" id="reference-search" placeholder="搜索上下文、Workflow、Agent、Harness、RAG"></label><button class="btn-secondary" id="clear-search">清空</button></div><div class="filter-row" role="group" aria-label="内容类型筛选">${[["all","全部"],["learn","课程"],["lab","案例"],["reference","参考"],["portfolio","工作簿"]].map(([id,label]) => `<button class="filter-button" data-mode-filter="${id}" aria-pressed="${id === "all" ? "true" : "false"}">${label}</button>`).join("")}</div><p class="muted" id="search-summary" role="status">显示全部 ${initial.length} 条内容</p><div class="reference-grid" id="reference-results">${articleCards(initial)}</div></main>`);
     let mode = "all";
-    const applySearch = () => { const q = document.getElementById("reference-search").value.trim().toLowerCase(); const filtered = articles.filter((item) => (mode === "all" || item.mode === mode) && (!q || `${item.title} ${item.excerpt} ${item.moduleTitle}`.toLowerCase().includes(q))).slice(0, 80); document.getElementById("reference-results").innerHTML = articleCards(filtered); document.getElementById("search-summary").textContent = `找到 ${filtered.length} 条 · ${mode === "all" ? "全部模式" : mode}`; };
+    const applySearch = () => { const q = document.getElementById("reference-search").value.trim().toLowerCase(); const filtered = articles.filter((item) => (mode === "all" || item.mode === mode) && (!q || `${item.title} ${item.body} ${item.moduleTitle}`.toLowerCase().includes(q))).slice(0, 80); document.getElementById("reference-results").innerHTML = articleCards(filtered); document.getElementById("search-summary").textContent = `找到 ${filtered.length} 条 · ${{ all: "全部内容", learn: "课程", lab: "案例", reference: "参考", portfolio: "工作簿" }[mode]}`; };
     document.getElementById("reference-search").addEventListener("input", applySearch);
     document.getElementById("clear-search").addEventListener("click", () => { document.getElementById("reference-search").value = ""; applySearch(); });
     document.querySelectorAll("[data-mode-filter]").forEach((button) => button.addEventListener("click", () => { mode = button.dataset.modeFilter; document.querySelectorAll("[data-mode-filter]").forEach((item) => item.setAttribute("aria-pressed", String(item === button))); applySearch(); }));
@@ -535,7 +551,7 @@
       if (/^\s*\|/.test(line)) { closeList(); table.push(line); continue; }
       flushTable();
       const image = line.match(/^!\[([^\]]*)]\(([^)]+)\)\s*$/); if (image) { closeList(); const caption = image[1].trim(); out.push(`<figure class="article-figure"><img src="${C.escapeHtml(image[2])}" alt="${C.escapeHtml(caption)}" loading="lazy">${caption ? `<figcaption>${C.escapeHtml(caption)}</figcaption>` : ""}</figure>`); continue; }
-      const h = line.match(/^(#{1,4})\s+(.+)/); if (h) { closeList(); const level = Math.min(4, h[1].length + 1); out.push(`<h${level}>${inline(h[2])}</h${level}>`); continue; }
+      const h = line.match(/^(#{1,4})\s+(.+)/); if (h) { closeList(); const level = Math.max(2, Math.min(4, h[1].length)); out.push(`<h${level}>${inline(h[2])}</h${level}>`); continue; }
       const ul = line.match(/^[-*]\s+(.+)/); if (ul) { if (list !== "ul") { closeList(); list = "ul"; out.push("<ul>"); } out.push(`<li>${inline(ul[1])}</li>`); continue; }
       const ol = line.match(/^\d+\.\s+(.+)/); if (ol) { if (list !== "ol") { closeList(); list = "ol"; out.push("<ol>"); } out.push(`<li>${inline(ol[1])}</li>`); continue; }
       if (/^>\s?/.test(line)) { closeList(); out.push(`<blockquote>${inline(line.replace(/^>\s?/, ""))}</blockquote>`); continue; }
@@ -583,7 +599,6 @@
     const next = readingIndex >= 0 && readingIndex < sequence.length - 1 ? sequence[readingIndex + 1] : null;
     const backHref = ["core", "advanced"].includes(article.layer) ? "#/directory" : article.layer === "orientation" ? "#/home" : article.mode === "lab" ? "#/lab" : "#/reference";
     const active = article.mode === "reference" ? "reference" : article.mode === "lab" || article.mode === "portfolio" ? "practice" : "directory";
-    const currentModule = courseModuleFor(article);
     const readerKicker = article.layer === "core"
       ? `核心课第 ${readingIndex + 1} / ${sequence.length} 节`
       : article.layer === "advanced"
@@ -593,12 +608,14 @@
           : article.visible
             ? "按需资料"
             : "历史补充内容";
-    const sideTitle = currentModule?.title || (article.layer === "advanced" ? "进阶工程课" : article.layer === "orientation" ? "课程入口" : "按需阅读");
-    const sideDescription = currentModule?.question || (article.layer === "advanced" ? courseStructure.advanced?.description : article.layer === "orientation" ? "先确认课程定位与三层学习路线。" : "这篇内容不改变核心课的位置。");
     const practice = parts.practice ? `<details class="reading-practice"><summary><span><strong>想练一下：把这篇知识用于一个小判断</strong><small>完全可选 · 不影响继续阅读</small></span></summary><div class="reading-practice-body markdown-body">${renderMarkdown(parts.practice, article.path)}</div></details>` : "";
     const nextLinks = `<nav class="reader-next" aria-label="上一节和下一节">${previous ? `<a href="${articleHref(previous)}"><span>上一节</span><strong>${C.escapeHtml(previous.title)}</strong></a>` : '<span class="reader-next-empty">这是本层第一节</span>'}${next ? `<a class="next" href="${articleHref(next)}"><span>下一节</span><strong>${C.escapeHtml(next.title)}</strong></a>` : '<a class="next" href="#/directory"><span>本层读完后</span><strong>回到三层学习路线</strong></a>'}</nav>`;
     const backLabel = ["core", "advanced"].includes(article.layer) ? "学习路线" : article.layer === "orientation" ? "学习首页" : article.mode === "lab" ? "案例实验室" : "按需资料";
-    app.innerHTML = C.regularShell(active, `<main id="main-content" class="reader-container" data-route="reader"><article class="reader-article"><header class="reader-heading"><a class="text-link" href="${backHref}">← 返回${backLabel}</a><span class="reader-kicker">${C.escapeHtml(readerKicker)}</span><h1>${C.escapeHtml(article.title)}</h1></header><div class="markdown-body">${renderMarkdown(parts.reading, article.path)}</div>${practice}${readingIndex >= 0 ? nextLinks : ""}</article><aside class="reader-side"><strong>${C.escapeHtml(sideTitle)}</strong><p>${C.escapeHtml(sideDescription || "")}</p>${article.layer === "core" && currentModule ? `<span class="reader-stage-position">本模块 ${currentModule.articles.findIndex((item) => item.path === article.path) + 1} / ${currentModule.articles.length} 节</span>` : ""}${next ? `<a class="reader-side-next" href="${articleHref(next)}"><small>下一节</small><strong>${C.escapeHtml(next.title)}</strong></a>` : ""}<a href="#/directory">查看三层学习路线</a><a href="#/reference">遇到术语，去搜索</a>${parts.practice ? '<a href="#reading-practice-note" data-open-practice>文末有可选练习</a>' : ""}</aside></main>`);
+    app.innerHTML = C.regularShell(active, `<main id="main-content" class="reader-container" data-route="reader"><article class="reader-article"><header class="reader-heading"><span class="reader-kicker">${C.escapeHtml(readerKicker)} <span aria-hidden="true">·</span> 约 ${article.minutes} 分钟</span><h1>${C.escapeHtml(article.title)}</h1></header><div class="markdown-body" id="reading-body">${renderMarkdown(parts.reading, article.path)}</div>${practice}${readingIndex >= 0 ? nextLinks : ""}</article><aside class="reader-side" aria-label="本篇内容"><h2>本篇内容</h2><nav class="course-article-outline" aria-label="文章大纲"></nav><div class="course-outline-links"><a href="${backHref}">← 返回${backLabel}</a><a href="#/reference">查找一个概念 ↗</a>${parts.practice ? '<a href="#reading-practice-note" data-open-practice>文末有可选练习</a>' : ""}</div></aside></main>`);
+    const headings = [...document.querySelectorAll("#reading-body h2, #reading-body h3")];
+    headings.forEach((heading, index) => { heading.id = `reading-section-${index + 1}`; });
+    document.querySelector(".course-article-outline").innerHTML = headings.map((heading) => `<a href="#${heading.id}" data-outline-target="${heading.id}" class="${heading.tagName === "H3" ? "is-subsection" : ""}">${C.escapeHtml(heading.textContent)}</a>`).join("");
+    document.querySelectorAll("[data-outline-target]").forEach((link) => link.addEventListener("click", (event) => { event.preventDefault(); document.getElementById(link.dataset.outlineTarget)?.scrollIntoView({ block: "start" }); }));
     document.querySelector("[data-open-practice]")?.addEventListener("click", (event) => { event.preventDefault(); const details = document.querySelector(".reading-practice"); if (details) { details.open = true; details.scrollIntoView({ block: "start" }); } });
     bindCommon();
   }
@@ -688,8 +705,62 @@
   }
 
   function bindCommon() {
-    const menu = document.querySelector("[data-menu]"); const nav = document.getElementById("mobile-nav");
-    menu?.addEventListener("click", () => { const open = menu.getAttribute("aria-expanded") === "true"; menu.setAttribute("aria-expanded", String(!open)); nav.hidden = open; });
+    const menu = document.querySelector("[data-menu]");
+    const sidebar = document.getElementById("course-sidebar");
+    const backdrop = document.querySelector(".course-menu-backdrop");
+    const isMobile = matchMedia("(max-width: 850px)");
+    let menuPosition = 0;
+    function closeMenu(focus) {
+      const wasOpen = sidebar?.classList.contains("is-open");
+      sidebar?.classList.remove("is-open");
+      menu?.setAttribute("aria-expanded", "false");
+      if (backdrop) backdrop.hidden = true;
+      document.body.style.overflow = "";
+      if (sidebar) sidebar.inert = isMobile.matches;
+      if (wasOpen) window.scrollTo({ top: menuPosition, behavior: "auto" });
+      if (focus) menu?.focus({ preventScroll: true });
+    }
+    menu?.addEventListener("click", () => {
+      if (sidebar.classList.contains("is-open")) { closeMenu(true); return; }
+      menuPosition = window.scrollY;
+      saveReadingPosition(); sidebar.inert = false; sidebar.classList.add("is-open");
+      menu.setAttribute("aria-expanded", "true"); backdrop.hidden = false; document.body.style.overflow = "hidden";
+      sidebar.querySelector("[data-menu-close]").focus({ preventScroll: true });
+    });
+    document.querySelectorAll("[data-menu-close]").forEach((button) => button.addEventListener("click", () => closeMenu(true)));
+    closeMenu(false);
+    document.querySelectorAll("[data-resume-reading]").forEach((link) => link.addEventListener("click", () => { resumeReading = true; }));
+    document.querySelectorAll("[data-font-change]").forEach((button) => button.addEventListener("click", () => {
+      readerFont = Math.max(15, Math.min(21, readerFont + Number(button.dataset.fontChange)));
+      document.documentElement.style.setProperty("--reader-font-size", readerFont + "px"); readingPreferences.set("font", readerFont);
+    }));
+    const dialog = document.querySelector(".course-search-dialog");
+    const input = document.getElementById("course-search-input");
+    let searchTrigger;
+    function search() {
+      const query = input.value.trim().toLowerCase();
+      const labels = { core: "核心课", advanced: "进阶课", reference: "参考资料", lab: "案例", orientation: "课程导读", workbook: "工作簿" };
+      const matches = query ? visibleArticles().map((item) => ({ item, score: (item.title.toLowerCase().includes(query) ? 20 : 0) + (item.body.toLowerCase().includes(query) ? 1 : 0) })).filter((hit) => hit.score > 0).sort((a, b) => b.score - a.score) : [];
+      dialog.querySelector(".course-search-status").textContent = query ? `找到 ${matches.length} 篇相关内容` : `搜索全部 ${visibleArticles().length} 篇课程、参考和案例`;
+      dialog.querySelector(".course-search-results").innerHTML = query ? matches.length ? matches.map(({ item }) => `<a href="${articleHref(item)}"><small>${labels[item.layer] || "课程"}</small><strong>${C.escapeHtml(item.title)}</strong><p>${C.escapeHtml(item.excerpt)}</p></a>`).join("") : '<p class="course-search-empty">没有找到相关内容。试试更短的关键词，或<a href="#/directory">查看学习路线</a>。</p>' : '<p class="course-search-empty">试试：上下文、事实核查、Workflow、Agent、Harness…<br>也可以输入你正在思考的问题。</p>';
+    }
+    function openSearch(trigger) { searchTrigger = trigger; closeMenu(false); if (!dialog.open) dialog.showModal(); search(); input.focus(); }
+    document.querySelectorAll("[data-search-open]").forEach((button) => button.addEventListener("click", () => openSearch(button)));
+    document.querySelector("[data-search-close]")?.addEventListener("click", () => dialog.close());
+    input?.addEventListener("input", search);
+    dialog?.addEventListener("close", () => { if (searchTrigger?.isConnected && !searchTrigger.closest("[inert]")) searchTrigger.focus({ preventScroll: true }); else menu?.focus({ preventScroll: true }); });
+    dialog?.querySelector(".course-search-results").addEventListener("click", (event) => { if (event.target.closest("a")) dialog.close(); });
+    window.courseShellKeyHandler = (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k" && dialog) { event.preventDefault(); openSearch(document.activeElement); }
+      if (event.key === "Escape" && sidebar?.classList.contains("is-open")) closeMenu(true);
+      if (event.key === "Escape" && dialog?.open) { event.preventDefault(); dialog.close(); }
+      if (event.key === "Tab" && sidebar?.classList.contains("is-open")) {
+        const items = [...sidebar.querySelectorAll("a, button, summary")].filter((item) => item.getClientRects().length);
+        const first = items[0], last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus({ preventScroll: true }); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus({ preventScroll: true }); }
+      }
+    };
     document.querySelectorAll("[data-retry-storage]").forEach((button) => button.addEventListener("click", () => { S.retry(); render(); }));
     document.querySelectorAll("[data-copy-state], [data-copy-task]").forEach((button) => button.addEventListener("click", async () => {
       const state = S.load(); const artifact = taskArtifact(state, false); const text = artifact ? formatTask(artifact.fields) : JSON.stringify(state, null, 2);
@@ -700,6 +771,8 @@
   function formatTask(f) { return `目标对象：${f.goalAudience}\n用途：${f.goalUse}\n材料：${f.materials.join("、")}\n输出：${f.outputShape}\n边界：${f.boundaries || ""}\n验收：\n- ${f.acceptanceCriteria.filter(Boolean).join("\n- ")}\n人类责任：${f.humanResponsibility}`; }
 
   function render() {
+    clearTimeout(positionTimer); saveReadingPosition(); restoringPosition = true;
+    document.body.style.overflow = "";
     const current = route();
     if (current === "/" || current === "/home") renderHome();
     else if (current === "/directory") renderDirectory();
@@ -717,10 +790,37 @@
     else if (current.startsWith("/read/")) renderReader(current.slice("/read/".length));
     else renderUnknown();
     document.title = `${document.querySelector("h1")?.textContent || "AI 协作知识库"} · AI 协作知识库`;
-    requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: "auto" }));
+    displayedArticle = current.startsWith("/read/") ? current.slice("/read/".length) : null;
+    const position = resumeReading && displayedArticle ? readingPreferences.get("positions", {})[displayedArticle] || 0 : 0;
+    resumeReading = false;
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: position, left: 0, behavior: "auto" });
+      const main = document.getElementById("main-content"); main?.setAttribute("tabindex", "-1"); main?.focus({ preventScroll: true });
+      restoringPosition = false;
+    });
   }
 
   window.CourseApp = { render, route, taskArtifact, formatTask, scenarios, renderMarkdown };
   window.addEventListener("hashchange", render);
+  document.addEventListener("keydown", (event) => window.courseShellKeyHandler?.(event));
+  window.addEventListener("resize", () => {
+    const sidebar = document.getElementById("course-sidebar");
+    if (!sidebar) return;
+    const mobile = matchMedia("(max-width: 850px)").matches;
+    if (!mobile) {
+      sidebar.classList.remove("is-open");
+      document.querySelector("[data-menu]")?.setAttribute("aria-expanded", "false");
+      const backdrop = document.querySelector(".course-menu-backdrop"); if (backdrop) backdrop.hidden = true;
+      document.body.style.overflow = "";
+    }
+    sidebar.inert = mobile && !sidebar.classList.contains("is-open");
+  });
+  document.querySelector(".skip-link")?.addEventListener("click", (event) => {
+    event.preventDefault();
+    const main = document.getElementById("main-content");
+    main?.focus({ preventScroll: true }); main?.scrollIntoView({ block: "start" });
+  });
+  window.addEventListener("scroll", () => { clearTimeout(positionTimer); positionTimer = setTimeout(saveReadingPosition, 180); }, { passive: true });
+  window.addEventListener("beforeunload", saveReadingPosition);
   render();
 })();

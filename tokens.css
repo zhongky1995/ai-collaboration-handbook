@@ -1,15 +1,15 @@
 :root {
   --neutral-0: #fff;
-  --neutral-50: #f5f7fa;
-  --neutral-100: #e9eef3;
-  --neutral-300: #cdd5df;
-  --neutral-500: #667586;
-  --neutral-600: #536170;
-  --neutral-900: #17202a;
-  --teal-50: #e7f4f2;
-  --teal-100: #cce9e5;
-  --teal-700: #0b6b63;
-  --teal-800: #08564f;
+  --neutral-50: #f4f4ee;
+  --neutral-100: #eaf0e8;
+  --neutral-300: #dfe5dc;
+  --neutral-500: #788378;
+  --neutral-600: #64716a;
+  --neutral-900: #243b36;
+  --teal-50: #edf3ed;
+  --teal-100: #dfeade;
+  --teal-700: #276655;
+  --teal-800: #205543;
   --blue-50: #eff8ff;
   --blue-700: #155eef;
   --success-50: #ecfdf3;
@@ -18,14 +18,15 @@
   --warning-700: #b54708;
   --danger-50: #fef3f2;
   --danger-700: #b42318;
-  --canvas: var(--neutral-50);
-  --surface: var(--neutral-0);
+  --canvas: #fcfbf7;
+  --surface: #fffefa;
   --text: var(--neutral-900);
   --muted: var(--neutral-600);
   --line: var(--neutral-300);
   --accent: var(--teal-700);
   --accent-hover: var(--teal-800);
-  --focus: #0b6b63;
+  --accent-strong: var(--teal-800);
+  --focus: #559482;
   --shadow-sm: 0 1px 2px rgba(23, 32, 42, .08);
   --shadow-panel: 0 8px 24px rgba(23, 32, 42, .10);
   --radius-sm: 4px;
@@ -39,6 +40,6 @@
   --space-8: 32px;
   --space-12: 48px;
   --measure: 720px;
-  --header-height: 68px;
+  --header-height: 74px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
