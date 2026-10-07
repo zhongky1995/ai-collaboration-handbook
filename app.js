@@ -554,22 +554,29 @@
       const alignments = separators.map((cell) => cell.startsWith(":") && cell.endsWith(":") ? "center" : cell.endsWith(":") ? "right" : "left");
       const renderCells = (cells, tag) => header.map((_, index) => `<${tag} class="table-align-${alignments[index]}">${inline(cells[index] || "")}</${tag}>`).join("");
       const bodyRows = rows.slice(2).map((row) => `<tr>${renderCells(row, "td")}</tr>`).join("");
-      out.push(`<div class="table-scroll" role="region" aria-label="文章数据表"><table><thead><tr>${renderCells(header, "th")}</tr></thead><tbody>${bodyRows}</tbody></table></div>`);
+      out.push(`<div class="table-scroll" role="region" aria-label="文章数据表"><table style="--table-columns: ${header.length}"><thead><tr>${renderCells(header, "th")}</tr></thead><tbody>${bodyRows}</tbody></table></div>`);
       table = [];
     };
-    for (const raw of lines) {
+    for (const [lineIndex, raw] of lines.entries()) {
       const line = raw.trimEnd();
       if (/^(```|~~~)/.test(line)) { closeList(); flushTable(); flushQuote(); if (inCode) { out.push(`<pre><code>${C.escapeHtml(code.join("\n"))}</code></pre>`); code = []; } inCode = !inCode; continue; }
       if (inCode) { code.push(raw); continue; }
       if (/^>\s?/.test(line)) { closeList(); flushTable(); quote.push(line.replace(/^>\s?/, "")); continue; }
       flushQuote();
-      if (!line.trim()) { closeList(); flushTable(); continue; }
+      if (!line.trim()) {
+        let nextIndex = lineIndex + 1;
+        while (nextIndex < lines.length && !lines[nextIndex].trim()) nextIndex++;
+        const nextLine = lines[nextIndex] || "";
+        const continuesList = list === "ul" ? /^[-*]\s+/.test(nextLine) : list === "ol" && /^\d+\.\s+/.test(nextLine);
+        if (!continuesList) closeList();
+        flushTable(); continue;
+      }
       if (/^\s*\|/.test(line)) { closeList(); table.push(line); continue; }
       flushTable();
       const image = line.match(/^!\[([^\]]*)]\(([^)]+)\)\s*$/); if (image) { closeList(); const caption = image[1].trim(); out.push(`<figure class="article-figure"><img src="${C.escapeHtml(image[2])}" alt="${C.escapeHtml(caption)}" loading="lazy">${caption ? `<figcaption>${C.escapeHtml(caption)}</figcaption>` : ""}</figure>`); continue; }
       const h = line.match(/^(#{1,4})\s+(.+)/); if (h) { closeList(); const level = Math.max(2, Math.min(4, h[1].length)); out.push(`<h${level}>${inline(h[2])}</h${level}>`); continue; }
       const ul = line.match(/^[-*]\s+(.+)/); if (ul) { if (list !== "ul") { closeList(); list = "ul"; out.push("<ul>"); } out.push(`<li>${inline(ul[1])}</li>`); continue; }
-      const ol = line.match(/^\d+\.\s+(.+)/); if (ol) { if (list !== "ol") { closeList(); list = "ol"; out.push("<ol>"); } out.push(`<li>${inline(ol[1])}</li>`); continue; }
+      const ol = line.match(/^(\d+)\.\s+(.+)/); if (ol) { if (list !== "ol") { closeList(); list = "ol"; out.push(`<ol start="${Number(ol[1])}">`); } out.push(`<li>${inline(ol[2])}</li>`); continue; }
       closeList(); out.push(`<p>${inline(line)}</p>`);
     }
     closeList(); flushTable(); flushQuote(); return out.join("");
