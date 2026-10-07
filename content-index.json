@@ -20,7 +20,7 @@
     "visible": true,
     "pageType": "entry-wrapper",
     "progressEligible": false,
-    "excerpt": "AI 协作入门课 这是一套面向非技术工作者的阅读型课程。它不教“万能提示词”，而是帮助你把一个真实工作请求，变成 AI 能参与、自己能核验的交付过程。 从这里开始 打开 离线学习应用，可以直接...",
+    "excerpt": "AI 协作入门课 这是一套面向非技术工作者的阅读型课程。它不教“万能提示词”，而是帮助你把一个真实工作请求，变成 AI 能参与、自己能核验的交付过程。 从这里开始 在课程首页，可以直接做两件事...",
     "headings": [
       {
         "level": 2,
@@ -499,7 +499,7 @@
   {
     "id": "01-AI基础认知/08-入门术语地图.md",
     "path": "01-AI基础认知/08-入门术语地图.md",
-    "title": "入门术语地图",
+    "title": "入门术语地图：遇到哪个词，就查哪一段",
     "moduleId": "foundation",
     "moduleTitle": "AI 基础与按需原理",
     "moduleDir": "01-AI基础认知",
@@ -517,7 +517,7 @@
     "visible": true,
     "pageType": "reference",
     "progressEligible": false,
-    "excerpt": "入门术语地图 30 秒判断 要解决的问题 ：遇到 Prompt、Context、RAG、Workflow、Agent、Eval 等词时，先知道它在工作链上负责哪一段； 适合何时打开 ：阅读或选...",
+    "excerpt": "入门术语地图：遇到哪个词，就查哪一段 30 秒判断 遇到陌生词时 ：查它负责哪一步、不能代替什么，再回到正文。 只想完成眼前任务时 ：先查任务与材料；不必预先背完整词表。 术语口径 ：本页采用...",
     "headings": [
       {
         "level": 2,
@@ -525,94 +525,90 @@
       },
       {
         "level": 2,
-        "text": "把术语放回一条完整工作链"
+        "text": "一条工作链，先找到词的位置"
       },
       {
         "level": 2,
-        "text": "先看一条主线"
+        "text": "任务与材料：先查这五个词"
+      },
+      {
+        "level": 3,
+        "text": "Prompt · 任务输入"
+      },
+      {
+        "level": 3,
+        "text": "Context · 当前上下文"
+      },
+      {
+        "level": 3,
+        "text": "Token · 模型处理的单位"
+      },
+      {
+        "level": 3,
+        "text": "上下文窗口 · 本轮容量范围"
+      },
+      {
+        "level": 3,
+        "text": "模型与产品 · 生成能力和使用环境"
       },
       {
         "level": 2,
-        "text": "核心术语"
+        "text": "查资料：相关不等于正确"
       },
       {
         "level": 3,
-        "text": "模型"
+        "text": "Embedding · 可比较的数字表示"
       },
       {
         "level": 3,
-        "text": "Prompt"
-      },
-      {
-        "level": 3,
-        "text": "Context"
-      },
-      {
-        "level": 3,
-        "text": "Token"
-      },
-      {
-        "level": 3,
-        "text": "Embedding"
-      },
-      {
-        "level": 3,
-        "text": "上下文窗口"
-      },
-      {
-        "level": 3,
-        "text": "RAG"
-      },
-      {
-        "level": 3,
-        "text": "Tool"
-      },
-      {
-        "level": 3,
-        "text": "Workflow"
-      },
-      {
-        "level": 3,
-        "text": "Agent"
-      },
-      {
-        "level": 3,
-        "text": "Eval"
+        "text": "RAG · 检索增强生成"
       },
       {
         "level": 2,
-        "text": "术语之间的关系"
+        "text": "从回答到行动：这些词职责不同"
+      },
+      {
+        "level": 3,
+        "text": "Template · 模板"
+      },
+      {
+        "level": 3,
+        "text": "Workflow · 工作流程"
+      },
+      {
+        "level": 3,
+        "text": "Tool / 工具调用 · 实际执行动作"
+      },
+      {
+        "level": 3,
+        "text": "Agent / Agent Loop · 动态选择与循环"
+      },
+      {
+        "level": 3,
+        "text": "Harness · 运行支撑"
+      },
+      {
+        "level": 3,
+        "text": "Skill · 可复用能力说明"
+      },
+      {
+        "level": 3,
+        "text": "SubAgent / Handoff · 独立执行与交接"
       },
       {
         "level": 2,
-        "text": "常见误解"
-      },
-      {
-        "level": 3,
-        "text": "误解一：学 AI 就要先学所有术语"
-      },
-      {
-        "level": 3,
-        "text": "误解二：用了 RAG 就不会错"
-      },
-      {
-        "level": 3,
-        "text": "误解三：agent 一定比 prompt 高级"
+        "text": "检查与恢复：遇到工程词再查这里"
       },
       {
         "level": 2,
-        "text": "把六个任务放回术语地图"
-      },
-      {
-        "level": 3,
-        "text": "教学反馈"
+        "text": "用一个任务检查是否分清了职责"
       },
       {
         "level": 2,
-        "text": "验收标准"
+        "text": "可选：用三句话检查职责"
       }
     ],
-    "minutes": 11,
+    "minutes": 9,
     "order": 13
   },
   {
@@ -727,6 +723,10 @@
       },
       {
         "level": 2,
+        "text": "放进工具之前，先检查能否提供、能否读到"
+      },
+      {
+        "level": 2,
         "text": "为什么“把全部资料塞进去”可能更差"
       },
       {
@@ -746,7 +746,7 @@
         "text": "教学反馈"
       }
     ],
-    "minutes": 12,
+    "minutes": 13,
     "order": 16
   },
   {
@@ -901,6 +901,10 @@
       },
       {
         "level": 2,
+        "text": "如果材料还没有找齐，研究要多做什么"
+      },
+      {
+        "level": 2,
         "text": "修改前后，真正变化在哪里"
       },
       {
@@ -912,7 +916,7 @@
         "text": "自检"
       }
     ],
-    "minutes": 12,
+    "minutes": 14,
     "order": 21
   },
   {
@@ -964,6 +968,10 @@
       },
       {
         "level": 2,
+        "text": "从一份错误摘要走到可用版本"
+      },
+      {
+        "level": 2,
         "text": "操作流程"
       },
       {
@@ -981,6 +989,10 @@
       {
         "level": 3,
         "text": "第四步：人工抽查关键点"
+      },
+      {
+        "level": 2,
+        "text": "长文、扫描件和多份材料怎样处理"
       },
       {
         "level": 2,
@@ -1003,7 +1015,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 6,
+    "minutes": 9,
     "order": 22
   },
   {
@@ -1138,7 +1150,7 @@
     "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
-    "excerpt": "用 AI 做 PPT 大纲 PPT 大纲先回答一个决策问题 让 AI 做 PPT，不是让它先写一堆页面标题。真正有效的做法，是先定义这份汇报要改变听众的什么判断。 PPT 大纲的核心不是“有几...",
+    "excerpt": "用 AI 做 PPT 大纲 PPT 大纲先回答一个决策问题 让 AI 做 PPT，不是让它先写一堆页面标题。真正有效的做法，是先定义这份汇报要改变听众的什么判断。 这里的“改变判断”要由证据支...",
     "headings": [
       {
         "level": 2,
@@ -1151,6 +1163,10 @@
       {
         "level": 2,
         "text": "先做页面任务表"
+      },
+      {
+        "level": 2,
+        "text": "一页“价值介绍”为什么还不够"
       },
       {
         "level": 2,
@@ -1193,7 +1209,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 7,
+    "minutes": 9,
     "order": 24
   },
   {
@@ -1261,6 +1277,10 @@
       },
       {
         "level": 2,
+        "text": "一份太满的计划，怎样缩到能开始"
+      },
+      {
+        "level": 2,
         "text": "操作流程"
       },
       {
@@ -1296,7 +1316,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 5,
+    "minutes": 7,
     "order": 26
   },
   {
@@ -1775,6 +1795,10 @@
       },
       {
         "level": 2,
+        "text": "看一次完整的评估记录"
+      },
+      {
+        "level": 2,
         "text": "通过线是本地决定，不是神奇数字"
       },
       {
@@ -1802,7 +1826,7 @@
         "text": "教学反馈"
       }
     ],
-    "minutes": 15,
+    "minutes": 18,
     "order": 39
   },
   {
@@ -1826,7 +1850,7 @@
     "visible": true,
     "pageType": "core-spine",
     "progressEligible": true,
-    "excerpt": "从一次有效做法到 Workflow 上一讲你看过一份资料研究演示：限定材料、提取事实、形成推断、写出建议，再由负责人确认。即使你还没有亲自做过，也可以先观察这条做法怎样被整理成流程。 下个月，...",
+    "excerpt": "从一次有效做法到 Workflow 在第三模块的资料研究演示中，你看过限定材料、提取事实、形成推断、写出建议，再由负责人确认的过程。上一模块又补上了事实核查和发布边界。现在把它们连成一条可重复...",
     "headings": [
       {
         "level": 2,
@@ -1952,7 +1976,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 11,
+    "minutes": 12,
     "order": 43
   },
   {
@@ -2981,7 +3005,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 22,
+    "minutes": 23,
     "order": 67
   },
   {
@@ -3104,7 +3128,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 12,
+    "minutes": 13,
     "order": 68
   }
 ]
