@@ -509,9 +509,23 @@
 
   function renderMarkdown(markdown, currentPath) {
     const source = String(markdown || "").replace(/<!-- PRACTICE:START -->[\s\S]*?<!-- PRACTICE:END -->/g, (block) => block.replace(/<!--[\s\S]*?-->/g, ""));
-    const lines = source.split(/\r?\n/); const out = []; let inCode = false; let code = []; let list = null; let table = [];
+    const lines = source.split(/\r?\n/); const out = []; let inCode = false; let code = []; let list = null; let table = []; let quote = [];
     const closeList = () => { if (list) { out.push(`</${list}>`); list = null; } };
     const inline = (value) => C.escapeHtml(value).replace(/`([^`]+)`/g, "<code>$1</code>").replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/\[([^\]]+)]\(([^)]+)\)/g, (m, label, href) => `<a href="${C.escapeHtml(markdownHref(href, currentPath))}">${label}</a>`);
+    const flushQuote = () => {
+      const paragraphs = []; let paragraph = [];
+      const closeParagraph = () => {
+        if (paragraph.length) paragraphs.push(`<p>${paragraph.map(inline).join("<br>")}</p>`);
+        paragraph = [];
+      };
+      for (const line of quote) {
+        if (line.trim()) paragraph.push(line);
+        else closeParagraph();
+      }
+      closeParagraph();
+      if (paragraphs.length) out.push(`<blockquote>${paragraphs.join("")}</blockquote>`);
+      quote = [];
+    };
     const splitTableRow = (value) => {
       const clean = value.trim().replace(/^\|/, "").replace(/\|$/, "");
       const cells = []; let cell = ""; let escaped = false; let inInlineCode = false;
@@ -545,8 +559,10 @@
     };
     for (const raw of lines) {
       const line = raw.trimEnd();
-      if (/^(```|~~~)/.test(line)) { closeList(); flushTable(); if (inCode) { out.push(`<pre><code>${C.escapeHtml(code.join("\n"))}</code></pre>`); code = []; } inCode = !inCode; continue; }
+      if (/^(```|~~~)/.test(line)) { closeList(); flushTable(); flushQuote(); if (inCode) { out.push(`<pre><code>${C.escapeHtml(code.join("\n"))}</code></pre>`); code = []; } inCode = !inCode; continue; }
       if (inCode) { code.push(raw); continue; }
+      if (/^>\s?/.test(line)) { closeList(); flushTable(); quote.push(line.replace(/^>\s?/, "")); continue; }
+      flushQuote();
       if (!line.trim()) { closeList(); flushTable(); continue; }
       if (/^\s*\|/.test(line)) { closeList(); table.push(line); continue; }
       flushTable();
@@ -554,10 +570,9 @@
       const h = line.match(/^(#{1,4})\s+(.+)/); if (h) { closeList(); const level = Math.max(2, Math.min(4, h[1].length)); out.push(`<h${level}>${inline(h[2])}</h${level}>`); continue; }
       const ul = line.match(/^[-*]\s+(.+)/); if (ul) { if (list !== "ul") { closeList(); list = "ul"; out.push("<ul>"); } out.push(`<li>${inline(ul[1])}</li>`); continue; }
       const ol = line.match(/^\d+\.\s+(.+)/); if (ol) { if (list !== "ol") { closeList(); list = "ol"; out.push("<ol>"); } out.push(`<li>${inline(ol[1])}</li>`); continue; }
-      if (/^>\s?/.test(line)) { closeList(); out.push(`<blockquote>${inline(line.replace(/^>\s?/, ""))}</blockquote>`); continue; }
       closeList(); out.push(`<p>${inline(line)}</p>`);
     }
-    closeList(); flushTable(); return out.join("");
+    closeList(); flushTable(); flushQuote(); return out.join("");
   }
 
   function splitArticleBody(markdown) {
