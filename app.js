@@ -167,7 +167,7 @@
           <h2 id="other-paths-title">沿着需要，继续探索</h2>
           <div class="mode-grid"><article class="mode-card"><span class="eyebrow">进阶工程课 · 8 节</span><h2>固定流程已经不够用了</h2><p>继续学习 Agent Loop、工具权限、Harness、Eval 和能力资产。</p><a href="${articleHref(advancedStart)}">直接进入进阶第一节</a></article><article class="mode-card"><span class="eyebrow">按需资料</span><h2>我只想查概念或看案例</h2><p>搜索参考资料，或进入案例实验室；都不影响核心课进度。</p><a href="#/reference">打开按需资料</a></article></div>
         </section>
-        <p class="muted">在线匿名统计浏览与搜索操作；不上传搜索词、练习答案或本机阅读记录。</p>
+        <p class="muted">在线使用 Google Analytics 统计浏览与搜索操作；不上传搜索词、练习答案或本机阅读记录。</p>
       </main>`);
     bindCommon();
   }
