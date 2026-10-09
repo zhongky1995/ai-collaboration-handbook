@@ -39,6 +39,10 @@
     return `<span class="save-status" role="status" aria-live="polite"><span aria-hidden="true">●</span> 已自动保存 ${escapeHtml(time)}</span>`;
   }
 
+  function authorCredit() {
+    return `<footer class="author-credit" aria-label="作者与联系方式"><span>作者：钟坤颖</span><span>联系方式：<a href="mailto:zhongky1995@gmail.com">zhongky1995@gmail.com</a></span></footer>`;
+  }
+
   function regularShell(active, content) {
     const structure = window.COURSE_STRUCTURE || {};
     const articles = (window.LEARNING_ARTICLES || []).filter((item) => item.visible === true);
@@ -94,6 +98,7 @@
         <div class="course-reading-tools"><button data-font-change="-1" aria-label="减小字号">A−</button><button data-font-change="1" aria-label="增大字号">A+</button><button data-search-open aria-label="搜索课程内容">搜索</button></div>
       </header>
       ${content}
+      ${authorCredit()}
       <dialog class="course-search-dialog" aria-labelledby="course-search-title"><div class="course-search-head"><label id="course-search-title" for="course-search-input">全课程搜索</label><input id="course-search-input" type="search" placeholder="搜索一个概念或问题" autocomplete="off"><button data-search-close aria-label="关闭搜索">关闭</button></div><p class="course-search-status" role="status"></p><div class="course-search-results"></div></dialog>`;
   }
 
@@ -104,7 +109,8 @@
         <strong>${escapeHtml(stageLabel)}</strong>
         ${saveBanner(state)}
       </header>
-      ${content}`;
+      ${content}
+      ${authorCredit()}`;
   }
 
   function stageSpine(currentId, compact) {
