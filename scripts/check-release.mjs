@@ -70,7 +70,7 @@ for (const article of articleIndex) {
 
 const forbidden = ["_kb-control", "_task-control", ".playwright-cli", ".DS_Store", "/Users/", "/var/folders/"];
 const publicTextFiles = [
-  "index.html", "app.js", "components.js", "course-data.js", "storage.js", "validators.js",
+  "index.html", "app.js", "analytics.js", "ANALYTICS.md", "components.js", "course-data.js", "storage.js", "validators.js",
   "learning-index.json", "content-index.json", "course-structure.json", "README.md", "assets/demos/evidence-panel.html"
 ];
 for (const file of publicTextFiles) {
@@ -78,7 +78,7 @@ for (const file of publicTextFiles) {
   for (const marker of forbidden) pass("forbidden marker absent", !text.includes(marker), `${file}: ${marker}`);
 }
 
-for (const asset of ["tokens.css", "styles.css", "reading-design.css", "content.generated.js", "course-data.js", "validators.js", "storage.js", "components.js", "app.js", "assets/aigc/aigc-workflow-sample.png", "assets/demos/evidence-panel.html", "course-structure.json"]) {
+for (const asset of ["tokens.css", "styles.css", "reading-design.css", "content.generated.js", "course-data.js", "validators.js", "storage.js", "components.js", "app.js", "analytics.js", "assets/aigc/aigc-workflow-sample.png", "assets/demos/evidence-panel.html", "course-structure.json"]) {
   pass("runtime asset exists", fs.existsSync(path.join(root, asset)), asset);
 }
 

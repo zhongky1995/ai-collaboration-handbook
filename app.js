@@ -6,6 +6,7 @@
   const V = window.CourseValidators;
   const S = window.CourseStorage;
   const C = window.CourseComponents;
+  const analytics = window.readerAnalytics;
   const courseStructure = window.COURSE_STRUCTURE || {};
   const readingPreferences = {
     get(key, fallback) { try { return JSON.parse(localStorage.getItem("ai-course-reader." + key)) ?? fallback; } catch (_) { return fallback; } },
@@ -18,6 +19,19 @@
   let restoringPosition = false;
   let resumeReading = false;
   let positionTimer;
+  let analyticsSearchTimer;
+
+  function analyticsArticle(hash) {
+    if (!hash.startsWith("#/read/")) return null;
+    try { return articleByPath(decodeURIComponent(hash.slice("#/read/".length))); } catch (_) { return null; }
+  }
+
+  function trackSearch(queryLength, resultCount, surface) {
+    clearTimeout(analyticsSearchTimer);
+    if (queryLength) analyticsSearchTimer = setTimeout(() => analytics.event("search", {
+      query_length: queryLength, result_count: resultCount, surface
+    }), 800);
+  }
   function saveReadingPosition() {
     if (!displayedArticle || restoringPosition || document.querySelector(".course-sidebar.is-open")) return;
     const positions = readingPreferences.get("positions", {});
@@ -153,6 +167,7 @@
           <h2 id="other-paths-title">沿着需要，继续探索</h2>
           <div class="mode-grid"><article class="mode-card"><span class="eyebrow">进阶工程课 · 8 节</span><h2>固定流程已经不够用了</h2><p>继续学习 Agent Loop、工具权限、Harness、Eval 和能力资产。</p><a href="${articleHref(advancedStart)}">直接进入进阶第一节</a></article><article class="mode-card"><span class="eyebrow">按需资料</span><h2>我只想查概念或看案例</h2><p>搜索参考资料，或进入案例实验室；都不影响核心课进度。</p><a href="#/reference">打开按需资料</a></article></div>
         </section>
+        <p class="muted">在线匿名统计浏览与搜索操作；不上传搜索词、练习答案或本机阅读记录。</p>
       </main>`);
     bindCommon();
   }
@@ -476,7 +491,7 @@
     const initial = articles.slice(0, 80);
     app.innerHTML = C.regularShell("reference", `<main id="main-content" class="container" data-route="reference"><header class="page-heading"><span class="eyebrow">按需资料 · 课程内搜索</span><h1>遇到不懂的概念，再来这里查</h1><p>这里只检索三层课程中经过筛选的 ${articles.length} 个正式单元，历史材料不会混入当前学习路线。</p></header><div class="search-tools"><label><span class="sr-only">搜索课程内容</span><input type="search" id="reference-search" placeholder="搜索上下文、Workflow、Agent、Harness、RAG"></label><button class="btn-secondary" id="clear-search">清空</button></div><div class="filter-row" role="group" aria-label="内容类型筛选">${[["all","全部"],["learn","课程"],["lab","案例"],["reference","参考"],["portfolio","工作簿"]].map(([id,label]) => `<button class="filter-button" data-mode-filter="${id}" aria-pressed="${id === "all" ? "true" : "false"}">${label}</button>`).join("")}</div><p class="muted" id="search-summary" role="status">显示全部 ${initial.length} 条内容</p><div class="reference-grid" id="reference-results">${articleCards(initial)}</div></main>`);
     let mode = "all";
-    const applySearch = () => { const q = document.getElementById("reference-search").value.trim().toLowerCase(); const filtered = articles.filter((item) => (mode === "all" || item.mode === mode) && (!q || `${item.title} ${item.body} ${item.moduleTitle}`.toLowerCase().includes(q))).slice(0, 80); document.getElementById("reference-results").innerHTML = articleCards(filtered); document.getElementById("search-summary").textContent = `找到 ${filtered.length} 条 · ${{ all: "全部内容", learn: "课程", lab: "案例", reference: "参考", portfolio: "工作簿" }[mode]}`; };
+    const applySearch = () => { const q = document.getElementById("reference-search").value.trim().toLowerCase(); const filtered = articles.filter((item) => (mode === "all" || item.mode === mode) && (!q || `${item.title} ${item.body} ${item.moduleTitle}`.toLowerCase().includes(q))).slice(0, 80); document.getElementById("reference-results").innerHTML = articleCards(filtered); document.getElementById("search-summary").textContent = `找到 ${filtered.length} 条 · ${{ all: "全部内容", learn: "课程", lab: "案例", reference: "参考", portfolio: "工作簿" }[mode]}`; trackSearch(document.getElementById("reference-search").value.trim().length, filtered.length, "reference"); };
     document.getElementById("reference-search").addEventListener("input", applySearch);
     document.getElementById("clear-search").addEventListener("click", () => { document.getElementById("reference-search").value = ""; applySearch(); });
     document.querySelectorAll("[data-mode-filter]").forEach((button) => button.addEventListener("click", () => { mode = button.dataset.modeFilter; document.querySelectorAll("[data-mode-filter]").forEach((item) => item.setAttribute("aria-pressed", String(item === button))); applySearch(); }));
@@ -751,7 +766,11 @@
     });
     document.querySelectorAll("[data-menu-close]").forEach((button) => button.addEventListener("click", () => closeMenu(true)));
     closeMenu(false);
-    document.querySelectorAll("[data-resume-reading]").forEach((link) => link.addEventListener("click", () => { resumeReading = true; }));
+    document.querySelectorAll("[data-resume-reading]").forEach((link) => link.addEventListener("click", () => {
+      resumeReading = true;
+      const article = analyticsArticle(link.hash);
+      if (article) analytics.event("resume-reading", { article: article.unitId });
+    }));
     document.querySelectorAll("[data-font-change]").forEach((button) => button.addEventListener("click", () => {
       readerFont = Math.max(15, Math.min(21, readerFont + Number(button.dataset.fontChange)));
       document.documentElement.style.setProperty("--reader-font-size", readerFont + "px"); readingPreferences.set("font", readerFont);
@@ -763,10 +782,15 @@
       const query = input.value.trim().toLowerCase();
       const labels = { core: "核心课", advanced: "进阶课", reference: "参考资料", lab: "案例", orientation: "课程导读", workbook: "工作簿" };
       const matches = query ? visibleArticles().map((item) => ({ item, score: (item.title.toLowerCase().includes(query) ? 20 : 0) + (item.body.toLowerCase().includes(query) ? 1 : 0) })).filter((hit) => hit.score > 0).sort((a, b) => b.score - a.score) : [];
+      trackSearch(input.value.trim().length, matches.length, "course-dialog");
       dialog.querySelector(".course-search-status").textContent = query ? `找到 ${matches.length} 篇相关内容` : `搜索全部 ${visibleArticles().length} 篇课程、参考和案例`;
       dialog.querySelector(".course-search-results").innerHTML = query ? matches.length ? matches.map(({ item }) => `<a href="${articleHref(item)}"><small>${labels[item.layer] || "课程"}</small><strong>${C.escapeHtml(item.title)}</strong><p>${C.escapeHtml(item.excerpt)}</p></a>`).join("") : '<p class="course-search-empty">没有找到相关内容。试试更短的关键词，或<a href="#/directory">查看学习路线</a>。</p>' : '<p class="course-search-empty">试试：上下文、事实核查、Workflow、Agent、Harness…<br>也可以输入你正在思考的问题。</p>';
     }
-    function openSearch(trigger) { searchTrigger = trigger; closeMenu(false); if (!dialog.open) dialog.showModal(); search(); input.focus(); }
+    function openSearch(trigger) {
+      searchTrigger = trigger; closeMenu(false);
+      if (!dialog.open) { dialog.showModal(); analytics.event("search-open"); }
+      search(); input.focus();
+    }
     document.querySelectorAll("[data-search-open]").forEach((button) => button.addEventListener("click", () => openSearch(button)));
     document.querySelector("[data-search-close]")?.addEventListener("click", () => dialog.close());
     input?.addEventListener("input", search);
@@ -793,6 +817,7 @@
   function formatTask(f) { return `目标对象：${f.goalAudience}\n用途：${f.goalUse}\n材料：${f.materials.join("、")}\n输出：${f.outputShape}\n边界：${f.boundaries || ""}\n验收：\n- ${f.acceptanceCriteria.filter(Boolean).join("\n- ")}\n人类责任：${f.humanResponsibility}`; }
 
   function render() {
+    clearTimeout(analyticsSearchTimer);
     clearTimeout(positionTimer); saveReadingPosition(); restoringPosition = true;
     document.body.style.overflow = "";
     const current = route();
@@ -812,6 +837,9 @@
     else if (current.startsWith("/read/")) renderReader(current.slice("/read/".length));
     else renderUnknown();
     document.title = `${document.querySelector("h1")?.textContent || "AI 协作知识库"} · AI 协作知识库`;
+    const article = analyticsArticle("#" + current);
+    const pageId = article ? "read/" + article.unitId : document.getElementById("main-content")?.dataset.route || "unknown";
+    analytics.page(pageId, article?.title || document.querySelector("h1")?.textContent || "AI 协作知识库");
     displayedArticle = current.startsWith("/read/") ? current.slice("/read/".length) : null;
     const position = resumeReading && displayedArticle ? readingPreferences.get("positions", {})[displayedArticle] || 0 : 0;
     resumeReading = false;
@@ -825,6 +853,15 @@
   window.CourseApp = { render, route, taskArtifact, formatTask, scenarios, renderMarkdown };
   window.addEventListener("hashchange", render);
   document.addEventListener("keydown", (event) => window.courseShellKeyHandler?.(event));
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a");
+    if (!link) return;
+    if (link.closest(".course-search-results") || (link.closest("#reference-results") && document.getElementById("reference-search").value.trim())) {
+      const article = analyticsArticle(link.hash);
+      if (article) analytics.event("search-result-click", { article: article.unitId });
+    }
+    if (link.hostname === "github.com") analytics.event("github-click");
+  });
   window.addEventListener("resize", () => {
     const sidebar = document.getElementById("course-sidebar");
     if (!sidebar) return;
