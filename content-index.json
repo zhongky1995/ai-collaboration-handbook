@@ -291,7 +291,7 @@
         "text": "教学反馈"
       }
     ],
-    "minutes": 15,
+    "minutes": 18,
     "order": 8
   },
   {
@@ -343,11 +343,19 @@
       },
       {
         "level": 2,
+        "text": "生成模型的 token 向量和检索向量有什么不同"
+      },
+      {
+        "level": 2,
         "text": "关键词搜索和语义检索的差别"
       },
       {
         "level": 2,
         "text": "什么是相似度"
+      },
+      {
+        "level": 3,
+        "text": "可选手算：方向相同，长度可以不同"
       },
       {
         "level": 2,
@@ -402,7 +410,7 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 16,
+    "minutes": 22,
     "order": 9
   },
   {
@@ -553,6 +561,26 @@
       },
       {
         "level": 2,
+        "text": "按需理解原理：训练和本轮生成"
+      },
+      {
+        "level": 3,
+        "text": "参数、训练与推理"
+      },
+      {
+        "level": 3,
+        "text": "交叉熵与泛化"
+      },
+      {
+        "level": 3,
+        "text": "Transformer、注意力与温度"
+      },
+      {
+        "level": 3,
+        "text": "预训练与后训练"
+      },
+      {
+        "level": 2,
         "text": "查资料：相关不等于正确"
       },
       {
@@ -608,8 +636,75 @@
         "text": "可选：用三句话检查职责"
       }
     ],
-    "minutes": 9,
+    "minutes": 10,
     "order": 13
+  },
+  {
+    "id": "01-AI基础认知/09-从训练到聊天助手.md",
+    "path": "01-AI基础认知/09-从训练到聊天助手.md",
+    "title": "从训练到聊天助手：模型的能力是怎样来的",
+    "moduleId": "foundation",
+    "moduleTitle": "AI 基础与按需原理",
+    "moduleDir": "01-AI基础认知",
+    "phase": "Prompt / Context",
+    "output": "理解候选答案、上下文与人类责任",
+    "mode": "reference",
+    "stage": null,
+    "unitId": "R-06",
+    "layer": "reference",
+    "courseOrder": 6,
+    "courseModuleId": null,
+    "courseModuleTitle": null,
+    "courseModuleQuestion": null,
+    "courseModuleOutcome": null,
+    "visible": true,
+    "pageType": "reference",
+    "progressEligible": false,
+    "excerpt": "你把会议记录交给 AI，它能改写语气、整理行动项，甚至解释一段没见过的流程。可只要记录里缺少负责人，它又可能补出一个名字。 这两种表现来自同一套机制： 模型从许多数据中学到可复用的关系，再根据...",
+    "headings": [
+      {
+        "level": 2,
+        "text": "30 秒判断"
+      },
+      {
+        "level": 2,
+        "text": "一、只预测下一步，为什么还能处理新问题"
+      },
+      {
+        "level": 2,
+        "text": "二、训练怎样知道这一轮预测好不好"
+      },
+      {
+        "level": 2,
+        "text": "三、损失怎样改变模型：参数、梯度和反向传播"
+      },
+      {
+        "level": 2,
+        "text": "四、Transformer 怎样使用一整段前文"
+      },
+      {
+        "level": 2,
+        "text": "五、续写能力怎样变成助手行为"
+      },
+      {
+        "level": 2,
+        "text": "六、助手怎样读文件、搜索和执行动作"
+      },
+      {
+        "level": 2,
+        "text": "七、参数更多，为什么仍要用真实任务检查"
+      },
+      {
+        "level": 3,
+        "text": "可选反思：三种变化分别发生在哪里"
+      },
+      {
+        "level": 3,
+        "text": "教学反馈"
+      }
+    ],
+    "minutes": 22,
+    "order": 14
   },
   {
     "id": "02-人机协作基本功/01-把模糊问题变成AI能执行的任务.md",
@@ -680,7 +775,7 @@
       }
     ],
     "minutes": 9,
-    "order": 15
+    "order": 16
   },
   {
     "id": "02-人机协作基本功/02-上下文包是什么.md",
@@ -746,8 +841,8 @@
         "text": "教学反馈"
       }
     ],
-    "minutes": 13,
-    "order": 16
+    "minutes": 14,
+    "order": 17
   },
   {
     "id": "02-人机协作基本功/04-示例反馈和迭代.md",
@@ -830,7 +925,7 @@
       }
     ],
     "minutes": 11,
-    "order": 18
+    "order": 19
   },
   {
     "id": "03-高频场景实战/01-用AI做资料研究完整案例.md",
@@ -917,7 +1012,7 @@
       }
     ],
     "minutes": 14,
-    "order": 21
+    "order": 22
   },
   {
     "id": "03-高频场景实战/02-用AI做长文总结.md",
@@ -1016,7 +1111,7 @@
       }
     ],
     "minutes": 9,
-    "order": 22
+    "order": 23
   },
   {
     "id": "03-高频场景实战/03-用AI做会议纪要.md",
@@ -1127,7 +1222,7 @@
       }
     ],
     "minutes": 11,
-    "order": 23
+    "order": 24
   },
   {
     "id": "03-高频场景实战/04-用AI做PPT大纲.md",
@@ -1210,7 +1305,7 @@
       }
     ],
     "minutes": 9,
-    "order": 24
+    "order": 25
   },
   {
     "id": "03-高频场景实战/06-用AI设计自学路径.md",
@@ -1317,7 +1412,7 @@
       }
     ],
     "minutes": 7,
-    "order": 26
+    "order": 27
   },
   {
     "id": "03-高频场景实战/07-用AI做资料核查面板.md",
@@ -1392,7 +1487,7 @@
       }
     ],
     "minutes": 17,
-    "order": 27
+    "order": 28
   },
   {
     "id": "04-AIGC与多模态创作/01-AIGC到底在生成什么.md",
@@ -1483,7 +1578,7 @@
       }
     ],
     "minutes": 10,
-    "order": 29
+    "order": 30
   },
   {
     "id": "04-AIGC与多模态创作/04-三个常见AIGC创作案例拆解.md",
@@ -1602,7 +1697,7 @@
       }
     ],
     "minutes": 11,
-    "order": 32
+    "order": 33
   },
   {
     "id": "04-判断验证与风险/02-如何做事实核查.md",
@@ -1634,6 +1729,10 @@
       {
         "level": 2,
         "text": "先区分三类主张"
+      },
+      {
+        "level": 2,
+        "text": "为什么“说不知道”有时才是合格结果"
       },
       {
         "level": 2,
@@ -1684,8 +1783,8 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 11,
-    "order": 37
+    "minutes": 13,
+    "order": 38
   },
   {
     "id": "04-判断验证与风险/03-高风险场景与发布边界.md",
@@ -1752,7 +1851,7 @@
       }
     ],
     "minutes": 10,
-    "order": 38
+    "order": 39
   },
   {
     "id": "04-判断验证与风险/04-如何设计轻量Eval.md",
@@ -1791,6 +1890,10 @@
       },
       {
         "level": 2,
+        "text": "留出没有拿来调方法的新材料"
+      },
+      {
+        "level": 2,
         "text": "先写通过条件，再看输出"
       },
       {
@@ -1826,8 +1929,8 @@
         "text": "教学反馈"
       }
     ],
-    "minutes": 18,
-    "order": 39
+    "minutes": 17,
+    "order": 40
   },
   {
     "id": "05-工作流与方法沉淀/02-从单次任务到Workflow.md",
@@ -1886,7 +1989,7 @@
       }
     ],
     "minutes": 8,
-    "order": 42
+    "order": 43
   },
   {
     "id": "05-工作流与方法沉淀/03-什么时候需要Agent.md",
@@ -1977,7 +2080,7 @@
       }
     ],
     "minutes": 12,
-    "order": 43
+    "order": 44
   },
   {
     "id": "05-工作流与方法沉淀/04-整理个人Skill与案例库.md",
@@ -2044,7 +2147,7 @@
       }
     ],
     "minutes": 10,
-    "order": 44
+    "order": 45
   },
   {
     "id": "06-工具地图与个人系统/01-按任务类型理解AI工具.md",
@@ -2155,7 +2258,7 @@
       }
     ],
     "minutes": 13,
-    "order": 46
+    "order": 47
   },
   {
     "id": "07-共生视角与建设者路径/01-消费者使用者建设者.md",
@@ -2226,7 +2329,7 @@
       }
     ],
     "minutes": 7,
-    "order": 51
+    "order": 52
   },
   {
     "id": "08-练习册与案例库/02-可复制作品模板.md",
@@ -2297,7 +2400,7 @@
       }
     ],
     "minutes": 6,
-    "order": 58
+    "order": 59
   },
   {
     "id": "09-Agent与Harness工程/01-从Prompt到Harness工程.md",
@@ -2396,7 +2499,7 @@
       }
     ],
     "minutes": 12,
-    "order": 61
+    "order": 62
   },
   {
     "id": "09-Agent与Harness工程/02-AgentLoop与状态推进.md",
@@ -2428,6 +2531,10 @@
       {
         "level": 2,
         "text": "一轮 Agent 到底发生什么"
+      },
+      {
+        "level": 2,
+        "text": "模型的生成循环和 Agent 的任务循环"
       },
       {
         "level": 2,
@@ -2498,8 +2605,8 @@
         "text": "验收标准"
       }
     ],
-    "minutes": 18,
-    "order": 62
+    "minutes": 20,
+    "order": 63
   },
   {
     "id": "09-Agent与Harness工程/03-上下文工程与长任务.md",
@@ -2606,7 +2713,7 @@
       }
     ],
     "minutes": 12,
-    "order": 63
+    "order": 64
   },
   {
     "id": "09-Agent与Harness工程/04-工具权限与安全边界.md",
@@ -2713,7 +2820,7 @@
       }
     ],
     "minutes": 18,
-    "order": 64
+    "order": 65
   },
   {
     "id": "09-Agent与Harness工程/05-SkillSubAgent与多Agent分工.md",
@@ -2816,7 +2923,7 @@
       }
     ],
     "minutes": 14,
-    "order": 65
+    "order": 66
   },
   {
     "id": "09-Agent与Harness工程/06-从真实工作到AgentOS能力资产.md",
@@ -2919,7 +3026,7 @@
       }
     ],
     "minutes": 22,
-    "order": 66
+    "order": 67
   },
   {
     "id": "09-Agent与Harness工程/07-Eval可观测性与持续改进.md",
@@ -3006,7 +3113,7 @@
       }
     ],
     "minutes": 23,
-    "order": 67
+    "order": 68
   },
   {
     "id": "09-Agent与Harness工程/08-设计一个最小Harness.md",
@@ -3129,6 +3236,6 @@
       }
     ],
     "minutes": 13,
-    "order": 68
+    "order": 69
   }
 ]

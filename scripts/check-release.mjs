@@ -26,9 +26,9 @@ const detailContracts = new Map([
   ["L-03", ["字段检查通过，只证明记录填全", "问题求助卡", "假设的修改过程", "资料核查面板示例"]]
 ]);
 
-pass("article count", articleIndex.length === 36, String(articleIndex.length));
+pass("article count", articleIndex.length === 37, String(articleIndex.length));
 pass("generated article count", sandbox.window.LEARNING_ARTICLES?.length === articleIndex.length);
-const expectedLayers = { orientation: 3, core: 16, advanced: 8, reference: 5, lab: 3, workbook: 1 };
+const expectedLayers = { orientation: 3, core: 16, advanced: 8, reference: 6, lab: 3, workbook: 1 };
 for (const [layer, expected] of Object.entries(expectedLayers)) {
   const actual = sandbox.window.LEARNING_ARTICLES?.filter((article) => article.layer === layer).length || 0;
   pass(`${layer} unit count`, actual === expected, `${actual} / ${expected}`);
@@ -78,7 +78,7 @@ for (const file of publicTextFiles) {
   for (const marker of forbidden) pass("forbidden marker absent", !text.includes(marker), `${file}: ${marker}`);
 }
 
-for (const asset of ["tokens.css", "styles.css", "reading-design.css", "content.generated.js", "course-data.js", "validators.js", "storage.js", "components.js", "app.js", "analytics.js", "assets/aigc/aigc-workflow-sample.png", "assets/demos/evidence-panel.html", "course-structure.json"]) {
+for (const asset of ["tokens.css", "styles.css", "reading-design.css", "content.generated.js", "course-data.js", "validators.js", "storage.js", "components.js", "app.js", "analytics.js", "assets/aigc/aigc-workflow-sample.png", "assets/demos/evidence-panel.html", "assets/llm/probability-loss.svg", "assets/llm/tool-result-loop.svg", "course-structure.json"]) {
   pass("runtime asset exists", fs.existsSync(path.join(root, asset)), asset);
 }
 

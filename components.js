@@ -85,7 +85,7 @@
           <p class="course-side-label">核心入门 · 16 节</p>${catalog}
           <p class="course-side-label">需要时，再深入</p>
           <details class="course-side-group" data-catalog-group="advanced" ${current?.layer === "advanced" ? "open" : ""}><summary>进阶工程课 <span class="course-side-count">8</span></summary><div>${links(advanced)}</div></details>
-          <details class="course-side-group" data-catalog-group="reference" ${current?.layer === "reference" ? "open" : ""}><summary>概念与参考 <span class="course-side-count">5</span></summary><div>${links(references)}</div></details>
+          <details class="course-side-group" data-catalog-group="reference" ${current?.layer === "reference" ? "open" : ""}><summary>概念与参考 <span class="course-side-count">${references.length}</span></summary><div>${links(references)}</div></details>
           <a class="course-side-main course-side-utility" href="#/reference" ${!current && active === "reference" ? 'aria-current="page"' : ""}>知识检索 <span aria-hidden="true">↗</span></a>
           <a class="course-side-main course-side-utility" href="#/lab" ${!current && active === "practice" ? 'aria-current="page"' : ""}>案例与可选练习 <span aria-hidden="true">↗</span></a>
           <a class="course-side-main course-side-utility" href="#/portfolio">我的练习记录 <span aria-hidden="true">↗</span></a>

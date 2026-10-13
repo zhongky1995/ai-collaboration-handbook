@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="634" viewBox="0 0 360 634" role="img" aria-labelledby="title desc">
+  <title id="title">模型提出动作，程序执行，实际结果回传</title>
+  <desc id="desc">读取会议记录的教学流程。模型生成读取请求，运行程序检查权限后调用工具。工具的成功或受阻结果回传，成为模型下一轮的输入。受阻时没有获得正文，调用请求不等于读取成功。</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#42526e"/></marker></defs>
+  <rect width="360" height="634" rx="12" fill="#f5f7fa"/>
+  <g font-family="system-ui, PingFang SC, Microsoft YaHei, sans-serif" fill="#172b4d">
+    <text x="24" y="36" font-size="24" font-weight="700">写出动作，不等于做成动作</text>
+    <text x="24" y="66" font-size="20">同一次“读取会议记录”</text>
+    <rect x="78" y="94" width="258" height="104" rx="8" fill="#e8f1fc" stroke="#175cd3" stroke-width="2"/>
+    <text x="96" y="123" font-size="22" font-weight="700">① 模型</text>
+    <path d="M96 136H113L120 143V181H96Z M113 136V143H120 M102 151H114 M102 160H114 M102 169H110" fill="#fff" stroke="#175cd3" stroke-width="1.5"/>
+    <text x="130" y="158" font-size="22">生成读取请求</text><text x="130" y="184" font-size="20">文件、动作与参数</text>
+    <path d="M207 198V246" fill="none" stroke="#42526e" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="223" y="230" font-size="20">请求</text>
+    <rect x="78" y="246" width="258" height="92" rx="8" fill="#ffffff" stroke="#42526e" stroke-width="2"/>
+    <text x="96" y="277" font-size="22" font-weight="700">② 运行程序</text><text x="96" y="308" font-size="22">检查格式与权限</text>
+    <path d="M207 338V386" fill="none" stroke="#42526e" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="223" y="370" font-size="20">执行</text>
+    <rect x="78" y="386" width="258" height="92" rx="8" fill="#ffffff" stroke="#42526e" stroke-width="2"/>
+    <text x="96" y="417" font-size="22" font-weight="700">③ 文件工具</text><text x="96" y="448" font-size="22">返回实际结果</text>
+    <path d="M78 431H38V166H78" fill="none" stroke="#42526e" stroke-width="2" marker-end="url(#arrow)"/>
+    <text transform="translate(28 350) rotate(-90)" font-size="20">结果回到下一轮输入</text>
+    <rect x="24" y="506" width="312" height="40" rx="6" fill="#eaf5ef"/>
+    <text x="40" y="534" font-size="22" fill="#067647">成功：正文进入上下文</text>
+    <rect x="24" y="556" width="312" height="40" rx="6" fill="#fceeed"/>
+    <text x="40" y="584" font-size="22" fill="#b42318">受阻：没有正文，需停下</text>
+    <text x="180" y="620" text-anchor="middle" font-size="20">教学示意 · 结果需要核验</text>
+  </g>
+</svg>
